@@ -1,0 +1,41 @@
+﻿@model IEnumerable<GYM_Management_System.Models.Servicess>
+
+@{
+    ViewBag.Title = "ServiceInformation";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+
+<h6>ServiceInformation</h6>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServieAmount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServieAmount)
+        </td>
+        <td>
+            @Html.ActionLink("Service Update", "ServiceUpdate", new { id=item.ServiceId })
+
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,84 @@
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\GYM Management System.dll.config
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\GYM Management System.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\GYM Management System.pdb
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\csc.exe
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\csc.exe.config
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\csc.rsp
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\csi.exe
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\csi.exe.config
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\csi.rsp
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\Microsoft.CodeAnalysis.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\Microsoft.CSharp.Core.targets
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\Microsoft.Managed.Core.targets
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\Microsoft.VisualBasic.Core.targets
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.AppContext.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Collections.Immutable.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Console.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Diagnostics.StackTrace.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.IO.Compression.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.IO.FileSystem.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.IO.FileSystem.Primitives.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.IO.Pipes.AccessControl.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.IO.Pipes.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Reflection.Metadata.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Security.AccessControl.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Security.Claims.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Security.Cryptography.Encoding.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Security.Cryptography.Primitives.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Security.Principal.Windows.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Text.Encoding.CodePages.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.ValueTuple.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Xml.ReaderWriter.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Xml.XmlDocument.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Xml.XPath.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\System.Xml.XPath.XDocument.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\vbc.exe
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\vbc.exe.config
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\vbc.rsp
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\VBCSCompiler.exe
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\roslyn\VBCSCompiler.exe.config
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\Antlr3.Runtime.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\Microsoft.Web.Infrastructure.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\Newtonsoft.Json.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Diagnostics.DiagnosticSource.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.Helpers.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.Mvc.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.Optimization.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.Razor.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.WebPages.Deployment.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.WebPages.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.WebPages.Razor.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\WebGrease.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.Helpers.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.Mvc.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.Optimization.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.Razor.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.WebPages.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.WebPages.Deployment.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Web.WebPages.Razor.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\Newtonsoft.Json.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\Antlr3.Runtime.pdb
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Diagnostics.DiagnosticSource.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\obj\Debug\GYM Management System.csprojAssemblyReference.cache
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\obj\Debug\GYM Management System.csproj.CoreCompileInputs.cache
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\obj\Debug\GYM Management System.csproj.CopyComplete
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\obj\Debug\GYM Management System.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\obj\Debug\GYM Management System.pdb
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\EntityFramework.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\EntityFramework.SqlServer.dll
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\EntityFramework.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\EntityFramework.SqlServer.xml

@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="gym_managementModelStoreContainer" CdmEntityContainer="gym_managementEntities">
+    <EntitySetMapping Name="Attendences">
+      <EntityTypeMapping TypeName="gym_managementModel.Attendence">
+        <MappingFragment StoreEntitySet="Attendence">
+          <ScalarProperty Name="AttendenceId" ColumnName="AttendenceId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="FromTime" ColumnName="FromTime" />
+          <ScalarProperty Name="ToTime" ColumnName="ToTime" />
+          <ScalarProperty Name="AttendenceStatus" ColumnName="AttendenceStatus" />
+          <ScalarProperty Name="AttendenceDate" ColumnName="AttendenceDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="gym_managementModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="ClietName" ColumnName="ClietName" />
+          <ScalarProperty Name="ClientIdNumber" ColumnName="ClientIdNumber" />
+          <ScalarProperty Name="ClientContact" ColumnName="ClientContact" />
+          <ScalarProperty Name="ClientMail" ColumnName="ClientMail" />
+          <ScalarProperty Name="ClientAddress" ColumnName="ClientAddress" />
+          <ScalarProperty Name="ClientGymStart" ColumnName="ClientGymStart" />
+          <ScalarProperty Name="ClientUserName" ColumnName="ClientUserName" />
+          <ScalarProperty Name="ClientPassword" ColumnName="ClientPassword" />
+          <ScalarProperty Name="ClientAdmitionfee" ColumnName="ClientAdmitionfee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientBills">
+      <EntityTypeMapping TypeName="gym_managementModel.ClientBill">
+        <MappingFragment StoreEntitySet="ClientBill">
+          <ScalarProperty Name="ClientBillId" ColumnName="ClientBillId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="BillMonth" ColumnName="BillMonth" />
+          <ScalarProperty Name="BillAmount" ColumnName="BillAmount" />
+          <ScalarProperty Name="BillStatus" ColumnName="BillStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientBillTransections">
+      <EntityTypeMapping TypeName="gym_managementModel.ClientBillTransection">
+        <MappingFragment StoreEntitySet="ClientBillTransection">
+          <ScalarProperty Name="TransectionId" ColumnName="TransectionId" />
+          <ScalarProperty Name="ClientBillId" ColumnName="ClientBillId" />
+          <ScalarProperty Name="TransectionDate" ColumnName="TransectionDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientServiceLists">
+      <EntityTypeMapping TypeName="gym_managementModel.ClientServiceList">
+        <MappingFragment StoreEntitySet="ClientServiceList">
+          <ScalarProperty Name="ClientServiceListId" ColumnName="ClientServiceListId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Designations">
+      <EntityTypeMapping TypeName="gym_managementModel.Designation">
+        <MappingFragment StoreEntitySet="Designation">
+          <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+          <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="gym_managementModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="Employee_Contact" ColumnName="Employee_Contact" />
+          <ScalarProperty Name="Employee_Mail" ColumnName="Employee_Mail" />
+          <ScalarProperty Name="Employee_Address" ColumnName="Employee_Address" />
+          <ScalarProperty Name="Employe_UserName" ColumnName="Employe_UserName" />
+          <ScalarProperty Name="Employee_Password" ColumnName="Employee_Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Expenses">
+      <EntityTypeMapping TypeName="gym_managementModel.Expense">
+        <MappingFragment StoreEntitySet="Expense">
+          <ScalarProperty Name="ExpenseId" ColumnName="ExpenseId" />
+          <ScalarProperty Name="ExpenseProductName" ColumnName="ExpenseProductName" />
+          <ScalarProperty Name="ExpenseProductQuantity" ColumnName="ExpenseProductQuantity" />
+          <ScalarProperty Name="ExpenseProductAmount" ColumnName="ExpenseProductAmount" />
+          <ScalarProperty Name="ExpenseBuyDate" ColumnName="ExpenseBuyDate" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodPlans">
+      <EntityTypeMapping TypeName="gym_managementModel.FoodPlan">
+        <MappingFragment StoreEntitySet="FoodPlan">
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="FoodPlan1" ColumnName="FoodPlan" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductBuyings">
+      <EntityTypeMapping TypeName="gym_managementModel.ProductBuying">
+        <MappingFragment StoreEntitySet="ProductBuying">
+          <ScalarProperty Name="ProductButingId" ColumnName="ProductButingId" />
+          <ScalarProperty Name="ProductPlanId" ColumnName="ProductPlanId" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+          <ScalarProperty Name="ProdyctBuyingDate" ColumnName="ProdyctBuyingDate" />
+          <ScalarProperty Name="ProductExpireDate" ColumnName="ProductExpireDate" />
+          <ScalarProperty Name="ProductBuyParPrice" ColumnName="ProductBuyParPrice" />
+          <ScalarProperty Name="productSellParPrice" ColumnName="productSellParPrice" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductPlans">
+      <EntityTypeMapping TypeName="gym_managementModel.ProductPlan">
+        <MappingFragment StoreEntitySet="ProductPlan">
+          <ScalarProperty Name="ProductPlanId" ColumnName="ProductPlanId" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schedules">
+      <EntityTypeMapping TypeName="gym_managementModel.Schedule">
+        <MappingFragment StoreEntitySet="Schedule">
+          <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
+          <ScalarProperty Name="scheduleDay" ColumnName="scheduleDay" />
+          <ScalarProperty Name="ScheduleTimeId" ColumnName="ScheduleTimeId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScheduleTimes">
+      <EntityTypeMapping TypeName="gym_managementModel.ScheduleTime">
+        <MappingFragment StoreEntitySet="ScheduleTime">
+          <ScalarProperty Name="ScheduleTimeId" ColumnName="ScheduleTimeId" />
+          <ScalarProperty Name="ScheduleName" ColumnName="ScheduleName" />
+          <ScalarProperty Name="ScheduleTime1" ColumnName="ScheduleTime" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sells">
+      <EntityTypeMapping TypeName="gym_managementModel.Sell">
+        <MappingFragment StoreEntitySet="Sell">
+          <ScalarProperty Name="SellId" ColumnName="SellId" />
+          <ScalarProperty Name="ProductPlanId" ColumnName="ProductPlanId" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="clientid" ColumnName="clientid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Servicesses">
+      <EntityTypeMapping TypeName="gym_managementModel.Servicess">
+        <MappingFragment StoreEntitySet="Servicess">
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="ServiceDay" ColumnName="ServiceDay" />
+          <ScalarProperty Name="ServieAmount" ColumnName="ServieAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Storages">
+      <EntityTypeMapping TypeName="gym_managementModel.Storage">
+        <MappingFragment StoreEntitySet="Storage">
+          <ScalarProperty Name="StorageId" ColumnName="StorageId" />
+          <ScalarProperty Name="ProductPlanId" ColumnName="ProductPlanId" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+          <ScalarProperty Name="ProductExpireDate" ColumnName="ProductExpireDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

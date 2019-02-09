@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DC62908D-77D7-4E8D-8E9D-1EDBCA07F0BB}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GYM_Management_System</RootNamespace>
+    <AssemblyName>GYM Management System</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Attendence.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Client.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClientBill.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClientBillTransection.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClientServiceList.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Designation.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Expense.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FoodPlan.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductBuying.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductPlan.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Schedule.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ScheduleTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sell.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Servicess.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Storage.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Validation\Client.cs" />
+    <Compile Include="Models\Validation\Designation.cs" />
+    <Compile Include="Models\Validation\Employee.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootflat-admin\css\bootstrap.min.css" />
+    <Content Include="Content\bootflat-admin\css\site.css" />
+    <Content Include="Content\bootflat-admin\js\application.js" />
+    <Content Include="Content\bootflat-admin\js\bootstrap.min.js" />
+    <Content Include="Content\bootflat-admin\js\html5shiv.js" />
+    <Content Include="Content\bootflat-admin\js\icheck.min.js" />
+    <Content Include="Content\bootflat-admin\js\jquery-1.10.1.min.js" />
+    <Content Include="Content\bootflat-admin\js\jquery.fs.selecter.min.js" />
+    <Content Include="Content\bootflat-admin\js\jquery.fs.stepper.min.js" />
+    <Content Include="Content\bootflat-admin\js\respond.min.js" />
+    <Content Include="Content\bootflat-admin\tmp\bootflat-admin.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dist\css\site.min.css" />
+    <Content Include="Content\dist\fonts\angularicons.svg" />
+    <Content Include="Content\dist\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\dist\img\ascii-logo.gif" />
+    <Content Include="Content\dist\img\bootflat-ui-kit.jpg" />
+    <Content Include="Content\dist\img\check_flat\default.png" />
+    <Content Include="Content\dist\img\design.png" />
+    <Content Include="Content\dist\img\divider.png" />
+    <Content Include="Content\dist\img\fast.png" />
+    <Content Include="Content\dist\img\feature-bootstrap.png" />
+    <Content Include="Content\dist\img\feature-css.png" />
+    <Content Include="Content\dist\img\feature-lightweight.png" />
+    <Content Include="Content\dist\img\feature-mobile.png" />
+    <Content Include="Content\dist\img\footer-logo.png" />
+    <Content Include="Content\dist\img\github.png" />
+    <Content Include="Content\dist\img\index.png" />
+    <Content Include="Content\dist\img\Jumbotron.jpg" />
+    <Content Include="Content\dist\img\logo-index.png" />
+    <Content Include="Content\dist\img\logo.png" />
+    <Content Include="Content\dist\img\photo-1.jpg" />
+    <Content Include="Content\dist\img\photo-2.jpg" />
+    <Content Include="Content\dist\img\photo-3.jpg" />
+    <Content Include="Content\dist\img\photo-4.jpg" />
+    <Content Include="Content\dist\img\prototyping.png" />
+    <Content Include="Content\dist\img\screensho1.png" />
+    <Content Include="Content\dist\img\screenshot2.png" />
+    <Content Include="Content\dist\img\share.gif" />
+    <Content Include="Content\dist\img\slider1.jpg" />
+    <Content Include="Content\dist\img\slider2.jpg" />
+    <Content Include="Content\dist\img\slider3.jpg" />
+    <Content Include="Content\dist\img\thumbnail-1.jpg" />
+    <Content Include="Content\dist\img\thumbnail-2.jpg" />
+    <Content Include="Content\dist\img\thumbnail-3.jpg" />
+    <Content Include="Content\dist\img\thumbnail-4.jpg" />
+    <Content Include="Content\dist\img\together.png" />
+    <Content Include="Content\dist\img\wild_flowers.png" />
+    <Content Include="Content\dist\js\site.min.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\bootflat-admin\csscomb.json" />
+    <Content Include="Content\bootflat-admin\jscomb.json" />
+    <Content Include="Content\bootflat-admin\sass\.csscomb.json" />
+    <Content Include="Content\bootflat-admin\sass\.csslintrc" />
+    <Content Include="Content\bootflat-admin\sass\bootflat-admin.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_accordion.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_alert.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_breadcrumb.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_button.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_button_group.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_calendar.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_checkbox_radio.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_dropdown.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_footer.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_form.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_global.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_jumbotron.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_label_badge.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_list.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_media_list.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_modal.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_navbar.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_pager.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_pagination.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_panel.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_pill.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_popover.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_pricing.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_progress.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_selecter.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_stepper.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_tab.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_thumbnail.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_timeline.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_toggle.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_tooltip.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_typography.scss" />
+    <Content Include="Content\bootflat-admin\sass\bootflat\_well.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\font-awesome.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\_bordered-pulled.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\_core.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\_fixed-width.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\_icons.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\_larger.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\_list.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\_mixins.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\_path.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\_rotated-flipped.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\_spinning.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\_stacked.scss" />
+    <Content Include="Content\bootflat-admin\sass\font-awesome\_variables.scss" />
+    <Content Include="Content\bootflat-admin\tmp\bootflat-admin.css.map" />
+    <Content Include="Content\dist\fonts\angularicons.eot" />
+    <Content Include="Content\dist\fonts\angularicons.ttf" />
+    <Content Include="Content\dist\fonts\angularicons.woff" />
+    <Content Include="Content\dist\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\dist\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\dist\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\dist\fonts\FontAwesome.otf" />
+    <Content Include="Content\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\dist\img\check_flat\default.psd" />
+    <Content Include="Content\dist\js\site.min.map" />
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_MyLayoutPage.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Client\ClientRegistration.cshtml" />
+    <Content Include="Views\Client\ClientInformation.cshtml" />
+    <Content Include="Views\Client\ClientUpdate.cshtml" />
+    <Content Include="Views\Employee\DesignationAdd.cshtml" />
+    <Content Include="Views\Employee\DesignationInformation.cshtml" />
+    <Content Include="Views\Employee\UpdateDesignation.cshtml" />
+    <Content Include="Views\Employee\EmployeeRegistration.cshtml" />
+    <Content Include="Views\Employee\EmployeeInformation.cshtml" />
+    <Content Include="Views\Employee\EmployeeUpdate.cshtml" />
+    <Content Include="Views\Service\ServiceAdd.cshtml" />
+    <Content Include="Views\Service\ServiceInformation.cshtml" />
+    <Content Include="Views\Service\ServiceUpdate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50278</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50278/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

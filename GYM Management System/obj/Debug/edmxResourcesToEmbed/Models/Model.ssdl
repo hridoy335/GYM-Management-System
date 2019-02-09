@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="gym_managementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Attendence">
+    <Key>
+      <PropertyRef Name="AttendenceId" />
+    </Key>
+    <Property Name="AttendenceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="FromTime" Type="datetime" Nullable="false" />
+    <Property Name="ToTime" Type="datetime" Nullable="false" />
+    <Property Name="AttendenceStatus" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="AttendenceDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClietName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ClientIdNumber" Type="int" Nullable="false" />
+    <Property Name="ClientContact" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientMail" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ClientAddress" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ClientGymStart" Type="datetime" Nullable="false" />
+    <Property Name="ClientUserName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ClientPassword" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ClientAdmitionfee" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientBill">
+    <Key>
+      <PropertyRef Name="ClientBillId" />
+    </Key>
+    <Property Name="ClientBillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="BillMonth" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="BillAmount" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="BillStatus" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientBillTransection">
+    <Key>
+      <PropertyRef Name="TransectionId" />
+    </Key>
+    <Property Name="TransectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientBillId" Type="int" Nullable="false" />
+    <Property Name="TransectionDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientServiceList">
+    <Key>
+      <PropertyRef Name="ClientServiceListId" />
+    </Key>
+    <Property Name="ClientServiceListId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Designation">
+    <Key>
+      <PropertyRef Name="DesignationId" />
+    </Key>
+    <Property Name="DesignationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DesignationName" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DesignationId" Type="int" Nullable="false" />
+    <Property Name="Employee_ID" Type="int" Nullable="false" />
+    <Property Name="Employee_Contact" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Employee_Mail" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Employee_Address" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Employe_UserName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Employee_Password" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Expense">
+    <Key>
+      <PropertyRef Name="ExpenseId" />
+    </Key>
+    <Property Name="ExpenseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExpenseProductName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ExpenseProductQuantity" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ExpenseProductAmount" Type="int" Nullable="false" />
+    <Property Name="ExpenseBuyDate" Type="datetime" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FoodPlan">
+    <Key>
+      <PropertyRef Name="FoodId" />
+    </Key>
+    <Property Name="FoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="FoodPlan" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductBuying">
+    <Key>
+      <PropertyRef Name="ProductButingId" />
+    </Key>
+    <Property Name="ProductButingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductPlanId" Type="int" Nullable="false" />
+    <Property Name="ProductQuantity" Type="int" Nullable="false" />
+    <Property Name="ProdyctBuyingDate" Type="datetime" Nullable="false" />
+    <Property Name="ProductExpireDate" Type="datetime" Nullable="false" />
+    <Property Name="ProductBuyParPrice" Type="int" Nullable="false" />
+    <Property Name="productSellParPrice" Type="int" Nullable="false" />
+    <Property Name="TotalAmount" Type="int" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductPlan">
+    <Key>
+      <PropertyRef Name="ProductPlanId" />
+    </Key>
+    <Property Name="ProductPlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="ScheduleId" />
+    </Key>
+    <Property Name="ScheduleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="scheduleDay" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ScheduleTimeId" Type="int" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScheduleTime">
+    <Key>
+      <PropertyRef Name="ScheduleTimeId" />
+    </Key>
+    <Property Name="ScheduleTimeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScheduleName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ScheduleTime" Type="datetime" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sell">
+    <Key>
+      <PropertyRef Name="SellId" />
+    </Key>
+    <Property Name="SellId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductPlanId" Type="int" Nullable="false" />
+    <Property Name="ProductQuantity" Type="int" Nullable="false" />
+    <Property Name="TotalAmount" Type="int" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="clientid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Servicess">
+    <Key>
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="ServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ServiceDay" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ServieAmount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Storage">
+    <Key>
+      <PropertyRef Name="StorageId" />
+    </Key>
+    <Property Name="StorageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductPlanId" Type="int" Nullable="false" />
+    <Property Name="ProductQuantity" Type="int" Nullable="false" />
+    <Property Name="ProductExpireDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Attendenc__Clien__29572725">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Attendence" Type="Self.Attendence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="Attendence">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Attendenc__Emplo__2A4B4B5E">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Attendence" Type="Self.Attendence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Attendence">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClientBil__Clien__239E4DCF">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="ClientBill" Type="Self.ClientBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="ClientBill">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClientBil__Clien__267ABA7A">
+    <End Role="ClientBill" Type="Self.ClientBill" Multiplicity="1" />
+    <End Role="ClientBillTransection" Type="Self.ClientBillTransection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClientBill">
+        <PropertyRef Name="ClientBillId" />
+      </Principal>
+      <Dependent Role="ClientBillTransection">
+        <PropertyRef Name="ClientBillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClientSer__Clien__1FCDBCEB">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="ClientServiceList" Type="Self.ClientServiceList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="ClientServiceList">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClientSer__Servi__20C1E124">
+    <End Role="Servicess" Type="Self.Servicess" Multiplicity="1" />
+    <End Role="ClientServiceList" Type="Self.ClientServiceList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Servicess">
+        <PropertyRef Name="ServiceId" />
+      </Principal>
+      <Dependent Role="ClientServiceList">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Design__173876EA">
+    <End Role="Designation" Type="Self.Designation" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Designation">
+        <PropertyRef Name="DesignationId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="DesignationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Expense__Employe__2D27B809">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FoodPlan__Client__1A14E395">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="FoodPlan" Type="Self.FoodPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="FoodPlan">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FoodPlan__Employ__1B0907CE">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="FoodPlan" Type="Self.FoodPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="FoodPlan">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProductBu__Emplo__3A81B327">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="ProductBuying" Type="Self.ProductBuying" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="ProductBuying">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProductBu__Produ__398D8EEE">
+    <End Role="ProductPlan" Type="Self.ProductPlan" Multiplicity="1" />
+    <End Role="ProductBuying" Type="Self.ProductBuying" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductPlan">
+        <PropertyRef Name="ProductPlanId" />
+      </Principal>
+      <Dependent Role="ProductBuying">
+        <PropertyRef Name="ProductPlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Schedule__Client__33D4B598">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Schedule__Employ__34C8D9D1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Schedule__Schedu__32E0915F">
+    <End Role="ScheduleTime" Type="Self.ScheduleTime" Multiplicity="1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScheduleTime">
+        <PropertyRef Name="ScheduleTimeId" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="ScheduleTimeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ScheduleT__Clien__300424B4">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="ScheduleTime" Type="Self.ScheduleTime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="ScheduleTime">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sell__clientid__4222D4EF">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Sell" Type="Self.Sell" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="Sell">
+        <PropertyRef Name="clientid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sell__EmployeeId__412EB0B6">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Sell" Type="Self.Sell" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Sell">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sell__ProductPla__403A8C7D">
+    <End Role="ProductPlan" Type="Self.ProductPlan" Multiplicity="1" />
+    <End Role="Sell" Type="Self.Sell" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductPlan">
+        <PropertyRef Name="ProductPlanId" />
+      </Principal>
+      <Dependent Role="Sell">
+        <PropertyRef Name="ProductPlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Storage__Product__3D5E1FD2">
+    <End Role="ProductPlan" Type="Self.ProductPlan" Multiplicity="1" />
+    <End Role="Storage" Type="Self.Storage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductPlan">
+        <PropertyRef Name="ProductPlanId" />
+      </Principal>
+      <Dependent Role="Storage">
+        <PropertyRef Name="ProductPlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="gym_managementModelStoreContainer">
+    <EntitySet Name="Attendence" EntityType="Self.Attendence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientBill" EntityType="Self.ClientBill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientBillTransection" EntityType="Self.ClientBillTransection" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientServiceList" EntityType="Self.ClientServiceList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FoodPlan" EntityType="Self.FoodPlan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductBuying" EntityType="Self.ProductBuying" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductPlan" EntityType="Self.ProductPlan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ScheduleTime" EntityType="Self.ScheduleTime" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sell" EntityType="Self.Sell" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Servicess" EntityType="Self.Servicess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Storage" EntityType="Self.Storage" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Attendenc__Clien__29572725" Association="Self.FK__Attendenc__Clien__29572725">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Attendence" EntitySet="Attendence" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Attendenc__Emplo__2A4B4B5E" Association="Self.FK__Attendenc__Emplo__2A4B4B5E">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Attendence" EntitySet="Attendence" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClientBil__Clien__239E4DCF" Association="Self.FK__ClientBil__Clien__239E4DCF">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="ClientBill" EntitySet="ClientBill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClientBil__Clien__267ABA7A" Association="Self.FK__ClientBil__Clien__267ABA7A">
+      <End Role="ClientBill" EntitySet="ClientBill" />
+      <End Role="ClientBillTransection" EntitySet="ClientBillTransection" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClientSer__Clien__1FCDBCEB" Association="Self.FK__ClientSer__Clien__1FCDBCEB">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="ClientServiceList" EntitySet="ClientServiceList" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClientSer__Servi__20C1E124" Association="Self.FK__ClientSer__Servi__20C1E124">
+      <End Role="Servicess" EntitySet="Servicess" />
+      <End Role="ClientServiceList" EntitySet="ClientServiceList" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Design__173876EA" Association="Self.FK__Employee__Design__173876EA">
+      <End Role="Designation" EntitySet="Designation" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Expense__Employe__2D27B809" Association="Self.FK__Expense__Employe__2D27B809">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Expense" EntitySet="Expense" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FoodPlan__Client__1A14E395" Association="Self.FK__FoodPlan__Client__1A14E395">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="FoodPlan" EntitySet="FoodPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FoodPlan__Employ__1B0907CE" Association="Self.FK__FoodPlan__Employ__1B0907CE">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="FoodPlan" EntitySet="FoodPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProductBu__Emplo__3A81B327" Association="Self.FK__ProductBu__Emplo__3A81B327">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="ProductBuying" EntitySet="ProductBuying" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProductBu__Produ__398D8EEE" Association="Self.FK__ProductBu__Produ__398D8EEE">
+      <End Role="ProductPlan" EntitySet="ProductPlan" />
+      <End Role="ProductBuying" EntitySet="ProductBuying" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Schedule__Client__33D4B598" Association="Self.FK__Schedule__Client__33D4B598">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Schedule__Employ__34C8D9D1" Association="Self.FK__Schedule__Employ__34C8D9D1">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Schedule__Schedu__32E0915F" Association="Self.FK__Schedule__Schedu__32E0915F">
+      <End Role="ScheduleTime" EntitySet="ScheduleTime" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ScheduleT__Clien__300424B4" Association="Self.FK__ScheduleT__Clien__300424B4">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="ScheduleTime" EntitySet="ScheduleTime" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sell__clientid__4222D4EF" Association="Self.FK__Sell__clientid__4222D4EF">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Sell" EntitySet="Sell" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sell__EmployeeId__412EB0B6" Association="Self.FK__Sell__EmployeeId__412EB0B6">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Sell" EntitySet="Sell" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sell__ProductPla__403A8C7D" Association="Self.FK__Sell__ProductPla__403A8C7D">
+      <End Role="ProductPlan" EntitySet="ProductPlan" />
+      <End Role="Sell" EntitySet="Sell" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Storage__Product__3D5E1FD2" Association="Self.FK__Storage__Product__3D5E1FD2">
+      <End Role="ProductPlan" EntitySet="ProductPlan" />
+      <End Role="Storage" EntitySet="Storage" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

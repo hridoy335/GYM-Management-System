@@ -1,0 +1,71 @@
+﻿@model IEnumerable<GYM_Management_System.Models.Employee>
+
+@{
+    ViewBag.Title = "EmployeeInformation";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+
+<h6>EmployeeInformation</h6>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DesignationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employe_UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Password)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Designation.DesignationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employe_UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Password)
+        </td>
+        <td>
+            @Html.ActionLink("Employee Update", "EmployeeUpdate", new { id=item.EmployeeId }) 
+
+        </td>
+    </tr>
+}
+
+</table>

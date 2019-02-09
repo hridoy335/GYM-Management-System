@@ -1,0 +1,30 @@
+﻿@model IEnumerable<GYM_Management_System.Models.Designation>
+
+@{
+    ViewBag.Title = "DesignationInformation";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+
+<h6>DesignationInformation</h6>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DesignationName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DesignationName)
+        </td>
+        <td>
+            @Html.ActionLink("UpdateDesignation", "UpdateDesignation", new { id=item.DesignationId }) |
+        </td>
+    </tr>
+}
+
+</table>
