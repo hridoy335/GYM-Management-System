@@ -5,14 +5,13 @@
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
 
-<h2>BillPament</h2>
+<h6>BillPament</h6>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>ClientBill</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -49,7 +48,7 @@
 
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+        <div class="col-md-offset-4 col-md-10">
             <input type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>

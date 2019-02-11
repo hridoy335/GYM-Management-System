@@ -22,6 +22,7 @@ namespace GYM_Management_System.Controllers
             return View(db.ClientBills.ToList());
         }
 
+        [HttpGet]
         public ActionResult BillPament(int?id)
         {
             if (id == null)
@@ -34,6 +35,13 @@ namespace GYM_Management_System.Controllers
                 return HttpNotFound();
             }
             return View(clientbill);
+        }
+
+        [HttpPost]
+        public ActionResult BillPament(ClientBill clientBill)
+        {
+
+            return View();
         }
     }
 }

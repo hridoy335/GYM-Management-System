@@ -5,19 +5,17 @@
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
 
-<h2>ServiceUpdate</h2>
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Servicess</h4>
+        <h4>Service Update</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.ServiceId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.ServiceId, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ServiceId, "", new { @class = "text-danger" })
             </div>
@@ -25,7 +23,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ServiceName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.ServiceName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ServiceName, "", new { @class = "text-danger" })
             </div>
@@ -33,7 +31,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ServiceDay, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.ServiceDay, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ServiceDay, "", new { @class = "text-danger" })
             </div>
@@ -41,20 +39,18 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ServieAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.ServieAmount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ServieAmount, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-offset-5 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+

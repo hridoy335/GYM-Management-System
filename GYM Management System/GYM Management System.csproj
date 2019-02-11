@@ -389,6 +389,8 @@
     <Content Include="Views\Service\ServiceUpdate.cshtml" />
     <Content Include="Views\Account\ClientBill.cshtml" />
     <Content Include="Views\Account\BillPament.cshtml" />
+    <Content Include="Views\Client\ClientServicecAdd.cshtml" />
+    <Content Include="Views\Client\ClientServiceList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

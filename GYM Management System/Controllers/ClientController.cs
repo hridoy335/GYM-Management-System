@@ -11,7 +11,7 @@ namespace GYM_Management_System.Controllers
 {
     public class ClientController : Controller
     {
-        Models.gym_managementEntities db = new Models.gym_managementEntities();
+        gym_managementEntities db = new gym_managementEntities();
         // GET: Client
         public ActionResult Index()
         {
@@ -57,16 +57,29 @@ namespace GYM_Management_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult ClientUpdate([Bind(Include = "ClientId,ClietName,ClientIdNumber,ClientContact,ClientMail,ClientAddress,ClientGymStart,ClientUserName,ClientPassword,ClientAdmitionfee")] Client ClientUpdate) 
+        public ActionResult ClientUpdate([Bind(Include = "ClientId,ClietName,ClientIdNumber,ClientContact,ClientMail,ClientAddress,ClientGymStart,ClientUserName,ClientPassword,ClientAdmitionfee")] Client client) 
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ClientUpdate).State = EntityState.Modified;
+                db.Entry(client).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ClientInformation");
             }
-            return View(ClientUpdate);
+            return View("ClientUpdate");
         }
 
+        public ActionResult ClientServicecAdd()
+        {
+            ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
+            return View();
+        }
+
+       
+
+        public ActionResult ClientServiceList()
+        {
+
+            return View(db.ClientServiceLists.ToList());
+        }
     }
 }
