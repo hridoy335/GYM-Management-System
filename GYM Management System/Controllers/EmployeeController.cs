@@ -53,15 +53,29 @@ namespace GYM_Management_System.Controllers
             {
                 return HttpNotFound();
             }
-            return View(EmployeeUpdate);
+            return View(EmployeeUpdate); 
         }
 
         [HttpPost]
-        public ActionResult EmployeeUpdate()
+        public ActionResult EmployeeUpdate([Bind(Include = "EmployeeId,EmployeeName,DesignationId,Employee_ID,Employee_Contact,Employee_Mail,Employee_Address,Employe_UserName,Employee_Password")] Employee employee)
         {
-
-            return View();
+            if (ModelState.IsValid)
+            {
+                db.Entry(employee).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("EmployeeInformation");
+            }
+            ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName", employee.DesignationId);
+            return View("EmployeeUpdate"); 
         }
+
+
+        //[HttpPost]
+        //public ActionResult EmployeeUpdate()
+        //{
+
+        //    return View();
+        //}
         //Employee Part end...
 
 
@@ -112,7 +126,7 @@ namespace GYM_Management_System.Controllers
         //        db.SaveChanges();
         //        return RedirectToAction("DesignationInformation");
         //    }
-        //    return View(UpdateDesignation);
+        //    return View(UpdateDesignation); 
         //}
         [HttpPost]
         public ActionResult Edit([Bind(Include = "EmployeeId,EmployeeName,DesignationId,Employee_ID,Employee_Contact,Employee_Mail,Employee_Address,Employe_UserName,Employee_Password")] Employee UpdateDesignation)
