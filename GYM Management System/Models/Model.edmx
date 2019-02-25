@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="gym_managementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="gym_managementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Attendence">
           <Key>
             <PropertyRef Name="AttendenceId" />
@@ -38,9 +38,9 @@
           </Key>
           <Property Name="ClientBillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClientId" Type="int" Nullable="false" />
-          <Property Name="BillMonth" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="BillAmount" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="BillStatus" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillMonth" Type="datetime" Nullable="false" />
+          <Property Name="BillAmount" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BillStatus" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ClientBillTransection">
           <Key>
@@ -190,30 +190,6 @@
             </Principal>
             <Dependent Role="Attendence">
               <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ClientBil__Clien__239E4DCF">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="ClientBill" Type="Self.ClientBill" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="ClientId" />
-            </Principal>
-            <Dependent Role="ClientBill">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ClientBil__Clien__267ABA7A">
-          <End Role="ClientBill" Type="Self.ClientBill" Multiplicity="1" />
-          <End Role="ClientBillTransection" Type="Self.ClientBillTransection" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ClientBill">
-              <PropertyRef Name="ClientBillId" />
-            </Principal>
-            <Dependent Role="ClientBillTransection">
-              <PropertyRef Name="ClientBillId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -409,6 +385,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ClientBill_ClientBill">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="ClientBill" Type="Self.ClientBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="ClientBill">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientBillTransection_ClientBill">
+          <End Role="ClientBill" Type="Self.ClientBill" Multiplicity="1" />
+          <End Role="ClientBillTransection" Type="Self.ClientBillTransection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientBill">
+              <PropertyRef Name="ClientBillId" />
+            </Principal>
+            <Dependent Role="ClientBillTransection">
+              <PropertyRef Name="ClientBillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="gym_managementModelStoreContainer">
           <EntitySet Name="Attendence" EntityType="Self.Attendence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
@@ -433,14 +433,6 @@
           <AssociationSet Name="FK__Attendenc__Emplo__2A4B4B5E" Association="Self.FK__Attendenc__Emplo__2A4B4B5E">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Attendence" EntitySet="Attendence" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ClientBil__Clien__239E4DCF" Association="Self.FK__ClientBil__Clien__239E4DCF">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="ClientBill" EntitySet="ClientBill" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ClientBil__Clien__267ABA7A" Association="Self.FK__ClientBil__Clien__267ABA7A">
-            <End Role="ClientBill" EntitySet="ClientBill" />
-            <End Role="ClientBillTransection" EntitySet="ClientBillTransection" />
           </AssociationSet>
           <AssociationSet Name="FK__ClientSer__Clien__1FCDBCEB" Association="Self.FK__ClientSer__Clien__1FCDBCEB">
             <End Role="Client" EntitySet="Client" />
@@ -506,9 +498,16 @@
             <End Role="ProductPlan" EntitySet="ProductPlan" />
             <End Role="Storage" EntitySet="Storage" />
           </AssociationSet>
+          <AssociationSet Name="FK_ClientBill_ClientBill" Association="Self.FK_ClientBill_ClientBill">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ClientBill" EntitySet="ClientBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientBillTransection_ClientBill" Association="Self.FK_ClientBillTransection_ClientBill">
+            <End Role="ClientBill" EntitySet="ClientBill" />
+            <End Role="ClientBillTransection" EntitySet="ClientBillTransection" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gym_managementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -554,11 +553,11 @@
           </Key>
           <Property Name="ClientBillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="BillMonth" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="BillAmount" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="BillStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BillMonth" Type="DateTime" Nullable="false" />
+          <Property Name="BillAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.FK__ClientBil__Clien__239E4DCF" FromRole="ClientBill" ToRole="Client" />
           <NavigationProperty Name="ClientBillTransections" Relationship="Self.FK__ClientBil__Clien__267ABA7A" FromRole="ClientBill" ToRole="ClientBillTransection" />
+          <Property Name="BillStatus" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="ClientBillTransection">
           <Key>
@@ -1092,11 +1091,11 @@
           <EntitySetMapping Name="ClientBills">
             <EntityTypeMapping TypeName="gym_managementModel.ClientBill">
               <MappingFragment StoreEntitySet="ClientBill">
+                <ScalarProperty Name="BillStatus" ColumnName="BillStatus" />
                 <ScalarProperty Name="ClientBillId" ColumnName="ClientBillId" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="BillMonth" ColumnName="BillMonth" />
                 <ScalarProperty Name="BillAmount" ColumnName="BillAmount" />
-                <ScalarProperty Name="BillStatus" ColumnName="BillStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

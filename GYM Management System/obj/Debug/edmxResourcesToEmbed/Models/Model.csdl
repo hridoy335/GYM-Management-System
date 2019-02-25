@@ -42,11 +42,11 @@
     </Key>
     <Property Name="ClientBillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ClientId" Type="Int32" Nullable="false" />
-    <Property Name="BillMonth" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="BillAmount" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="BillStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BillMonth" Type="DateTime" Nullable="false" />
+    <Property Name="BillAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Client" Relationship="Self.FK__ClientBil__Clien__239E4DCF" FromRole="ClientBill" ToRole="Client" />
     <NavigationProperty Name="ClientBillTransections" Relationship="Self.FK__ClientBil__Clien__267ABA7A" FromRole="ClientBill" ToRole="ClientBillTransection" />
+    <Property Name="BillStatus" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="ClientBillTransection">
     <Key>

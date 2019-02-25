@@ -33,11 +33,11 @@
     <EntitySetMapping Name="ClientBills">
       <EntityTypeMapping TypeName="gym_managementModel.ClientBill">
         <MappingFragment StoreEntitySet="ClientBill">
+          <ScalarProperty Name="BillStatus" ColumnName="BillStatus" />
           <ScalarProperty Name="ClientBillId" ColumnName="ClientBillId" />
           <ScalarProperty Name="ClientId" ColumnName="ClientId" />
           <ScalarProperty Name="BillMonth" ColumnName="BillMonth" />
           <ScalarProperty Name="BillAmount" ColumnName="BillAmount" />
-          <ScalarProperty Name="BillStatus" ColumnName="BillStatus" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

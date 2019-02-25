@@ -33,9 +33,9 @@
     </Key>
     <Property Name="ClientBillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ClientId" Type="int" Nullable="false" />
-    <Property Name="BillMonth" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="BillAmount" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="BillStatus" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="BillMonth" Type="datetime" Nullable="false" />
+    <Property Name="BillAmount" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BillStatus" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ClientBillTransection">
     <Key>
@@ -185,30 +185,6 @@
       </Principal>
       <Dependent Role="Attendence">
         <PropertyRef Name="EmployeeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ClientBil__Clien__239E4DCF">
-    <End Role="Client" Type="Self.Client" Multiplicity="1" />
-    <End Role="ClientBill" Type="Self.ClientBill" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Client">
-        <PropertyRef Name="ClientId" />
-      </Principal>
-      <Dependent Role="ClientBill">
-        <PropertyRef Name="ClientId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ClientBil__Clien__267ABA7A">
-    <End Role="ClientBill" Type="Self.ClientBill" Multiplicity="1" />
-    <End Role="ClientBillTransection" Type="Self.ClientBillTransection" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ClientBill">
-        <PropertyRef Name="ClientBillId" />
-      </Principal>
-      <Dependent Role="ClientBillTransection">
-        <PropertyRef Name="ClientBillId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -404,6 +380,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ClientBill_ClientBill">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="ClientBill" Type="Self.ClientBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="ClientBill">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientBillTransection_ClientBill">
+    <End Role="ClientBill" Type="Self.ClientBill" Multiplicity="1" />
+    <End Role="ClientBillTransection" Type="Self.ClientBillTransection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClientBill">
+        <PropertyRef Name="ClientBillId" />
+      </Principal>
+      <Dependent Role="ClientBillTransection">
+        <PropertyRef Name="ClientBillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="gym_managementModelStoreContainer">
     <EntitySet Name="Attendence" EntityType="Self.Attendence" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
@@ -428,14 +428,6 @@
     <AssociationSet Name="FK__Attendenc__Emplo__2A4B4B5E" Association="Self.FK__Attendenc__Emplo__2A4B4B5E">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Attendence" EntitySet="Attendence" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ClientBil__Clien__239E4DCF" Association="Self.FK__ClientBil__Clien__239E4DCF">
-      <End Role="Client" EntitySet="Client" />
-      <End Role="ClientBill" EntitySet="ClientBill" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ClientBil__Clien__267ABA7A" Association="Self.FK__ClientBil__Clien__267ABA7A">
-      <End Role="ClientBill" EntitySet="ClientBill" />
-      <End Role="ClientBillTransection" EntitySet="ClientBillTransection" />
     </AssociationSet>
     <AssociationSet Name="FK__ClientSer__Clien__1FCDBCEB" Association="Self.FK__ClientSer__Clien__1FCDBCEB">
       <End Role="Client" EntitySet="Client" />
@@ -500,6 +492,14 @@
     <AssociationSet Name="FK__Storage__Product__3D5E1FD2" Association="Self.FK__Storage__Product__3D5E1FD2">
       <End Role="ProductPlan" EntitySet="ProductPlan" />
       <End Role="Storage" EntitySet="Storage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientBill_ClientBill" Association="Self.FK_ClientBill_ClientBill">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="ClientBill" EntitySet="ClientBill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientBillTransection_ClientBill" Association="Self.FK_ClientBillTransection_ClientBill">
+      <End Role="ClientBill" EntitySet="ClientBill" />
+      <End Role="ClientBillTransection" EntitySet="ClientBillTransection" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
