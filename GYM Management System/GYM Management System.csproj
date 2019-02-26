@@ -138,6 +138,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -391,9 +392,14 @@
     <Content Include="Views\Account\BillPament.cshtml" />
     <Content Include="Views\Client\ClientServicecAdd.cshtml" />
     <Content Include="Views\Client\ClientServiceList.cshtml" />
+    <Content Include="Views\Schedule\ScheduleTime.cshtml" />
+    <Content Include="Views\Schedule\AddScheduleTime.cshtml" />
+    <Content Include="Views\Schedule\ScheduleRegistration.cshtml" />
+    <Content Include="Views\Schedule\SchedulInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ScheduleTime\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

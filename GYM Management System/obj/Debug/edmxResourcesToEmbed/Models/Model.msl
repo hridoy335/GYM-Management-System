@@ -132,7 +132,6 @@
       <EntityTypeMapping TypeName="gym_managementModel.Schedule">
         <MappingFragment StoreEntitySet="Schedule">
           <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
-          <ScalarProperty Name="scheduleDay" ColumnName="scheduleDay" />
           <ScalarProperty Name="ScheduleTimeId" ColumnName="ScheduleTimeId" />
           <ScalarProperty Name="ClientId" ColumnName="ClientId" />
           <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
@@ -142,10 +141,10 @@
     <EntitySetMapping Name="ScheduleTimes">
       <EntityTypeMapping TypeName="gym_managementModel.ScheduleTime">
         <MappingFragment StoreEntitySet="ScheduleTime">
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
           <ScalarProperty Name="ScheduleTimeId" ColumnName="ScheduleTimeId" />
           <ScalarProperty Name="ScheduleName" ColumnName="ScheduleName" />
-          <ScalarProperty Name="ScheduleTime1" ColumnName="ScheduleTime" />
-          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

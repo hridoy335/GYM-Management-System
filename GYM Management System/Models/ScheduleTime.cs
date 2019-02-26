@@ -22,10 +22,9 @@ namespace GYM_Management_System.Models
     
         public int ScheduleTimeId { get; set; }
         public string ScheduleName { get; set; }
-        public System.DateTime ScheduleTime1 { get; set; }
-        public int ClientId { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public System.DateTime EndTime { get; set; }
     
-        public virtual Client Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Schedule> Schedules { get; set; }
     }

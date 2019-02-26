@@ -27,7 +27,6 @@
         <AssociationConnector Association="gym_managementModel.FK__ClientSer__Clien__1FCDBCEB" ManuallyRouted="false" />
         <AssociationConnector Association="gym_managementModel.FK__FoodPlan__Client__1A14E395" ManuallyRouted="false" />
         <AssociationConnector Association="gym_managementModel.FK__Schedule__Client__33D4B598" ManuallyRouted="false" />
-        <AssociationConnector Association="gym_managementModel.FK__ScheduleT__Clien__300424B4" ManuallyRouted="false" />
         <AssociationConnector Association="gym_managementModel.FK__Sell__clientid__4222D4EF" ManuallyRouted="false" />
         <AssociationConnector Association="gym_managementModel.FK__ClientBil__Clien__267ABA7A" ManuallyRouted="false" />
         <AssociationConnector Association="gym_managementModel.FK__ClientSer__Servi__20C1E124" ManuallyRouted="false" />

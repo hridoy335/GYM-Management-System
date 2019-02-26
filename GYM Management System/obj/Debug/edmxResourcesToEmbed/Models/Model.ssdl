@@ -121,7 +121,6 @@
       <PropertyRef Name="ScheduleId" />
     </Key>
     <Property Name="ScheduleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="scheduleDay" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="ScheduleTimeId" Type="int" Nullable="false" />
     <Property Name="ClientId" Type="int" Nullable="false" />
     <Property Name="EmployeeId" Type="int" Nullable="false" />
@@ -132,8 +131,8 @@
     </Key>
     <Property Name="ScheduleTimeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ScheduleName" Type="varchar" MaxLength="200" Nullable="false" />
-    <Property Name="ScheduleTime" Type="datetime" Nullable="false" />
-    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Sell">
     <Key>
@@ -320,18 +319,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ScheduleT__Clien__300424B4">
-    <End Role="Client" Type="Self.Client" Multiplicity="1" />
-    <End Role="ScheduleTime" Type="Self.ScheduleTime" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Client">
-        <PropertyRef Name="ClientId" />
-      </Principal>
-      <Dependent Role="ScheduleTime">
-        <PropertyRef Name="ClientId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Sell__clientid__4222D4EF">
     <End Role="Client" Type="Self.Client" Multiplicity="1" />
     <End Role="Sell" Type="Self.Sell" Multiplicity="*" />
@@ -472,10 +459,6 @@
     <AssociationSet Name="FK__Schedule__Schedu__32E0915F" Association="Self.FK__Schedule__Schedu__32E0915F">
       <End Role="ScheduleTime" EntitySet="ScheduleTime" />
       <End Role="Schedule" EntitySet="Schedule" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ScheduleT__Clien__300424B4" Association="Self.FK__ScheduleT__Clien__300424B4">
-      <End Role="Client" EntitySet="Client" />
-      <End Role="ScheduleTime" EntitySet="ScheduleTime" />
     </AssociationSet>
     <AssociationSet Name="FK__Sell__clientid__4222D4EF" Association="Self.FK__Sell__clientid__4222D4EF">
       <End Role="Client" EntitySet="Client" />

@@ -15,7 +15,6 @@ namespace GYM_Management_System.Models
     public partial class Schedule
     {
         public int ScheduleId { get; set; }
-        public string scheduleDay { get; set; }
         public int ScheduleTimeId { get; set; }
         public int ClientId { get; set; }
         public int EmployeeId { get; set; }

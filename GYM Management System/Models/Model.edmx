@@ -126,7 +126,6 @@
             <PropertyRef Name="ScheduleId" />
           </Key>
           <Property Name="ScheduleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="scheduleDay" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="ScheduleTimeId" Type="int" Nullable="false" />
           <Property Name="ClientId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" Nullable="false" />
@@ -137,8 +136,8 @@
           </Key>
           <Property Name="ScheduleTimeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ScheduleName" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="ScheduleTime" Type="datetime" Nullable="false" />
-          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Sell">
           <Key>
@@ -325,18 +324,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ScheduleT__Clien__300424B4">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="ScheduleTime" Type="Self.ScheduleTime" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="ClientId" />
-            </Principal>
-            <Dependent Role="ScheduleTime">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Sell__clientid__4222D4EF">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="Sell" Type="Self.Sell" Multiplicity="*" />
@@ -478,10 +465,6 @@
             <End Role="ScheduleTime" EntitySet="ScheduleTime" />
             <End Role="Schedule" EntitySet="Schedule" />
           </AssociationSet>
-          <AssociationSet Name="FK__ScheduleT__Clien__300424B4" Association="Self.FK__ScheduleT__Clien__300424B4">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="ScheduleTime" EntitySet="ScheduleTime" />
-          </AssociationSet>
           <AssociationSet Name="FK__Sell__clientid__4222D4EF" Association="Self.FK__Sell__clientid__4222D4EF">
             <End Role="Client" EntitySet="Client" />
             <End Role="Sell" EntitySet="Sell" />
@@ -544,7 +527,6 @@
           <NavigationProperty Name="ClientServiceLists" Relationship="Self.FK__ClientSer__Clien__1FCDBCEB" FromRole="Client" ToRole="ClientServiceList" />
           <NavigationProperty Name="FoodPlans" Relationship="Self.FK__FoodPlan__Client__1A14E395" FromRole="Client" ToRole="FoodPlan" />
           <NavigationProperty Name="Schedules" Relationship="Self.FK__Schedule__Client__33D4B598" FromRole="Client" ToRole="Schedule" />
-          <NavigationProperty Name="ScheduleTimes" Relationship="Self.FK__ScheduleT__Clien__300424B4" FromRole="Client" ToRole="ScheduleTime" />
           <NavigationProperty Name="Sells" Relationship="Self.FK__Sell__clientid__4222D4EF" FromRole="Client" ToRole="Sell" />
         </EntityType>
         <EntityType Name="ClientBill">
@@ -553,7 +535,7 @@
           </Key>
           <Property Name="ClientBillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="BillMonth" Type="DateTime" Nullable="false" />
+          <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="BillAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.FK__ClientBil__Clien__239E4DCF" FromRole="ClientBill" ToRole="Client" />
           <NavigationProperty Name="ClientBillTransections" Relationship="Self.FK__ClientBil__Clien__267ABA7A" FromRole="ClientBill" ToRole="ClientBillTransection" />
@@ -662,7 +644,6 @@
             <PropertyRef Name="ScheduleId" />
           </Key>
           <Property Name="ScheduleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="scheduleDay" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ScheduleTimeId" Type="Int32" Nullable="false" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
@@ -676,10 +657,9 @@
           </Key>
           <Property Name="ScheduleTimeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ScheduleName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ScheduleTime1" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Client" Relationship="Self.FK__ScheduleT__Clien__300424B4" FromRole="ScheduleTime" ToRole="Client" />
           <NavigationProperty Name="Schedules" Relationship="Self.FK__Schedule__Schedu__32E0915F" FromRole="ScheduleTime" ToRole="Schedule" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Sell">
           <Key>
@@ -783,18 +763,6 @@
               <PropertyRef Name="ClientId" />
             </Principal>
             <Dependent Role="Schedule">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ScheduleT__Clien__300424B4">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="ScheduleTime" Type="Self.ScheduleTime" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="ClientId" />
-            </Principal>
-            <Dependent Role="ScheduleTime">
               <PropertyRef Name="ClientId" />
             </Dependent>
           </ReferentialConstraint>
@@ -996,10 +964,6 @@
             <End Role="Client" EntitySet="Clients" />
             <End Role="Schedule" EntitySet="Schedules" />
           </AssociationSet>
-          <AssociationSet Name="FK__ScheduleT__Clien__300424B4" Association="Self.FK__ScheduleT__Clien__300424B4">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="ScheduleTime" EntitySet="ScheduleTimes" />
-          </AssociationSet>
           <AssociationSet Name="FK__Sell__clientid__4222D4EF" Association="Self.FK__Sell__clientid__4222D4EF">
             <End Role="Client" EntitySet="Clients" />
             <End Role="Sell" EntitySet="Sells" />
@@ -1190,7 +1154,6 @@
             <EntityTypeMapping TypeName="gym_managementModel.Schedule">
               <MappingFragment StoreEntitySet="Schedule">
                 <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
-                <ScalarProperty Name="scheduleDay" ColumnName="scheduleDay" />
                 <ScalarProperty Name="ScheduleTimeId" ColumnName="ScheduleTimeId" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
@@ -1200,10 +1163,10 @@
           <EntitySetMapping Name="ScheduleTimes">
             <EntityTypeMapping TypeName="gym_managementModel.ScheduleTime">
               <MappingFragment StoreEntitySet="ScheduleTime">
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="ScheduleTimeId" ColumnName="ScheduleTimeId" />
                 <ScalarProperty Name="ScheduleName" ColumnName="ScheduleName" />
-                <ScalarProperty Name="ScheduleTime1" ColumnName="ScheduleTime" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

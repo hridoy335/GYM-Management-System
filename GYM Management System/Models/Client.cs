@@ -22,7 +22,6 @@ namespace GYM_Management_System.Models
             this.ClientServiceLists = new HashSet<ClientServiceList>();
             this.FoodPlans = new HashSet<FoodPlan>();
             this.Schedules = new HashSet<Schedule>();
-            this.ScheduleTimes = new HashSet<ScheduleTime>();
             this.Sells = new HashSet<Sell>();
         }
     
@@ -47,8 +46,6 @@ namespace GYM_Management_System.Models
         public virtual ICollection<FoodPlan> FoodPlans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Schedule> Schedules { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ScheduleTime> ScheduleTimes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sell> Sells { get; set; }
     }
