@@ -52,16 +52,18 @@ namespace GYM_Management_System.Controllers
                 db.ClientServiceLists.Add(list);
 
                 ClientBill bill = new ClientBill();
-                bill.ClientId = client.ClientId;
+                bill.ClientId = client.ClientId;     
                 bill.BillMonth = client.ClientGymStart;
                 bill.BillStatus = false;
-                bill.BillAmount = "8787";
+
+                var serviceprice = db.Servicesses.Where(x => x.ServiceId == ServiceId).FirstOrDefault().ServieAmount;
+                bill.BillAmount =Convert.ToString(serviceprice);
                 db.ClientBills.Add(bill);
                 db.SaveChanges();
                 return RedirectToAction("ClientRegistration");
 
             }
-
+            ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
             return View("ClientRegistration");
         }
 

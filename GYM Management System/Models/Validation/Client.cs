@@ -18,6 +18,7 @@ namespace GYM_Management_System.Models
         public string ClietName { get; set; }
         [Required]
         [Display(Name = "Client ID")]
+        
         public int ClientIdNumber { get; set; }
         [Required]
         [Display(Name = "Contact")]
@@ -30,6 +31,7 @@ namespace GYM_Management_System.Models
         [Display(Name = "Address")]
         public string ClientAddress { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         [Display(Name = "Start Date")]
         public System.DateTime ClientGymStart { get; set; }
         [Required]
@@ -41,5 +43,6 @@ namespace GYM_Management_System.Models
         [Required]
         [Display(Name = "Registration Fee")]
         public int ClientAdmitionfee { get; set; }
-    }
+     
+}
 }
