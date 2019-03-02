@@ -12,59 +12,65 @@ namespace GYM_Management_System.Controllers
     public class ClientController : Controller
     {
         gym_managementEntities db = new gym_managementEntities();
-        // GET: Client
+        // GET: Clienti
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult ClientRegistration()
         {
+            //List<Servicess> serviceList = db.Servicesses.ToList();
+            //serviceList.Add(new Servicess() { ServiceId = 0, ServiceName = "Select One" });
             ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
             return View();
+            
+
         }
 
-        //[HttpPost]
-        //public ActionResult ClientRegistration(Client client)
-        //{
-        //    if(ModelState.IsValid)
-        //    {
-        //        db.Clients.Add(client);
-        //        db.SaveChanges();
-        //        return RedirectToAction("ClientRegistration");
-            
-        //    }
-
-        //    return View("ClientRegistration");
-        //}
-
         [HttpPost]
-        public ActionResult ClientRegistration(Client client, int ServiceId )
+        public ActionResult ClientRegistration(Client client, int? ServiceId )
         {
-            if (ModelState.IsValid)
+            int er = 0;
+            if (ServiceId==null)
             {
-                //int id = client.ClientIdNumber;
-                //client.ClientIdNumber = id + 1;
-                db.Clients.Add(client);
+                ViewBag.ename = "Select One Item";
+                er++;
+            }
+            if (er > 0)
+            {
+                ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
+                return View();
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    
+                    //int id = client.ClientIdNumber;
+                    //client.ClientIdNumber = id + 1;
+                    //client.ClientAdmitionfee=client
+                    db.Clients.Add(client);
 
-                ClientServiceList list = new ClientServiceList();
-                list.ClientId = client.ClientId;
-                list.ServiceId = ServiceId;
-                db.ClientServiceLists.Add(list);
+                    ClientServiceList list = new ClientServiceList();
+                    list.ClientId = client.ClientId;
+                    list.ServiceId =Convert.ToInt32( ServiceId);
+                    db.ClientServiceLists.Add(list);
 
-                ClientBill bill = new ClientBill();
-                bill.ClientId = client.ClientId;     
-                bill.BillMonth = client.ClientGymStart;
-                bill.BillStatus = false;
+                    ClientBill bill = new ClientBill();
+                    bill.ClientId = client.ClientId;
+                    bill.BillMonth = client.ClientGymStart;
+                    bill.BillStatus = false;
 
-                var serviceprice = db.Servicesses.Where(x => x.ServiceId == ServiceId).FirstOrDefault().ServieAmount;
-                bill.BillAmount =Convert.ToString(serviceprice);
-                db.ClientBills.Add(bill);
-                db.SaveChanges();
-                return RedirectToAction("ClientRegistration");
+                    var serviceprice = db.Servicesses.Where(x => x.ServiceId == ServiceId).FirstOrDefault().ServieAmount;
+                    bill.BillAmount = Convert.ToInt16(serviceprice);
+                    db.ClientBills.Add(bill);
+                    db.SaveChanges();
+                    return RedirectToAction("ClientRegistration");
 
+                }
             }
             ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
-            return View("ClientRegistration");
+            return View();
         }
 
 
@@ -110,6 +116,11 @@ namespace GYM_Management_System.Controllers
         {
 
             return View(db.ClientServiceLists.ToList());
+        }
+
+        public ActionResult ServiceAdd()
+        {
+            return View();
         }
     }
 }

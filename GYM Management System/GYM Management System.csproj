@@ -137,6 +137,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\ExpenseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
@@ -403,6 +404,7 @@
     <Content Include="Views\Schedule\AddScheduleTime.cshtml" />
     <Content Include="Views\Schedule\ScheduleRegistration.cshtml" />
     <Content Include="Views\Schedule\SchedulInformation.cshtml" />
+    <Content Include="Views\Expense\ExpenseAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

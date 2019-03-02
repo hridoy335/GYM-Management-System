@@ -22,7 +22,7 @@ namespace GYM_Management_System.Models
     
         public int ServiceId { get; set; }
         public string ServiceName { get; set; }
-        public string ServiceDay { get; set; }
+        public int ServiceDay { get; set; }
         public int ServieAmount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

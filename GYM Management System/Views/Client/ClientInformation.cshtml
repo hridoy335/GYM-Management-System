@@ -79,7 +79,8 @@
                 @Html.DisplayFor(modelItem => item.ClientAdmitionfee)
             </td>
             <td>
-                @Html.ActionLink("Update", "ClientUpdate", new { id = item.ClientId }) |
+                @Html.ActionLink("Update", "ClientUpdate", new { id = item.ClientId })  |
+                @Html.ActionLink("New Service Add", "ServiceAdd", new { id = item.ClientId }) |
             </td>
         </tr>
     }

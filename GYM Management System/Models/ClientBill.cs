@@ -23,7 +23,7 @@ namespace GYM_Management_System.Models
         public int ClientBillId { get; set; }
         public int ClientId { get; set; }
         public System.DateTime BillMonth { get; set; }
-        public string BillAmount { get; set; }
+        public short BillAmount { get; set; }
         public bool BillStatus { get; set; }
     
         public virtual Client Client { get; set; }

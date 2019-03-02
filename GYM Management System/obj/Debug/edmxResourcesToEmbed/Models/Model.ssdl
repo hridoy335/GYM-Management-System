@@ -34,7 +34,7 @@
     <Property Name="ClientBillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ClientId" Type="int" Nullable="false" />
     <Property Name="BillMonth" Type="datetime" Nullable="false" />
-    <Property Name="BillAmount" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BillAmount" Type="int" Nullable="false" />
     <Property Name="BillStatus" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ClientBillTransection">
@@ -151,7 +151,7 @@
     </Key>
     <Property Name="ServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ServiceName" Type="varchar" MaxLength="200" Nullable="false" />
-    <Property Name="ServiceDay" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ServiceDay" Type="int" Nullable="false" />
     <Property Name="ServieAmount" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Storage">

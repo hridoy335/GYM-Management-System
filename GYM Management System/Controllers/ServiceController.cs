@@ -32,7 +32,7 @@ namespace GYM_Management_System.Controllers
                 db.SaveChanges();
                 return RedirectToAction("ServiceAdd");
             }
-            return View("ServiceAdd");
+            return View();
         }
 
         public ActionResult ServiceInformation()

@@ -39,7 +39,7 @@
           <Property Name="ClientBillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClientId" Type="int" Nullable="false" />
           <Property Name="BillMonth" Type="datetime" Nullable="false" />
-          <Property Name="BillAmount" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BillAmount" Type="int" Nullable="false" />
           <Property Name="BillStatus" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ClientBillTransection">
@@ -156,7 +156,7 @@
           </Key>
           <Property Name="ServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ServiceName" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="ServiceDay" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ServiceDay" Type="int" Nullable="false" />
           <Property Name="ServieAmount" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Storage">
@@ -536,7 +536,7 @@
           <Property Name="ClientBillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
           <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="BillAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BillAmount" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.FK__ClientBil__Clien__239E4DCF" FromRole="ClientBill" ToRole="Client" />
           <NavigationProperty Name="ClientBillTransections" Relationship="Self.FK__ClientBil__Clien__267ABA7A" FromRole="ClientBill" ToRole="ClientBillTransection" />
           <Property Name="BillStatus" Type="Boolean" Nullable="false" />
@@ -681,7 +681,7 @@
           </Key>
           <Property Name="ServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ServiceName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ServiceDay" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServiceDay" Type="Int32" Nullable="false" />
           <Property Name="ServieAmount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ClientServiceLists" Relationship="Self.FK__ClientSer__Servi__20C1E124" FromRole="Servicess" ToRole="ClientServiceList" />
         </EntityType>

@@ -13,6 +13,7 @@ namespace GYM_Management_System.Models
     public class MetadataSchedule
     {
         [Required]
+
         public int ScheduleTimeId { get; set; }
         [Required]
         public int ClientId { get; set; }

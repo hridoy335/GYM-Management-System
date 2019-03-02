@@ -13,14 +13,21 @@ namespace GYM_Management_System.Models
     public class MetadataClientBill
     {
         [Required]
+        //[MinLength(5, ErrorMessage = "User Client Name can't be less than 5 characters")]
+        //[MaxLength(20, ErrorMessage = "User Client Name can't be more than 20 characters")]
         [Display(Name ="Client Name")]
         public int ClientId { get; set; }
+
         [Required]
         [Display(Name ="Bill Month")]
         [DataType(DataType.Date)]
         public System.DateTime BillMonth { get; set; }
+
         [Required]
+        //[MinLength(3, ErrorMessage = "User Bill Amount can't be less than 3 characters")]
+        //[MaxLength(5, ErrorMessage = "User Bill Amount can't be more than 5 characters")]
         public string BillAmount { get; set; }
+
         [Required]
         public bool BillStatus { get; set; }
     }
