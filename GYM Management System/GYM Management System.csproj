@@ -138,7 +138,9 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ExpenseController.cs" />
+    <Compile Include="Controllers\FoodPlanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Global.asax.cs">
@@ -405,10 +407,15 @@
     <Content Include="Views\Schedule\ScheduleRegistration.cshtml" />
     <Content Include="Views\Schedule\SchedulInformation.cshtml" />
     <Content Include="Views\Expense\ExpenseAdd.cshtml" />
+    <Content Include="Views\Expense\ExpenseList.cshtml" />
+    <Content Include="Views\Expense\ExpenseUpdate.cshtml" />
+    <Content Include="Views\FoodPlan\FoodplanAdd.cshtml" />
+    <Content Include="Views\FoodPlan\FoodPlanList.cshtml" />
+    <Content Include="Views\FoodPlan\FoodPlanUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ScheduleTime\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

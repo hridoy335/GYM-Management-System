@@ -73,7 +73,6 @@ G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM
 G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\System.Diagnostics.DiagnosticSource.xml
 G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\obj\Debug\GYM Management System.csprojAssemblyReference.cache
 G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\obj\Debug\GYM Management System.csproj.CoreCompileInputs.cache
 G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\obj\Debug\GYM Management System.csproj.CopyComplete
 G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\obj\Debug\GYM Management System.dll
@@ -82,3 +81,4 @@ G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM
 G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\EntityFramework.SqlServer.dll
 G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\EntityFramework.xml
 G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\EntityFramework.SqlServer.xml
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\obj\Debug\GYM Management System.csprojAssemblyReference.cache

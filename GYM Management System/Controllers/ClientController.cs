@@ -65,7 +65,9 @@ namespace GYM_Management_System.Controllers
                     bill.BillAmount = Convert.ToInt16(serviceprice);
                     db.ClientBills.Add(bill);
                     db.SaveChanges();
+                    ViewBag.Message = "Registration Sucessful";
                     return RedirectToAction("ClientRegistration");
+                    
 
                 }
             }

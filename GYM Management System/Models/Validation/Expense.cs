@@ -33,6 +33,8 @@ namespace GYM_Management_System.Models
         [Required]
         [Display(Name ="Expense Buy Datess")]
         [DataType(DataType.Date)]
+       // [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime ExpenseBuyDate { get; set; }
 
         [Required]
