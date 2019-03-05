@@ -14,7 +14,7 @@ namespace GYM_Management_System.Models
     {
         [Required]
         //[MinLength(5, ErrorMessage = "User Designation Name can't be less than 5 characters")]
-        //[MaxLength(100, ErrorMessage = "User Designation Name can't be more than 100 characters")]
+        [MaxLength(50, ErrorMessage = "Designation Name can't be more than 50 characters")]
         public string DesignationName { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace GYM_Management_System.Models
         {
         [Required]
         //[MinLength(5, ErrorMessage="User Name can't be less than 5 characters")]
-        //[MaxLength(20, ErrorMessage = "User name can't be more than 20 characters")]
+        [MaxLength(50, ErrorMessage = "User name can't be more than 50 characters")]
         [Display(Name ="Client Name")]
         public string ClietName { get; set; }
 
@@ -27,39 +27,40 @@ namespace GYM_Management_System.Models
         public int ClientIdNumber { get; set; }
 
         [Required]
-        //[MinLength(6, ErrorMessage = "User Contact can't be less than 6 characters")]
-        //[MaxLength(20, ErrorMessage = "User Contact can't be more than 20 characters")]
+        [MinLength(6, ErrorMessage = "User Contact can't be less than 6 characters")]
+        [MaxLength(20, ErrorMessage = "User Contact can't be more than 20 characters")]
         [Display(Name = "Contact")]
         [DataType(DataType.PhoneNumber)]
         public string ClientContact { get; set; }
 
         [Required]
         //[MinLength(12, ErrorMessage = "User E-mail can't be less than 12 characters")]
-        //[MaxLength(100, ErrorMessage = "User E-mail can't be more than 30 characters")]
+        [MaxLength(100, ErrorMessage = "User E-mail can't be more than 100 characters")]
         [Display(Name = "E-mail")]
         [DataType(DataType.EmailAddress)]
         public string ClientMail { get; set; }
 
         [Required]
         //[MinLength(10, ErrorMessage = "User Address can't be less than 10 characters")]
-        //[MaxLength(100, ErrorMessage = "User Address can't be more than 100 characters")]
+        [MaxLength(100, ErrorMessage = "User Address can't be more than 100 characters")]
         [Display(Name = "Address")]
         public string ClientAddress { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Start Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime ClientGymStart { get; set; }
 
         [Required]
         //[MinLength(10, ErrorMessage = "User User Name can't be less than 10 characters")]
-        //[MaxLength(100, ErrorMessage = "User User Name can't be more than 100 characters")]
+        [MaxLength(50, ErrorMessage = "User User Name can't be more than 50 characters")]
         [Display(Name = "User Name")]
         public string ClientUserName { get; set; }
 
         [Required]
         //[MinLength(4, ErrorMessage = "User Password can't be less than 10 characters")]
-        //[MaxLength(50, ErrorMessage = "User Password can't be more than 50 characters")]
+        [MaxLength(50, ErrorMessage = "User Password can't be more than 50 characters")]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string ClientPassword { get; set; }

@@ -65,7 +65,7 @@ namespace GYM_Management_System.Controllers
                 db.SaveChanges();
                 return RedirectToAction("ServiceInformation");
             }
-            return View("ServiceUpdate");
+            return View(servicess);
         }
     }
 }

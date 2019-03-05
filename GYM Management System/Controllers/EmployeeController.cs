@@ -25,14 +25,32 @@ namespace GYM_Management_System.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult EmployeeRegistration(Employee employee)
+        public ActionResult EmployeeRegistration(Employee employee,int? DesignationId)
         {
-            if(ModelState.IsValid)
+            int er = 0;
+            if (DesignationId == null)
             {
-                db.Employees.Add(employee);
-                db.SaveChanges();
-                return RedirectToAction("EmployeeRegistration");
+                er++;
+                ViewBag.Designation = "Select One Item";
             }
+            if (er > 0)
+            {
+                ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName");
+                return View();
+            }
+            else
+            {
+
+                if(ModelState.IsValid)
+                {
+                    db.Employees.Add(employee);
+                    db.SaveChanges();
+                    ViewBag.Employee = "Employee Registration Successfully";
+                    return RedirectToAction("EmployeeInformation");
+                }
+
+            }
+            ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName");
             return View();
         }
 
@@ -43,7 +61,7 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult EmployeeUpdate(int?id)
         {
-            ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName");
+           
             if (id==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -51,22 +69,40 @@ namespace GYM_Management_System.Controllers
             Employee EmployeeUpdate = db.Employees.Find(id);
             if (EmployeeUpdate == null)
             {
+
                 return HttpNotFound();
             }
+            ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName");
             return View(EmployeeUpdate); 
         }
 
         [HttpPost]
-        public ActionResult EmployeeUpdate([Bind(Include = "EmployeeId,EmployeeName,DesignationId,Employee_ID,Employee_Contact,Employee_Mail,Employee_Address,Employe_UserName,Employee_Password")] Employee employee)
+        public ActionResult EmployeeUpdate([Bind(Include = "EmployeeId,EmployeeName,DesignationId,Employee_ID,Employee_Contact,Employee_Mail,Employee_Address,Employe_UserName,Employee_Password")] Employee employee,int? DesignationId)
         {
+            int er = 0;
+            if(DesignationId==null)
+            {
+                er++;
+                ViewBag.Designation = "Select One Item";
+            }
+            if (er>0)
+            {
+                ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName");
+                return View(employee);
+            }
+            else
+            {
             if (ModelState.IsValid)
             {
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("EmployeeInformation");
             }
+
+
+            }
             ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName", employee.DesignationId);
-            return View("EmployeeUpdate"); 
+            return View(); 
         }
 
 
@@ -117,29 +153,29 @@ namespace GYM_Management_System.Controllers
             return View(UpdateDesignation);
         }
 
-        //[HttpPost]
-        //public ActionResult UpdateDesignation([Bind(Include = "DesignationId,DesignationName")] Designation UpdateDesignation)
-        //{
-        //    if(ModelState.IsValid)
-        //    {
-        //        db.Entry(UpdateDesignation).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("DesignationInformation");
-        //    }
-        //    return View(UpdateDesignation); 
-        //}
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "EmployeeId,EmployeeName,DesignationId,Employee_ID,Employee_Contact,Employee_Mail,Employee_Address,Employe_UserName,Employee_Password")] Employee UpdateDesignation)
+        public ActionResult UpdateDesignation([Bind(Include = "DesignationId,DesignationName")] Designation UpdateDesignation)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(UpdateDesignation).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("EmployeeInformation");
+                db.SaveChanges(); 
+                return RedirectToAction("DesignationInformation");
             }
-            ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName", UpdateDesignation.DesignationId);
             return View(UpdateDesignation);
         }
+        //[HttpPost]
+        //public ActionResult Edit([Bind(Include = "EmployeeId,EmployeeName,DesignationId,Employee_ID,Employee_Contact,Employee_Mail,Employee_Address,Employe_UserName,Employee_Password")] Employee UpdateDesignation)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(UpdateDesignation).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("EmployeeInformation");
+        //    }
+        //    ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName", UpdateDesignation.DesignationId);
+        //    return View(UpdateDesignation);
+        //}
 
 
         //Designation part end...

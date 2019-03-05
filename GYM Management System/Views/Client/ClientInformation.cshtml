@@ -12,7 +12,7 @@
 
 </ul>
     -->
-
+<h2  class="alert-success">@ViewBag.Message</> </h2>
 <input style="width:40%" type="text" class="form-control search-query " placeholder="Search Client">
 <h5>  </h5>
 <h5> Client Information table </h5>
@@ -80,7 +80,7 @@
             </td>
             <td>
                 @Html.ActionLink("Update", "ClientUpdate", new { id = item.ClientId })  |
-                @Html.ActionLink("New Service Add", "ServiceAdd", new { id = item.ClientId }) |
+                @Html.ActionLink("New Service Add", "NewServiceAdd", new { id = item.ClientId }) |
             </td>
         </tr>
     }

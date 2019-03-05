@@ -394,7 +394,6 @@
     <Content Include="Views\Employee\UpdateDesignation.cshtml" />
     <Content Include="Views\Employee\EmployeeRegistration.cshtml" />
     <Content Include="Views\Employee\EmployeeInformation.cshtml" />
-    <Content Include="Views\Employee\EmployeeUpdate.cshtml" />
     <Content Include="Views\Service\ServiceAdd.cshtml" />
     <Content Include="Views\Service\ServiceInformation.cshtml" />
     <Content Include="Views\Service\ServiceUpdate.cshtml" />
@@ -412,6 +411,9 @@
     <Content Include="Views\FoodPlan\FoodplanAdd.cshtml" />
     <Content Include="Views\FoodPlan\FoodPlanList.cshtml" />
     <Content Include="Views\FoodPlan\FoodPlanUpdate.cshtml" />
+    <Content Include="Views\Client\NewServiceAdd.cshtml" />
+    <Content Include="Views\Employee\EmployeeUpdate.cshtml" />
+    <Content Include="Views\Schedule\UpdateSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

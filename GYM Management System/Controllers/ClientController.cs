@@ -60,13 +60,12 @@ namespace GYM_Management_System.Controllers
                     bill.ClientId = client.ClientId;
                     bill.BillMonth = client.ClientGymStart;
                     bill.BillStatus = false;
-
                     var serviceprice = db.Servicesses.Where(x => x.ServiceId == ServiceId).FirstOrDefault().ServieAmount;
                     bill.BillAmount = Convert.ToInt16(serviceprice);
                     db.ClientBills.Add(bill);
                     db.SaveChanges();
                     ViewBag.Message = "Registration Sucessful";
-                    return RedirectToAction("ClientRegistration");
+                    return RedirectToAction("ClientInformation");
                     
 
                 }
@@ -122,6 +121,81 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ServiceAdd()
         {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult NewServiceAdd(int? id)
+        {
+            ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
+            ViewBag.EmployeeId = new SelectList(db.Employees,"EmployeeId","EmployeeName");
+            ViewBag.ScheduleTimeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Client ServiceAdd = db.Clients.Find(id);
+            if (ServiceAdd == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ServiceAdd);           
+        }
+
+        [HttpPost]
+        public ActionResult NewServiceAdd(Client client, int? ServiceId, int? ScheduleTimeId, int? EmployeeId)
+        {
+            int er = 0;
+            if(ServiceId==null)
+            {
+                er++;
+                ViewBag.Service = "Select One Item";
+            }
+
+            if(ScheduleTimeId==null)
+            {
+                er++;
+                ViewBag.ScheduleTime = "Select One Item";
+            }
+            if(EmployeeId==null)
+            {
+                er++;
+                ViewBag.Employee = "Select One Item";
+            }
+            if (er > 0)
+            {
+                ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                ViewBag.ScheduleTimeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+                return View();
+            }
+            else
+            {
+
+                ClientServiceList list = new ClientServiceList();
+                list.ClientId = client.ClientId;
+                list.ServiceId = Convert.ToInt32(ServiceId);
+                db.ClientServiceLists.Add(list);
+
+                ClientBill bill = new ClientBill();
+                bill.ClientId = client.ClientId;
+                bill.BillMonth = client.ClientGymStart;
+                bill.BillStatus = false;
+                var serviceprice = db.Servicesses.Where(x => x.ServiceId == ServiceId).FirstOrDefault().ServieAmount;
+                bill.BillAmount = Convert.ToInt16(serviceprice);
+                db.ClientBills.Add(bill);
+
+                Schedule schedule = new Schedule();
+                schedule.ClientId = client.ClientId;
+                schedule.EmployeeId = Convert.ToInt32(EmployeeId);
+                schedule.ScheduleTimeId = Convert.ToInt32(ScheduleTimeId);
+                db.Schedules.Add(schedule);
+                db.SaveChanges();
+                ViewBag.Message = "Service Add Sucessful";
+                return RedirectToAction("ClientInformation"); 
+            }
+            
+
             return View();
         }
     }
