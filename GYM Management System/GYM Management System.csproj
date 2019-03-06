@@ -413,6 +413,7 @@
     <Content Include="Views\FoodPlan\FoodPlanUpdate.cshtml" />
     <Content Include="Views\Client\NewServiceAdd.cshtml" />
     <Content Include="Views\Employee\EmployeeUpdate.cshtml" />
+    <Content Include="Views\Schedule\UpdateScheduleTime.cshtml" />
     <Content Include="Views\Schedule\UpdateSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -32,9 +32,8 @@
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ScheduleTimeId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ScheduleTimeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ScheduleTimeId })
+            @Html.ActionLink("Update", "UpdateScheduleTime", new { id=item.ScheduleTimeId }) |
+
         </td>
     </tr>
 }

@@ -73,28 +73,32 @@ namespace GYM_Management_System.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Client ServiceAdd = db.Clients.Find(id);
-            Schedule schedule = db.Schedules.Find(id);
-            if (schedule == null)
+           
+            Schedule schedule1 = db.Schedules.Find(id);  
+            if (schedule1 == null) 
             {
                 return HttpNotFound();
             }
             ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
-          
-            return View(schedule);
+            //ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClientId");
+            //ViewBag.EmployeeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+
+            return View(schedule1);
         }
 
         [HttpPost]
-        public ActionResult UpdateSchedule([Bind(Include = "ScheduleId,ScheduleTimeId,ClientId,EmployeeId")] Schedule schedule,int? ScheduleTimeid)
+        public ActionResult UpdateSchedule([Bind(Include = "ScheduleId,ScheduleTimeId,ClientId,EmployeeId")] Schedule schedule, int? ScheduleTimeid)
         {
             int er = 0;
-            if(ScheduleTimeid==null)
+            if(ScheduleTimeid==null) 
             {
                 er++;
                 ViewBag.ScheduleTime = "Select One Item";
             }
             if (er > 0)
             {
+                //ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClientId");
+                //ViewBag.EmployeeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
                 ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeid", "ScheduleName");
                 return View(schedule);
             }
@@ -104,13 +108,41 @@ namespace GYM_Management_System.Controllers
                 {
                     db.Entry(schedule).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("ClientInformation");
+                    return RedirectToAction("SchedulInformation");
                 }
             }
 
             return View();
         }
 
+        public ActionResult UpdateScheduleTime(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ScheduleTime scheduleTime = db.ScheduleTimes.Find(id);
+            
+            if (scheduleTime == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+
+            return View(scheduleTime);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateScheduleTime([Bind(Include = "ScheduleTimeId,ScheduleName,StartTime,EndTime")] ScheduleTime scheduleTime)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(scheduleTime).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ScheduleTime");
+            }
+            return View(scheduleTime);
+        }
 
     }
 

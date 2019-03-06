@@ -92,14 +92,12 @@ namespace GYM_Management_System.Controllers
             }
             else
             {
-            if (ModelState.IsValid)
-            {
-                db.Entry(employee).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("EmployeeInformation");
-            }
-
-
+                if (ModelState.IsValid)
+                {
+                    db.Entry(employee).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("EmployeeInformation");
+                }
             }
             ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName", employee.DesignationId);
             return View(); 
