@@ -1,50 +1,45 @@
 ﻿@model IEnumerable<GYM_Management_System.Models.ClientServiceList>
 
 @{
-    ViewBag.Title = "Client Service List";
+    ViewBag.Title = "ClientServiceList";
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
 
-<h4>ClientServiceList</h4>
-<input type="text" class="form-control search-query " placeholder="Search Client">
-<h4>  </h4>
-<h5> Client Service List table </h5>
+<h2>ClientServiceList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Client.ClietName)
+            @Html.DisplayNameFor(model => model.ClientId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Client.ClientIdNumber)
+            @Html.DisplayNameFor(model => model.ServiceId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Servicess.ServiceName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Servicess.ServiceDay)
+            @Html.DisplayNameFor(model => model.Service_Status)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Client.ClietName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Client.ClientIdNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Servicess.ServiceName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Servicess.ServiceDay)
-            </td>
-            <td>
-                @Html.ActionLink("Update", "ClientServiceUpdate", new { id = item.ClientServiceListId }) |
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.ClietName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Servicess.ServiceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Service_Status)
+        </td>
+        <td>
+            @Html.ActionLink("Service Update", "ClientServiceListUpdate", new { id = item.ClientServiceListId }) |
+            @Html.ActionLink("Service Status Update", "ServiceStatusUpdate", new { id = item.ClientServiceListId }) 
+        </td>
+    </tr>
+}
 
 </table>

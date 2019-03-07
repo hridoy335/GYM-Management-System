@@ -16,9 +16,6 @@
             @Html.DisplayNameFor(model => model.Client.ClietName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Client.ClientIdNumber)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.BillMonth)
         </th>
         <th>
@@ -27,6 +24,10 @@
         <th>
             @Html.DisplayNameFor(model => model.BillStatus)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DueStatus)
+        </th>
+
         <th></th>
     </tr>
 
@@ -34,9 +35,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Client.ClietName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Client.ClientIdNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BillMonth)
@@ -48,7 +46,13 @@
             @Html.DisplayFor(modelItem => item.BillStatus)
         </td>
         <td>
-            @Html.ActionLink("Bill Pament", "BillPament", new { id = item.ClientBillId })
+            @Html.DisplayFor(modelItem => item.DueStatus)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ClientBillId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ClientBillId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ClientBillId })
         </td>
     </tr>
 }

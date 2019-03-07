@@ -397,10 +397,8 @@
     <Content Include="Views\Service\ServiceAdd.cshtml" />
     <Content Include="Views\Service\ServiceInformation.cshtml" />
     <Content Include="Views\Service\ServiceUpdate.cshtml" />
-    <Content Include="Views\Account\ClientBill.cshtml" />
     <Content Include="Views\Account\BillPament.cshtml" />
     <Content Include="Views\Client\ClientServicecAdd.cshtml" />
-    <Content Include="Views\Client\ClientServiceList.cshtml" />
     <Content Include="Views\Schedule\ScheduleTime.cshtml" />
     <Content Include="Views\Schedule\AddScheduleTime.cshtml" />
     <Content Include="Views\Schedule\ScheduleRegistration.cshtml" />
@@ -415,6 +413,10 @@
     <Content Include="Views\Employee\EmployeeUpdate.cshtml" />
     <Content Include="Views\Schedule\UpdateScheduleTime.cshtml" />
     <Content Include="Views\Schedule\UpdateSchedule.cshtml" />
+    <Content Include="Views\Account\ClientBill.cshtml" />
+    <Content Include="Views\Client\ClientServiceList.cshtml" />
+    <Content Include="Views\Client\ClientServiceListUpdate.cshtml" />
+    <Content Include="Views\Client\ServiceStatusUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -42,10 +42,11 @@
     <Property Name="ClientBillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ClientId" Type="Int32" Nullable="false" />
     <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="BillAmount" Type="Int16" Nullable="false" />
+    <Property Name="BillAmount" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Client" Relationship="Self.FK__ClientBil__Clien__239E4DCF" FromRole="ClientBill" ToRole="Client" />
     <NavigationProperty Name="ClientBillTransections" Relationship="Self.FK__ClientBil__Clien__267ABA7A" FromRole="ClientBill" ToRole="ClientBillTransection" />
     <Property Name="BillStatus" Type="Boolean" Nullable="false" />
+    <Property Name="DueStatus" Type="Int32" />
   </EntityType>
   <EntityType Name="ClientBillTransection">
     <Key>
@@ -65,6 +66,7 @@
     <Property Name="ServiceId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Client" Relationship="Self.FK__ClientSer__Clien__1FCDBCEB" FromRole="ClientServiceList" ToRole="Client" />
     <NavigationProperty Name="Servicess" Relationship="Self.FK__ClientSer__Servi__20C1E124" FromRole="ClientServiceList" ToRole="Servicess" />
+    <Property Name="Service_Status" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Designation">
     <Key>

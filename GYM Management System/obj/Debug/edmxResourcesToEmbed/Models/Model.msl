@@ -33,6 +33,7 @@
     <EntitySetMapping Name="ClientBills">
       <EntityTypeMapping TypeName="gym_managementModel.ClientBill">
         <MappingFragment StoreEntitySet="ClientBill">
+          <ScalarProperty Name="DueStatus" ColumnName="DueStatus" />
           <ScalarProperty Name="BillStatus" ColumnName="BillStatus" />
           <ScalarProperty Name="ClientBillId" ColumnName="ClientBillId" />
           <ScalarProperty Name="ClientId" ColumnName="ClientId" />
@@ -53,6 +54,7 @@
     <EntitySetMapping Name="ClientServiceLists">
       <EntityTypeMapping TypeName="gym_managementModel.ClientServiceList">
         <MappingFragment StoreEntitySet="ClientServiceList">
+          <ScalarProperty Name="Service_Status" ColumnName="Service_Status" />
           <ScalarProperty Name="ClientServiceListId" ColumnName="ClientServiceListId" />
           <ScalarProperty Name="ClientId" ColumnName="ClientId" />
           <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />

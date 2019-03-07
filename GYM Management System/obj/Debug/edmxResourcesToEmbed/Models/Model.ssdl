@@ -36,6 +36,7 @@
     <Property Name="BillMonth" Type="datetime" Nullable="false" />
     <Property Name="BillAmount" Type="int" Nullable="false" />
     <Property Name="BillStatus" Type="bit" Nullable="false" />
+    <Property Name="DueStatus" Type="int" />
   </EntityType>
   <EntityType Name="ClientBillTransection">
     <Key>
@@ -52,6 +53,7 @@
     <Property Name="ClientServiceListId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ClientId" Type="int" Nullable="false" />
     <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="Service_Status" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Designation">
     <Key>

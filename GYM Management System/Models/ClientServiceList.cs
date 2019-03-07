@@ -17,6 +17,7 @@ namespace GYM_Management_System.Models
         public int ClientServiceListId { get; set; }
         public int ClientId { get; set; }
         public int ServiceId { get; set; }
+        public bool Service_Status { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Servicess Servicess { get; set; }

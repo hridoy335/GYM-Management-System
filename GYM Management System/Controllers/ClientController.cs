@@ -17,6 +17,9 @@ namespace GYM_Management_System.Controllers
         {
             return View();
         }
+        
+        // Client Registration Start .....
+
         public ActionResult ClientRegistration()
         {
             //List<Servicess> serviceList = db.Servicesses.ToList();
@@ -54,6 +57,7 @@ namespace GYM_Management_System.Controllers
                     ClientServiceList list = new ClientServiceList();
                     list.ClientId = client.ClientId;
                     list.ServiceId =Convert.ToInt32( ServiceId);
+                    list.Service_Status = true;
                     db.ClientServiceLists.Add(list);
 
                     ClientBill bill = new ClientBill();
@@ -62,6 +66,7 @@ namespace GYM_Management_System.Controllers
                     bill.BillStatus = false;
                     var serviceprice = db.Servicesses.Where(x => x.ServiceId == ServiceId).FirstOrDefault().ServieAmount;
                     bill.BillAmount = Convert.ToInt16(serviceprice);
+                    bill.DueStatus = 0;
                     db.ClientBills.Add(bill);
                     db.SaveChanges();
                     ViewBag.Message = "Registration Sucessful";
@@ -74,12 +79,19 @@ namespace GYM_Management_System.Controllers
             return View();
         }
 
+        // Client Registration End .....
 
+
+        // Client Information Start ....
         public ActionResult ClientInformation()
         {
             return View(db.Clients.ToList());
         }
 
+        // Client Information End ......
+ 
+
+        // Client Update Start ......
         [HttpGet]
         public ActionResult ClientUpdate(int? id)
         {
@@ -107,22 +119,118 @@ namespace GYM_Management_System.Controllers
             return View("ClientUpdate");
         }
 
+        // Client Update End .....
+
+        
+        // Client Service Add Start .....
         public ActionResult ClientServicecAdd()
         {
             ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
             return View();
         }
 
+        // Client Service Add End .....
+
+        //Client Service List Start 
         public ActionResult ClientServiceList()
         {
 
             return View(db.ClientServiceLists.ToList());
         }
 
-        public ActionResult ServiceAdd()
+        // Client Service List End .....
+
+        // Client Service List Update Start ......
+
+        public ActionResult ClientServiceListUpdate(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //Client ClientUpdate = db.Clients.Find(id);
+            ClientServiceList ServiceUpdate = db.ClientServiceLists.Find(id);
+            if (ServiceUpdate == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
+            return View(ServiceUpdate);
+        }
+
+        [HttpPost]
+        public ActionResult ClientServiceListUpdate([Bind(Include = "ClientServiceListId,ClientId,ServiceId,Service_Status")] ClientServiceList clientServiceList, int? ServiceId)
+        {
+            int er = 0;
+            if(ServiceId== null)
+            {
+                er++;
+                ViewBag.Message = "Select One Item";
+            }
+            if(er>0)
+            {
+                clientServiceList.Client = db.Clients.FirstOrDefault(a=>a.ClientId==clientServiceList.ClientId);
+                ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
+                return View(clientServiceList);
+            }
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(clientServiceList).State = EntityState.Modified;
+                //db.SaveChanges();
+
+                //ClientBill bill = new ClientBill();
+                //int ClientId = clientServiceList.ClientId;
+                //bill.ClientId = ClientId;
+                //int serviceid = clientServiceList.ServiceId;
+                //int amount = db.Servicesses.Where(x => x.ServiceId == serviceid).FirstOrDefault().ServieAmount;
+                //int billid = db.ClientBills.Where(x => x.ClientId == ClientId).FirstOrDefault().ClientBillId;
+                //bill.ClientBillId = billid;
+                //bill.BillAmount = amount;
+                //db.Entry(bill).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ClientServiceList");
+            }
+
             return View();
         }
+        // Client Service List Update End ......
+
+
+        // Client Service Status Update Start ......
+        [HttpGet]
+        public ActionResult ServiceStatusUpdate(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ClientServiceList ServiceStatusUpdate = db.ClientServiceLists.Find(id);
+            if (ServiceStatusUpdate == null) 
+            {
+                return HttpNotFound();
+            }
+           
+            return View(ServiceStatusUpdate);
+        }
+        
+        [HttpPost]
+        public ActionResult ServiceStatusUpdate([Bind(Include = "ClientServiceListId,ClientId,ServiceId,Service_Status")] ClientServiceList clientServiceList)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(clientServiceList).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ClientServiceList");
+            }
+
+            return View();
+        }
+
+        // Client Service Status Update End ......
+
+
+        // New Service Add start .......
 
         [HttpGet]
         public ActionResult NewServiceAdd(int? id)
@@ -142,6 +250,7 @@ namespace GYM_Management_System.Controllers
             return View(ServiceAdd);           
         }
 
+       
         [HttpPost]
         public ActionResult NewServiceAdd(Client client, int? ServiceId, int? ScheduleTimeId, int? EmployeeId)
         {
@@ -175,6 +284,7 @@ namespace GYM_Management_System.Controllers
                 ClientServiceList list = new ClientServiceList();
                 list.ClientId = client.ClientId;
                 list.ServiceId = Convert.ToInt32(ServiceId);
+                list.Service_Status = true;
                 db.ClientServiceLists.Add(list);
 
                 ClientBill bill = new ClientBill();
@@ -183,6 +293,7 @@ namespace GYM_Management_System.Controllers
                 bill.BillStatus = false;
                 var serviceprice = db.Servicesses.Where(x => x.ServiceId == ServiceId).FirstOrDefault().ServieAmount;
                 bill.BillAmount = Convert.ToInt16(serviceprice);
+                bill.DueStatus = 0;
                 db.ClientBills.Add(bill);
 
                 Schedule schedule = new Schedule();
@@ -194,9 +305,9 @@ namespace GYM_Management_System.Controllers
                 ViewBag.Message = "Service Add Sucessful";
                 return RedirectToAction("ClientInformation"); 
             }
-            
-
-        
+    
         }
+
+        // New Service Add End ........
     }
 }

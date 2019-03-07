@@ -24,5 +24,6 @@ namespace GYM_Management_System.Models
         [Required]
         [Display(Name ="Service Name")]
         public int ServiceId { get; set; }
+
     }
 }

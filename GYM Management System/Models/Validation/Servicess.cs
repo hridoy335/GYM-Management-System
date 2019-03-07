@@ -28,5 +28,6 @@ namespace GYM_Management_System.Models
         //[MaxLength(5, ErrorMessage = "User Service Price can't be more than 5 characters")]
         [Display(Name ="Service Price")]
         public int ServieAmount { get; set; }
+
     }
 }
