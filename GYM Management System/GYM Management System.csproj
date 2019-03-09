@@ -135,11 +135,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\ClientSiteClientController.cs" />
+    <Compile Include="Controllers\ClientSiteHomeController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ExpenseController.cs" />
     <Compile Include="Controllers\FoodPlanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
@@ -417,9 +421,15 @@
     <Content Include="Views\Client\ClientServiceList.cshtml" />
     <Content Include="Views\Client\ClientServiceListUpdate.cshtml" />
     <Content Include="Views\Client\ServiceStatusUpdate.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\Attendance.cshtml" />
+    <Content Include="Views\ClientSiteClient\Index.cshtml" />
+    <Content Include="Views\Shared\_ClientSiteLayoutPage.cshtml" />
+    <Content Include="Views\Attendance\Attendance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ClientSiteHome\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>

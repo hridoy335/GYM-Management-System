@@ -23,7 +23,7 @@
                     <li>@Html.ActionLink("Home", "Index", "ClientSiteHome")</li>
                     <li>@Html.ActionLink("About", "About", "ClientSiteHome")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "ClientSiteHome")</li>
-                    <li>@Html.ActionLink("Attendance", "Attendance", "Attendance")</li>
+                    <li>@Html.ActionLink("Attendance", "Attendance", "Login")</li>
                     <li>@Html.ActionLink("Log In", "Login", "Login")</li>
                 </ul>
             </div>
@@ -32,9 +32,9 @@
     <div class="container body-content">
         @RenderBody()
         @*<hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>*@
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")

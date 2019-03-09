@@ -12,10 +12,10 @@
           <Property Name="AttendenceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClientId" Type="int" />
           <Property Name="EmployeeId" Type="int" />
-          <Property Name="FromTime" Type="datetime" Nullable="false" />
-          <Property Name="ToTime" Type="datetime" Nullable="false" />
-          <Property Name="AttendenceStatus" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="AttendenceDate" Type="datetime" Nullable="false" />
+          <Property Name="FromTime" Type="datetime" />
+          <Property Name="ToTime" Type="datetime" />
+          <Property Name="AttendenceStatus" Type="bit" />
+          <Property Name="AttendenceDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -503,10 +503,10 @@
           <Property Name="AttendenceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClientId" Type="Int32" />
           <Property Name="EmployeeId" Type="Int32" />
-          <Property Name="FromTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ToTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="AttendenceStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AttendenceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FromTime" Type="DateTime" Precision="3" />
+          <Property Name="ToTime" Type="DateTime" Precision="3" />
+          <Property Name="AttendenceStatus" Type="Boolean" />
+          <Property Name="AttendenceDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Client" Relationship="Self.FK__Attendenc__Clien__29572725" FromRole="Attendence" ToRole="Client" />
           <NavigationProperty Name="Employee" Relationship="Self.FK__Attendenc__Emplo__2A4B4B5E" FromRole="Attendence" ToRole="Employee" />
         </EntityType>

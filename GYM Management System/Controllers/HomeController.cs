@@ -13,6 +13,7 @@ namespace GYM_Management_System.Controllers
             return View();
         }
 
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -26,5 +27,16 @@ namespace GYM_Management_System.Controllers
 
             return View();
         }
+
+        //public ActionResult Login()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult Login()
+        //{
+        //    return View();
+        //}
     }
 }

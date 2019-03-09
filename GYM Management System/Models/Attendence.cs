@@ -17,10 +17,10 @@ namespace GYM_Management_System.Models
         public int AttendenceId { get; set; }
         public Nullable<int> ClientId { get; set; }
         public Nullable<int> EmployeeId { get; set; }
-        public System.DateTime FromTime { get; set; }
-        public System.DateTime ToTime { get; set; }
-        public string AttendenceStatus { get; set; }
-        public System.DateTime AttendenceDate { get; set; }
+        public Nullable<System.DateTime> FromTime { get; set; }
+        public Nullable<System.DateTime> ToTime { get; set; }
+        public Nullable<bool> AttendenceStatus { get; set; }
+        public Nullable<System.DateTime> AttendenceDate { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Employee Employee { get; set; }
