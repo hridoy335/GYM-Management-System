@@ -1,11 +1,13 @@
 ﻿@model IEnumerable<GYM_Management_System.Models.Attendence>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Attendence View";
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
 
-<h4>Attendance Table </h4>
+<h2>Attendence View</h2>
+
+
 <table class="table">
     <tr>
         <th>
@@ -24,6 +26,7 @@
             @Html.DisplayNameFor(model => model.AttendenceDate)
         </th>
 
+        @*<th></th>*@
     </tr>
 
 @foreach (var item in Model) {
@@ -44,6 +47,9 @@
             @Html.DisplayFor(modelItem => item.AttendenceDate)
         </td>
 
+        @*<td>
+            @Html.ActionLink("Edit", "AttendenceEdit", new { id = item.AttendenceId }) |
+        </td>*@
     </tr>
 }
 

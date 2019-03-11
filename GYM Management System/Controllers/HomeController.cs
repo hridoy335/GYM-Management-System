@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GYM_Management_System.Models;
 
 namespace GYM_Management_System.Controllers
 {
     public class HomeController : Controller
     {
+        gym_managementEntities db = new gym_managementEntities();
         public ActionResult Index()
         {
-            return View();
+            return View(db.Attendences.ToList());
         }
 
 

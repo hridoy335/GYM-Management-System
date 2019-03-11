@@ -8,7 +8,6 @@
     <Property Name="ClientId" Type="int" />
     <Property Name="EmployeeId" Type="int" />
     <Property Name="FromTime" Type="datetime" />
-    <Property Name="ToTime" Type="datetime" />
     <Property Name="AttendenceStatus" Type="bit" />
     <Property Name="AttendenceDate" Type="datetime" />
   </EntityType>

@@ -8,7 +8,6 @@
           <ScalarProperty Name="ClientId" ColumnName="ClientId" />
           <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
           <ScalarProperty Name="FromTime" ColumnName="FromTime" />
-          <ScalarProperty Name="ToTime" ColumnName="ToTime" />
           <ScalarProperty Name="AttendenceStatus" ColumnName="AttendenceStatus" />
           <ScalarProperty Name="AttendenceDate" ColumnName="AttendenceDate" />
         </MappingFragment>

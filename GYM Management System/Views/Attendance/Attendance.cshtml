@@ -39,10 +39,12 @@
 
     @*<h2>@ViewBag.a</h2>*@
     <h3 class="form-signin-heading">Please sign in for your attendance</h3>
+    <h4 class="alert-success">@ViewBag.employeewelcome</h4>
+    <h4 class="alert-success">@ViewBag.clientwelcome</h4>
     <div class="container">
 
 
-        <form class="form-signin" action=@Url.Action("Attendance","Login") method="post">
+        <form class="form-signin" action=@Url.Action("Attendance","Attendance") method="post">
             <br /> <br />
             <h2>@ViewBag.date</h2>
             <h2>@ViewBag.time</h2>
@@ -65,6 +67,9 @@
                 </div>
             </div>
             <h4 class="alert-danger">@ViewBag.password</h4>
+            <h4 class="alert-danger">@ViewBag.loginfail</h4><br />
+            <h4 class="alert-success">@ViewBag.clientmessage</h4>
+            <h4 class="alert-success">@ViewBag.employeemessage</h4>
             <button class="btn btn-lg btn-primary " type="submit">Sign in</button>
         </form>
     </div>

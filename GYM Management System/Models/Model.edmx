@@ -13,7 +13,6 @@
           <Property Name="ClientId" Type="int" />
           <Property Name="EmployeeId" Type="int" />
           <Property Name="FromTime" Type="datetime" />
-          <Property Name="ToTime" Type="datetime" />
           <Property Name="AttendenceStatus" Type="bit" />
           <Property Name="AttendenceDate" Type="datetime" />
         </EntityType>
@@ -504,7 +503,6 @@
           <Property Name="ClientId" Type="Int32" />
           <Property Name="EmployeeId" Type="Int32" />
           <Property Name="FromTime" Type="DateTime" Precision="3" />
-          <Property Name="ToTime" Type="DateTime" Precision="3" />
           <Property Name="AttendenceStatus" Type="Boolean" />
           <Property Name="AttendenceDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Client" Relationship="Self.FK__Attendenc__Clien__29572725" FromRole="Attendence" ToRole="Client" />
@@ -1034,7 +1032,6 @@
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="FromTime" ColumnName="FromTime" />
-                <ScalarProperty Name="ToTime" ColumnName="ToTime" />
                 <ScalarProperty Name="AttendenceStatus" ColumnName="AttendenceStatus" />
                 <ScalarProperty Name="AttendenceDate" ColumnName="AttendenceDate" />
               </MappingFragment>

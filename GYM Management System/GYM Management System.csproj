@@ -213,6 +213,7 @@
     <Compile Include="Models\Storage.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Validation\Attendence.cs" />
     <Compile Include="Models\Validation\Client.cs" />
     <Compile Include="Models\Validation\ClientBill.cs" />
     <Compile Include="Models\Validation\ClientServiceList.cs" />
@@ -279,6 +280,10 @@
     <Content Include="Content\dist\img\together.png" />
     <Content Include="Content\dist\img\wild_flowers.png" />
     <Content Include="Content\dist\js\site.min.js" />
+    <Content Include="Content\GymImage\crowded-gym.jpg" />
+    <Content Include="Content\GymImage\gym-glidewell-05.jpg" />
+    <Content Include="Content\GymImage\photo-1540558870477-e8c59bf88421.jpg" />
+    <Content Include="Content\GymImage\photo-1541600278744-d4cba88bb2c7.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -389,7 +394,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_MyLayoutPage.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Client\ClientRegistration.cshtml" />
     <Content Include="Views\Client\ClientInformation.cshtml" />
     <Content Include="Views\Client\ClientUpdate.cshtml" />
@@ -422,10 +426,12 @@
     <Content Include="Views\Client\ClientServiceListUpdate.cshtml" />
     <Content Include="Views\Client\ServiceStatusUpdate.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Login\Attendance.cshtml" />
     <Content Include="Views\ClientSiteClient\Index.cshtml" />
     <Content Include="Views\Shared\_ClientSiteLayoutPage.cshtml" />
     <Content Include="Views\Attendance\Attendance.cshtml" />
+    <Content Include="Views\Attendance\AttendenceView.cshtml" />
+    <Content Include="Views\Attendance\AttendenceEdit.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

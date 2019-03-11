@@ -18,7 +18,6 @@ namespace GYM_Management_System.Models
         public Nullable<int> ClientId { get; set; }
         public Nullable<int> EmployeeId { get; set; }
         public Nullable<System.DateTime> FromTime { get; set; }
-        public Nullable<System.DateTime> ToTime { get; set; }
         public Nullable<bool> AttendenceStatus { get; set; }
         public Nullable<System.DateTime> AttendenceDate { get; set; }
     
