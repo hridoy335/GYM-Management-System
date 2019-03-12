@@ -1,0 +1,58 @@
+﻿@model IEnumerable<GYM_Management_System.Models.Attendence>
+
+@{
+    ViewBag.Title = "AttendenceInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AttendenceInfo</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FromTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendenceStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendenceDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.ClietName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        @*<th></th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FromTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttendenceStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttendenceDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.ClietName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AttendenceId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AttendenceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AttendenceId })
+        </td>*@
+    </tr>
+}
+
+</table>

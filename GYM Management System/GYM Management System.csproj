@@ -138,6 +138,7 @@
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ClientSiteClientController.cs" />
+    <Compile Include="Controllers\ClientSiteEmployeeController.cs" />
     <Compile Include="Controllers\ClientSiteHomeController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ExpenseController.cs" />
@@ -280,10 +281,18 @@
     <Content Include="Content\dist\img\together.png" />
     <Content Include="Content\dist\img\wild_flowers.png" />
     <Content Include="Content\dist\js\site.min.js" />
-    <Content Include="Content\GymImage\crowded-gym.jpg" />
-    <Content Include="Content\GymImage\gym-glidewell-05.jpg" />
-    <Content Include="Content\GymImage\photo-1540558870477-e8c59bf88421.jpg" />
-    <Content Include="Content\GymImage\photo-1541600278744-d4cba88bb2c7.jpg" />
+    <Content Include="Content\GymImage\data1\images\crowdedgym.jpg" />
+    <Content Include="Content\GymImage\data1\images\gymglidewell05.jpg" />
+    <Content Include="Content\GymImage\data1\images\photo1540558870477e8c59bf88421.jpg" />
+    <Content Include="Content\GymImage\data1\images\photo1541600278744d4cba88bb2c7.jpg" />
+    <Content Include="Content\GymImage\data1\tooltips\crowdedgym.jpg" />
+    <Content Include="Content\GymImage\data1\tooltips\gymglidewell05.jpg" />
+    <Content Include="Content\GymImage\data1\tooltips\photo1540558870477e8c59bf88421.jpg" />
+    <Content Include="Content\GymImage\data1\tooltips\photo1541600278744d4cba88bb2c7.jpg" />
+    <Content Include="Content\GymImage\jquery.js" />
+    <Content Include="Content\GymImage\script.js" />
+    <Content Include="Content\GymImage\style.css" />
+    <Content Include="Content\GymImage\wowslider.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -427,15 +436,28 @@
     <Content Include="Views\Client\ServiceStatusUpdate.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\ClientSiteClient\Index.cshtml" />
-    <Content Include="Views\Shared\_ClientSiteLayoutPage.cshtml" />
     <Content Include="Views\Attendance\Attendance.cshtml" />
     <Content Include="Views\Attendance\AttendenceView.cshtml" />
     <Content Include="Views\Attendance\AttendenceEdit.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\ClientSiteClient\ClientInfo.cshtml" />
+    <Content Include="Views\ClientSiteClient\ScheduleInfo.cshtml" />
+    <Content Include="Views\ClientSiteClient\FoodPlan.cshtml" />
+    <Content Include="Views\ClientSiteClient\AttendenceInfo.cshtml" />
+    <Content Include="Views\ClientSiteClient\About.cshtml" />
+    <Content Include="Views\ClientSiteClient\Contact.cshtml" />
+    <Content Include="Views\Shared\_EmployeLayoutPage1.cshtml" />
+    <Content Include="Views\ClientSiteEmployee\Index.cshtml" />
+    <Content Include="Views\ClientSiteEmployee\EmployeInfo.cshtml" />
+    <Content Include="Views\ClientSiteEmployee\ScheduleInfo.cshtml" />
+    <Content Include="Views\ClientSiteEmployee\FoodPlan.cshtml" />
+    <Content Include="Views\ClientSiteEmployee\AttendenceInfo.cshtml" />
+    <Content Include="Views\ClientSiteEmployee\About.cshtml" />
+    <Content Include="Views\ClientSiteEmployee\Contact.cshtml" />
+    <Content Include="Views\ClientSiteEmployee\FoodPlanUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ClientSiteHome\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>

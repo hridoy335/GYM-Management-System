@@ -54,9 +54,18 @@ namespace GYM_Management_System.Controllers
                 {
                     Session["username"] = tea.Employe_UserName.ToString();
                     Session["id"] = tea.EmployeeId.ToString();
-              
+                    Session["Designation"] = tea.DesignationId.ToString();
 
-                    return RedirectToAction("Index", "Home");
+                    int deid = Convert.ToInt32(Session["Designation"]);
+                    if (deid == 1)
+                    {
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "ClientSiteEmployee");
+                    }
                 }
             }
             else

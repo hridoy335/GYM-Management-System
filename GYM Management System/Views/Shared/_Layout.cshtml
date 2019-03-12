@@ -16,16 +16,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("GYM Management", "Index", "ClientSiteHome", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("GYM Management", "Index", "ClientSiteClient", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav bottom-right">
-                    <li>@Html.ActionLink("Home", "Index", "ClientSiteHome")</li>
-                    <li>@Html.ActionLink("Schedule Information", "ScheduleInfo", "ClientSiteHome")</li>
-                    <li>@Html.ActionLink("Food Plan", "FoodPlan", "ClientSiteHome")</li>
-                    <li>@Html.ActionLink("Attendence Information", "AttendenceInfo", "ClientSiteHome")</li>
-                    <li>@Html.ActionLink("About", "About", "ClientSiteHome")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "ClientSiteHome")</li>
+                    <li>@Html.ActionLink("Home", "Index", "ClientSiteClient")</li>
+                    <li>@Html.ActionLink("Client Information", "ClientInfo", "ClientSiteClient")</li>
+                    <li>@Html.ActionLink("Schedule Information", "ScheduleInfo", "ClientSiteClient")</li>
+                    <li>@Html.ActionLink("Food Plan", "FoodPlan", "ClientSiteClient")</li>
+                    <li>@Html.ActionLink("Attendence Information", "AttendenceInfo", "ClientSiteClient")</li>
+                    <li>@Html.ActionLink("About", "About", "ClientSiteClient")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "ClientSiteClient")</li>
 
                 </ul>
             </div>
