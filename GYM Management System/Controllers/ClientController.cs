@@ -31,7 +31,7 @@ namespace GYM_Management_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult ClientRegistration(Client client, int? ServiceId )
+        public ActionResult ClientRegistration(Client client, int? ServiceId, int? ClientIdNumber,string ClientPassword)
         {
             int er = 0;
             if (ServiceId==null)
@@ -39,8 +39,23 @@ namespace GYM_Management_System.Controllers
                 ViewBag.ename = "Select One Item";
                 er++;
             }
+            if (ClientPassword == "")
+            {
+                er++;
+                ViewBag.password = "Password Required";
+            }
+            bool isThisIdExist = db.Clients.ToList().Exists(a=>a.ClientIdNumber==client.ClientIdNumber);
+            //int a = Convert.ToInt32(ClientIdNumber);
+            //var idnumber = db.Clients.Where(x => x.ClientId == a).FirstOrDefault();
+            if (isThisIdExist)
+            {
+                er++;
+                ViewBag.idnumber = "This id is already here";
+            }
+
             if (er > 0)
             {
+                //idnumber = 0;
                 ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
                 return View();
             }

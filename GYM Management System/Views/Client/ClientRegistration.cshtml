@@ -17,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ClietName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.ClietName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ClietName, new { htmlAttributes = new { @class = "form-control " } })
                 @Html.ValidationMessageFor(model => model.ClietName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -25,8 +25,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ClientIdNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.ClientIdNumber, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.TextBoxFor(model => model.ClientIdNumber, new { htmlAttributes = new {  @class = "form-control " } })
                 @Html.ValidationMessageFor(model => model.ClientIdNumber, "", new { @class = "text-danger" })
+                <span class="alert-danger">@ViewBag.idnumber</span>
             </div>
         </div>
 
@@ -75,6 +76,7 @@
             <div class="col-md-4">
                 @Html.PasswordFor(model => model.ClientPassword, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ClientPassword, "", new { @class = "text-danger" })
+                <span class="alert-danger">@ViewBag.password</span>
             </div>
         </div>
 

@@ -100,7 +100,7 @@ namespace GYM_Management_System.Controllers
                 //ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClientId");
                 //ViewBag.EmployeeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
                 ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeid", "ScheduleName");
-                return View(schedule);
+                return View(schedule); 
             }
             else
             {
