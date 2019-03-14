@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using GYM_Management_System.Models;
 
 namespace GYM_Management_System.Controllers
@@ -58,12 +59,13 @@ namespace GYM_Management_System.Controllers
 
                     int deid = Convert.ToInt32(Session["Designation"]);
                     if (deid == 1)
-                    {
-
+                    { 
+                        FormsAuthentication.SetAuthCookie(tea.EmployeeId.ToString(), false);
                         return RedirectToAction("Index", "Home");
                     }
                     else
                     {
+                        FormsAuthentication.SetAuthCookie(tea.EmployeeId.ToString(), false);
                         return RedirectToAction("Index", "ClientSiteEmployee");
                     }
                 }
@@ -73,13 +75,17 @@ namespace GYM_Management_System.Controllers
 
                 Session["id"] = Login.ClientId.ToString();
                 Session["Name"] = Login.ClietName.ToString();
-
+                FormsAuthentication.SetAuthCookie(Login.ClientId.ToString(), false);
                 return RedirectToAction("Index", "ClientSiteClient");
             }
 
 
         }
 
-      
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Login");
+        }
     }
 }

@@ -14,9 +14,11 @@ namespace GYM_Management_System.Models
     public class MetadataClient
         {
         [Required]
-        //[MinLength(5, ErrorMessage="User Name can't be less than 5 characters")]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage  = "Name is not correct format")]
+
+        //[MinLength(5, ErrorMessage = "User Name can't be less than 5 characters")]
         [MaxLength(50, ErrorMessage = "User name can't be more than 50 characters")]
-        [Display(Name ="Client Name")]
+        [Display(Name = "Client Name")]
         public string ClietName { get; set; }
 
         [Required]
@@ -31,6 +33,7 @@ namespace GYM_Management_System.Models
         [MaxLength(20, ErrorMessage = "User Contact can't be more than 20 characters")]
         [Display(Name = "Contact")]
         [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"\d+", ErrorMessage = "Name is not correct format")]
         public string ClientContact { get; set; }
 
         [Required]
@@ -55,7 +58,7 @@ namespace GYM_Management_System.Models
         [Required]
         //[MinLength(10, ErrorMessage = "User User Name can't be less than 10 characters")]
         [MaxLength(50, ErrorMessage = "User User Name can't be more than 50 characters")]
-        [Display(Name = "User Name")]
+        [Display(Name = "Username")]
         public string ClientUserName { get; set; }
 
         [Required]

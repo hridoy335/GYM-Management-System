@@ -29,6 +29,7 @@ namespace GYM_Management_System.Models
         public string BillAmount { get; set; }
 
         [Required]
+        [Display(Name ="Bill Status")]
         public bool BillStatus { get; set; }
     }
 }

@@ -18,6 +18,19 @@
                 </button>
                 @Html.ActionLink("GYM Management", "Index", "ClientSiteEmployee", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+            <div id="bs-content-row-navbar-collapse-4" >
+                <ul class="nav navbar-nav navbar-right">
+
+                    <!-- <li class="disabled"><a href="#">Link</a></li> -->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Profile <b class="caret"></b></a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li><a href=@Url.Action("EmployeInfoUpdate","ClientSiteEmployee")>Update Information</a></li>
+                            <li class=""><a href=@Url.Action("LogOut","Login")>Signout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav bottom-right">
                     <li>@Html.ActionLink("Home", "Index", "ClientSiteEmployee")</li>

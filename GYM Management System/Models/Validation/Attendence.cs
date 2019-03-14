@@ -39,6 +39,7 @@ namespace GYM_Management_System.Models
         [Required]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
+        [Display(Name ="Attendance Date")]
         public Nullable<System.DateTime> AttendenceDate { get; set; }
     }
 }

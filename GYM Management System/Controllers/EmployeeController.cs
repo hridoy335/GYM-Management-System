@@ -25,13 +25,31 @@ namespace GYM_Management_System.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult EmployeeRegistration(Employee employee,int? DesignationId)
+        public ActionResult EmployeeRegistration(Employee employee,int? DesignationId, string Employee_Password)
         {
             int er = 0;
             if (DesignationId == null)
             {
                 er++;
                 ViewBag.Designation = "Select One Item";
+            }
+            if (Employee_Password == "") 
+            {
+                er++;
+                ViewBag.password = "Password Required";
+            }
+            bool isThisIdExist = db.Employees.ToList().Exists(a => a.Employee_ID == employee.Employee_ID);
+            if (isThisIdExist)
+            {
+                er++;
+                ViewBag.idnumber = "This id is already here";
+            }
+
+            bool isThisUsenameExist = db.Employees.ToList().Exists(a => a.Employe_UserName == employee.Employe_UserName);
+            if (isThisUsenameExist)
+            {
+                er++;
+                ViewBag.username = "This Username is already here";
             }
             if (er > 0)
             {

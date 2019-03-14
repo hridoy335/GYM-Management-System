@@ -52,6 +52,12 @@ namespace GYM_Management_System.Controllers
                 er++;
                 ViewBag.idnumber = "This id is already here";
             }
+            bool isThisUsenameExist = db.Clients.ToList().Exists(a => a.ClientUserName == client.ClientUserName);
+            if (isThisUsenameExist)
+            { 
+                er++;
+                ViewBag.username = "This Username is already here";
+            }
 
             if (er > 0)
             {
@@ -63,10 +69,6 @@ namespace GYM_Management_System.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    
-                    //int id = client.ClientIdNumber;
-                    //client.ClientIdNumber = id + 1;
-                    //client.ClientAdmitionfee=client
                     db.Clients.Add(client);
 
                     ClientServiceList list = new ClientServiceList();
@@ -85,6 +87,7 @@ namespace GYM_Management_System.Controllers
                     db.ClientBills.Add(bill);
                     db.SaveChanges();
                     ViewBag.Message = "Registration Sucessful";
+
                     return RedirectToAction("ClientInformation");
                     
 

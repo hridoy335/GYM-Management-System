@@ -455,6 +455,8 @@
     <Content Include="Views\ClientSiteEmployee\About.cshtml" />
     <Content Include="Views\ClientSiteEmployee\Contact.cshtml" />
     <Content Include="Views\ClientSiteEmployee\FoodPlanUpdate.cshtml" />
+    <Content Include="Views\ClientSiteEmployee\EmployeInfoUpdate.cshtml" />
+    <Content Include="Views\ClientSiteClient\ClientInfoUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,8 +16,10 @@ namespace GYM_Management_System.Models
 
         public int ScheduleTimeId { get; set; }
         [Required]
+        [Display(Name ="Client Name")]
         public int ClientId { get; set; }
         [Required]
+        [Display(Name ="Employee Name")]
         public int EmployeeId { get; set; }
     }
 }

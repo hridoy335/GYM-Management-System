@@ -68,6 +68,7 @@
             <div class="col-md-4">
                 @Html.EditorFor(model => model.ClientUserName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ClientUserName, "", new { @class = "text-danger" })
+                <span class="alert-danger">@ViewBag.username</span>
             </div>
         </div>
 
@@ -75,8 +76,8 @@
             @Html.LabelFor(model => model.ClientPassword, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.PasswordFor(model => model.ClientPassword, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ClientPassword, "", new { @class = "text-danger" })
-                <span class="alert-danger">@ViewBag.password</span>
+                @*@Html.ValidationMessageFor(model => model.ClientPassword, "", new { @class = "text-danger" })*@
+                <h7 class="text-danger">@ViewBag.password</h7>
             </div>
         </div>
 
@@ -94,7 +95,7 @@
             <div class="col-md-4">
                 @Html.DropDownList("ServiceId", null, "Select One Item", htmlAttributes: new { @class = "form-control" })
                 @*@Html.ValidationMessage("Error!!")*@
-                <span class="alert-danger">@ViewBag.ename</span>
+                <h7 class="text-danger">@ViewBag.ename</h7>
             </div>
         </div>
 
