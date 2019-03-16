@@ -63,9 +63,14 @@ namespace GYM_Management_System.Controllers
                     Session["username"] = employee.Employe_UserName.ToString();
                     Session["id"] = employee.EmployeeId.ToString();
                     //Session["time"] = DateTime.Now;
+                    System.DateTime todaydate = new System.DateTime(System.DateTime.Today.Ticks);
+                    DateTime date = Convert.ToDateTime(todaydate.ToString("dd/MM/yyyy"));
+                    int id = Convert.ToInt32(Session["id"]);
+                    var attendancedate = db.Attendences.Where(y => y.AttendenceDate == date && y.EmployeeId==id ).FirstOrDefault();
+                    if(attendancedate== null)
+                    {
 
-                   
-                    attendence.EmployeeId = Convert.ToInt32(Session["id"]);
+                    attendence.EmployeeId = id;
                     attendence.FromTime =Convert.ToDateTime( DateTime.Now.ToLongTimeString());
                     attendence.AttendenceStatus=true;
                     attendence.AttendenceDate =Convert.ToDateTime(DateTime.Now.ToLongDateString());
@@ -75,6 +80,15 @@ namespace GYM_Management_System.Controllers
                     string a = employee.EmployeeName.ToString();
                     ViewBag.employeewelcome = "Welcome " + a;
                     return RedirectToAction("Attendance", "Attendance");
+
+                    }
+
+                    else
+                    {
+                        ViewBag.emessage = "Attendance already done";
+                        return View();
+                    }
+
                 }
             }
 
@@ -82,10 +96,13 @@ namespace GYM_Management_System.Controllers
             {
                 Session["username"] = Client.ClientUserName.ToString();
                 Session["id"] = Client.ClientId;
-                //int cid = Convert.ToInt32(Session["id"]);
-               // DateTime todaydate= Convert.ToDateTime(DateTime.Now.ToLongDateString());
-                // Time out start
-              //  var AttendanceValue = db.Attendences.Where(y => y.ClientId == cid && y.AttendenceDate == todaydate).FirstOrDefault();               
+                 int cid = Convert.ToInt32(Session["id"]);
+
+                System.DateTime todaydate1  = new System.DateTime(System.DateTime.Today.Ticks);
+                DateTime date1 = Convert.ToDateTime(todaydate1.ToString("dd/MM/yyyy")); 
+                var AttendanceValue = db.Attendences.Where(y => y.ClientId == cid && y.AttendenceDate == date1).FirstOrDefault();
+                if (AttendanceValue == null)
+                {
                     attendence.ClientId = Convert.ToInt32(Session["id"]);
                     attendence.FromTime = Convert.ToDateTime(DateTime.Now.ToLongTimeString());
                     attendence.AttendenceStatus = true;
@@ -96,22 +113,14 @@ namespace GYM_Management_System.Controllers
                     string b = Client.ClietName.ToString();
                     ViewBag.clientwelcome = "Welcome " + b;
                     return RedirectToAction("Attendance");
-                
-                // Time out end 
+                }
 
-                //else
-                //{
-                //    attendence.AttendenceId = AttendanceValue.AttendenceId;
-                //    attendence.ClientId = AttendanceValue.ClientId;
-                //    attendence.FromTime = AttendanceValue.FromTime;
-                   
-                //    attendence.AttendenceStatus = true;
-                //    attendence.AttendenceDate = AttendanceValue.AttendenceDate;
+                else
+                {
+                    ViewBag.cmessage = "Attendance already done";
+                    return View();
 
-                //    db.Entry(attendence).State = EntityState.Modified;
-                //    db.SaveChanges();
-                //    return RedirectToAction("Attendence");
-                //}
+                }
                 
             }
 

@@ -222,6 +222,7 @@
     <Compile Include="Models\Validation\Employee.cs" />
     <Compile Include="Models\Validation\Expense.cs" />
     <Compile Include="Models\Validation\FoodPlan.cs" />
+    <Compile Include="Models\Validation\ProductPlan.cs" />
     <Compile Include="Models\Validation\Schedule.cs" />
     <Compile Include="Models\Validation\ScheduleTime.cs" />
     <Compile Include="Models\Validation\Servicess.cs" />
@@ -457,10 +458,11 @@
     <Content Include="Views\ClientSiteEmployee\FoodPlanUpdate.cshtml" />
     <Content Include="Views\ClientSiteEmployee\EmployeInfoUpdate.cshtml" />
     <Content Include="Views\ClientSiteClient\ClientInfoUpdate.cshtml" />
+    <Content Include="Views\Product\ProductPlan.cshtml" />
+    <Content Include="Views\Product\ProductPlanInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

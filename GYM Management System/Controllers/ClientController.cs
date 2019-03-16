@@ -12,6 +12,7 @@ namespace GYM_Management_System.Controllers
     public class ClientController : Controller
     {
         gym_managementEntities db = new gym_managementEntities();
+       
         // GET: Clienti
         public ActionResult Index()
         {
