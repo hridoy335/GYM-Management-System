@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<GYM_Management_System.Models.ProductPlan>
 
 @{
-    ViewBag.Title = "ProductPlanInfo";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ProductPlan Information";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
 
 <h2>ProductPlanInfo</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "ProductPlan")
 </p>
 <table class="table">
     <tr>
@@ -24,8 +24,9 @@
             @Html.DisplayFor(modelItem => item.ProductName)
         </td>
         <td>
-            @Html.ActionLink("Update", "ProductPlanUpdate", new { id=item.ProductPlanId }) |
-
+            @Html.ActionLink("Update", "UpdateProductPlan", new { id=item.ProductPlanId }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.ProductPlanId }) |*@
+            @Html.ActionLink("Delete", "DeleteProductPlan", new { id=item.ProductPlanId })
         </td>
     </tr>
 }

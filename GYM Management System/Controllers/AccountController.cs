@@ -43,5 +43,22 @@ namespace GYM_Management_System.Controllers
 
             return View();
         }
+
+        public ActionResult CreateBill()
+        {
+            return View();
+        }
+
+        
+        //public ActionResult my
+        //{
+        //    return View();
+        //}
+    [AcceptVerbs(HttpVerbs.Post)]
+    public ActionResult MyAction(string createbill)
+    {
+        return View("Login","Login");
     }
+
+}
 }

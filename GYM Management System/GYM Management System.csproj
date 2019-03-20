@@ -460,6 +460,9 @@
     <Content Include="Views\ClientSiteClient\ClientInfoUpdate.cshtml" />
     <Content Include="Views\Product\ProductPlan.cshtml" />
     <Content Include="Views\Product\ProductPlanInfo.cshtml" />
+    <Content Include="Views\Product\UpdateProductPlan.cshtml" />
+    <Content Include="Views\Product\DeleteProductPlan.cshtml" />
+    <Content Include="Views\Account\CreateBill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
