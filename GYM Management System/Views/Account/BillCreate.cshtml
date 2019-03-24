@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "BillCreate";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+
+<h2>BillCreate</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("ClietName")
+        </th>
+        <th>
+            @Html.DisplayName("BillMonth")
+        </th>
+        <th>
+            @Html.DisplayName("BillAmount")
+        </th>
+        <th>
+            @Html.DisplayName("BillStatus")
+        </th>
+        <th>
+            @Html.DisplayName("DueStatus")
+        </th>
+
+
+    </tr>
+
+    @foreach (var item in ViewBag.list)
+    {
+        <tr>
+            <td>
+                @item.ClientId
+            </td>
+            <td>
+                @item.BillMonth
+            </td>
+            <td>
+                @item.BillAmount
+            </td>
+            <td>
+              @item.BillStatus
+            </td>
+            <td>
+              @item.DueStatus
+            </td>
+
+     
+        </tr>
+    }
+
+</table>

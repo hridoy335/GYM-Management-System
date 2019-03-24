@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
 
-<h4>Attendance Table </h4>
+<h4 class="center-block">Today's Attendance Table </h4>
 <table class="table">
     <tr>
         <th>
@@ -26,22 +26,23 @@
 
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in ViewBag.list)
+{
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Client.ClietName)
+           @item.ClientId
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+           @item.EmployeeId
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FromTime)
+           @item.FromTime
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AttendenceStatus)
+          @item.AttendenceStatus
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AttendenceDate)
+            @item.AttendenceDate
         </td>
 
     </tr>

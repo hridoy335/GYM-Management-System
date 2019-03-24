@@ -8,39 +8,9 @@
 <h2>Create Bill</h2>
 
 
+@using (Html.BeginForm("BillCreate", "Account"))
+{
 
-<div class="form-group">
-    <div class="col-md-offset-5 col-md-10">
-        <input type="submit" value="Create Bill" name="createbill" class="btn btn-success" />
-        @*<input type="submit" name="answer" value="Accept" class="btn btn-success" />*@
-    </div>
-</div>
+    <input type="submit" value="Create bill" />
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Client.ClietName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BillMonth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BillAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BillStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DueStatus)
-        </th>
-
-        <th></th>
-    </tr>
-    
-
-  </table>
-
-<form method="post">
-    <input type="text" name="name" />
-    @*<input type="button" value="Add" onclick="location.href='@Url.Action("Add", "mycontroller" />*@
-</form>
+} 

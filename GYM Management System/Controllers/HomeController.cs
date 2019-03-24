@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,10 +13,43 @@ namespace GYM_Management_System.Controllers
         gym_managementEntities db = new gym_managementEntities();
         public ActionResult Index()
         {
-            return View(db.Attendences.ToList());
+            //return View(db.Attendences.ToList());
+
+            System.DateTime todaydate = new System.DateTime(System.DateTime.Today.Ticks);
+            DateTime date = Convert.ToDateTime(todaydate.ToString("dd/MM/yyyy"));
+            //var Atteendancedate = db.Attendences.Where(y => y.AttendenceDate == date).FirstOrDefault();
+            List<Attendence> list = new List<Attendence>();
+            ViewBag.list = list;
+            var attendanceinfo = db.Attendences.ToList();
+
+            foreach (var row in attendanceinfo)
+            {
+                DateTime att = Convert.ToDateTime(row.AttendenceDate);
+                //var Atteendancedate = db.Attendences.Where(y => y.AttendenceDate == date).FirstOrDefault();
+                // sample s = new sample();
+                if (att == date)
+                {
+                    Attendence a = new Attendence();
+                    a.ClientId = Convert.ToInt32(row.ClientId);
+                    a.EmployeeId = Convert.ToInt32(row.EmployeeId);
+                    a.FromTime = Convert.ToDateTime(row.FromTime);
+                    a.AttendenceStatus = Convert.ToBoolean(row.AttendenceStatus);
+                    a.AttendenceDate = Convert.ToDateTime(row.AttendenceDate);
+                    //Attendence.Add(a);
+                    //db.Attendences.Add(a);
+                    list.Add(a);
+                }
+
+
+            }
+            return View();
         }
 
-
+        //    public ActionResult at()
+        //{
+        //    var atlist = db.Attendences.Where(x => x.AttendenceDate == DateTime.Now);
+        //    return View(atlist.ToList());
+        //}
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

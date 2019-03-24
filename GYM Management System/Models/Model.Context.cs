@@ -41,5 +41,6 @@ namespace GYM_Management_System.Models
         public virtual DbSet<Sell> Sells { get; set; }
         public virtual DbSet<Servicess> Servicesses { get; set; }
         public virtual DbSet<Storage> Storages { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

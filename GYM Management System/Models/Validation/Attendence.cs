@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,7 @@ namespace GYM_Management_System.Models
     [MetadataType(typeof(MetadataAttendence))]
     public partial class Attendence
     {
-
+        public IEnumerable<DataRow> Rows { get; internal set; }
     }
 
     public class MetadataAttendence

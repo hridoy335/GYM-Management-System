@@ -40,6 +40,7 @@
         <AssociationConnector Association="gym_managementModel.FK__Sell__ProductPla__403A8C7D" ManuallyRouted="false" />
         <AssociationConnector Association="gym_managementModel.FK__Storage__Product__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="gym_managementModel.FK__Schedule__Schedu__32E0915F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="gym_managementModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

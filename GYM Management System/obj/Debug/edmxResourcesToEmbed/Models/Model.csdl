@@ -9,7 +9,7 @@
     <Property Name="EmployeeId" Type="Int32" />
     <Property Name="FromTime" Type="DateTime" Precision="3" />
     <Property Name="AttendenceStatus" Type="Boolean" />
-    <Property Name="AttendenceDate" Type="DateTime" Precision="3" />
+    <Property Name="AttendenceDate" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Client" Relationship="Self.FK__Attendenc__Clien__29572725" FromRole="Attendence" ToRole="Client" />
     <NavigationProperty Name="Employee" Relationship="Self.FK__Attendenc__Emplo__2A4B4B5E" FromRole="Attendence" ToRole="Employee" />
   </EntityType>
@@ -523,5 +523,16 @@
       <End Role="ScheduleTime" EntitySet="ScheduleTimes" />
       <End Role="Schedule" EntitySet="Schedules" />
     </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="gym_managementModel.sysdiagram" />
   </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
 </Schema>

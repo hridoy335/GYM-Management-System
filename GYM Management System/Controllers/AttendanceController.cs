@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -16,9 +17,9 @@ namespace GYM_Management_System.Controllers
         [HttpGet]
         public ActionResult Attendance()
         {
-             ViewBag.date = DateTime.Now.ToLongDateString();
-             ViewBag.time = DateTime.Now.ToLongTimeString();
-              
+            ViewBag.date = DateTime.Now.Date;
+            ViewBag.time = DateTime.Now.TimeOfDay;
+
             //ViewBag.a= DateTime.Today;
 
             return View();
@@ -71,9 +72,9 @@ namespace GYM_Management_System.Controllers
                     {
 
                     attendence.EmployeeId = id;
-                    attendence.FromTime =Convert.ToDateTime( DateTime.Now.ToLongTimeString());
+                        attendence.FromTime = DateTime.Now;
                     attendence.AttendenceStatus=true;
-                    attendence.AttendenceDate =Convert.ToDateTime(DateTime.Now.ToLongDateString());
+                        attendence.AttendenceDate = DateTime.Now;
                     db.Attendences.Add(attendence);
                     db.SaveChanges();
                     ViewBag.employeemessage = "Attendance Successfull";
@@ -129,7 +130,50 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult AttendenceView()
         {
+
+            //System.DateTime todaydate = new System.DateTime(System.DateTime.Today.Ticks);
+            //DateTime date = Convert.ToDateTime(todaydate.ToString("dd/MM/yyyy"));
+            //var Atteendancedate = db.Attendences.Where(y => y.AttendenceDate == date).FirstOrDefault();
+
+            //foreach (DataRow row in Atteendancedate.Rows)
+            //{
+            //    // sample s = new sample();
+            //    Attendence a = new Attendence();
+            //    a.ClientId = Convert.ToInt32(row["ClientId"]);
+            //    a.EmployeeId = Convert.ToInt32(row["EmployeeId"]);
+            //    a.FromTime = Convert.ToDateTime(row["FromTime"]);
+            //    a.AttendenceStatus = Convert.ToBoolean(row["AttendenceStatus"]);
+            //    a.AttendenceDate = Convert.ToDateTime(row["AttendenceDate"]);
+            //    //Attendence.Add(a);
+            //    db.Attendences.Add(a);
+
+            //}
+            //return View(model);
             return View(db.Attendences.ToList());
+        }
+
+        public ActionResult TodayAttendance()
+        {
+            System.DateTime todaydate = new System.DateTime(System.DateTime.Today.Ticks);
+            DateTime date = Convert.ToDateTime(todaydate.ToString("dd/MM/yyyy"));
+            var Atteendancedate = db.Attendences.Where(y => y.AttendenceDate == date).FirstOrDefault();
+            List<Attendence> list = new List<Attendence>();
+            ViewBag.list = list;
+            foreach (DataRow row in Atteendancedate.Rows)
+            {
+                // sample s = new sample();
+                Attendence a = new Attendence();
+                a.ClientId = Convert.ToInt32(row["ClientId"]);
+                a.EmployeeId = Convert.ToInt32(row["EmployeeId"]);
+                a.FromTime = Convert.ToDateTime(row["FromTime"]);
+                a.AttendenceStatus = Convert.ToBoolean(row["AttendenceStatus"]);
+                a.AttendenceDate = Convert.ToDateTime(row["AttendenceDate"]);
+                //Attendence.Add(a);
+                //db.Attendences.Add(a);
+                list.Add(a);
+
+            }
+            return View();
         }
 
         //[HttpGet]

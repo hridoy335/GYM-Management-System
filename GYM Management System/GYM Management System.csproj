@@ -214,6 +214,9 @@
     <Compile Include="Models\Storage.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Validation\Attendence.cs" />
     <Compile Include="Models\Validation\Client.cs" />
     <Compile Include="Models\Validation\ClientBill.cs" />
@@ -463,6 +466,10 @@
     <Content Include="Views\Product\UpdateProductPlan.cshtml" />
     <Content Include="Views\Product\DeleteProductPlan.cshtml" />
     <Content Include="Views\Account\CreateBill.cshtml" />
+    <Content Include="Views\Account\TodaysBill.cshtml" />
+    <Content Include="Views\Account\BillCreate.cshtml" />
+    <Content Include="Views\Account\NewBill.cshtml" />
+    <Content Include="Views\Home\at.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,7 +9,7 @@
     <Property Name="EmployeeId" Type="int" />
     <Property Name="FromTime" Type="datetime" />
     <Property Name="AttendenceStatus" Type="bit" />
-    <Property Name="AttendenceDate" Type="datetime" />
+    <Property Name="AttendenceDate" Type="date" />
   </EntityType>
   <EntityType Name="Client">
     <Key>
@@ -163,6 +163,16 @@
     <Property Name="ProductPlanId" Type="int" Nullable="false" />
     <Property Name="ProductQuantity" Type="int" Nullable="false" />
     <Property Name="ProductExpireDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK__Attendenc__Clien__29572725">
     <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
@@ -409,6 +419,7 @@
     <EntitySet Name="Sell" EntityType="Self.Sell" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Servicess" EntityType="Self.Servicess" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Storage" EntityType="Self.Storage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Attendenc__Clien__29572725" Association="Self.FK__Attendenc__Clien__29572725">
       <End Role="Client" EntitySet="Client" />
       <End Role="Attendence" EntitySet="Attendence" />
