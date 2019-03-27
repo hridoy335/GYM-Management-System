@@ -94,6 +94,74 @@ namespace GYM_Management_System.Controllers
             return RedirectToAction("ProductPlanInfo");
         }
 
+        public ActionResult ProductStorage()
+        {
+            return View(db.Storages.ToList());
+        }
 
+        public ActionResult ProductAdd()
+        {
+            ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
+            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult productadd([Bind(Include  = "productplanid,productquantity,prodyctbuyingdate,productexpiredate,productbuyparprice,productsellparprice,totalamount,employeeid")] ProductBuying productbuying, int? ProductPlanId, int? EmployeeId)
+        {
+            int er = 0;
+            if (ProductPlanId == null)
+            {
+                er++;
+                ViewBag.ProductPlanMessage = "ProductPlan Required";
+            }
+            if (EmployeeId == null)
+            {
+                er++;
+                ViewBag.EmployeeMessage = "Employee Required";
+            }
+            if (ModelState.IsValid)
+            {
+                
+              //  db.SaveChanges();
+                Storage storage = new Storage();
+                storage.ProductPlanId = productbuying.ProductPlanId;
+                //storage.ProductQuantity = productbuying.ProductQuantity;
+                storage.ProductExpireDate = productbuying.ProductExpireDate;
+                var productsearch = db.Storages.Where(x=>x.ProductPlanId==productbuying.ProductPlanId).FirstOrDefault();
+                if (productsearch == null)
+                {
+                    storage.ProductQuantity = productbuying.ProductQuantity;
+                    db.Storages.Add(storage);
+                    db.ProductBuyings.Add(productbuying);
+                    db.SaveChanges();
+                    return RedirectToAction("ProoductBuyingView");
+
+                    //return View(productbuying);
+                }
+                else
+                {
+                    int quantity = productsearch.ProductQuantity;
+                    int buyquantity = productbuying.ProductQuantity;
+                    int presentQuantity = quantity + buyquantity;
+                    storage.ProductQuantity = presentQuantity;
+                    db.Storages.Add(storage);
+                    db.ProductBuyings.Add(productbuying);
+                    db.SaveChanges();
+                    return RedirectToAction("ProoductBuyingView", "Product");
+                }
+
+
+              
+            }
+            ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
+            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+            return View();
+        }
+
+        public ActionResult ProoductBuyingView()
+        {
+            return View(db.ProductBuyings.ToList());
+        }
     }
 }

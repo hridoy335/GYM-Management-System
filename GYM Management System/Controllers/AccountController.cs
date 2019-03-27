@@ -100,6 +100,8 @@ namespace GYM_Management_System.Controllers
                             clientBill.BillStatus = false;
                             clientBill.DueStatus = 0;
                             clientBill.BillMonth = Current_date;
+                            db.ClientBills.Add(clientBill);
+                            db.SaveChanges();
                             list.Add(clientBill);
                         }
                     }
@@ -115,7 +117,8 @@ namespace GYM_Management_System.Controllers
                             clientBill.BillStatus = false;
                             clientBill.DueStatus = 0;
                             clientBill.BillMonth = Current_date;
-                            
+                            db.ClientBills.Add(clientBill);
+                            db.SaveChanges();
                             list.Add(clientBill);
                         }
 

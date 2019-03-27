@@ -8,11 +8,11 @@
 <h4 class="center-block">Today's Attendance Table </h4>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Client.ClietName)
-        </th>
+        </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+            @Html.DisplayName("Name")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FromTime)
@@ -26,26 +26,37 @@
 
     </tr>
 
-@foreach (var item in ViewBag.list)
-{
-    <tr>
-        <td>
-           @item.ClientId
-        </td>
-        <td>
-           @item.EmployeeId
-        </td>
-        <td>
-           @item.FromTime
-        </td>
-        <td>
-          @item.AttendenceStatus
-        </td>
-        <td>
-            @item.AttendenceDate
-        </td>
+    @foreach (var item in ViewBag.list)
+    {
+        <tr>
+            @*<td>
+                @item.ClientId
+            </td>*@
+            <td>
+                @if (item.Client == null)
+                {
+                    @item.Employee.EmployeeName
+                }
+                else
+                {
+                    @item.Client.ClietName
+                }
+            </td>
+            <td>
+                @item.FromTime
+            </td>
+            <td>
+                @item.AttendenceStatus
+            </td>
+            <td>
+                @item.AttendenceDate
+            </td>
 
-    </tr>
-}
+        </tr>
+    }
 
 </table>
+<meta http-equiv="refresh" content="5" />
+@*setTimeout(function(){
+       window.location.reload(1);
+    }, 5000);*@

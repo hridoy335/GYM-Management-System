@@ -225,6 +225,7 @@
     <Compile Include="Models\Validation\Employee.cs" />
     <Compile Include="Models\Validation\Expense.cs" />
     <Compile Include="Models\Validation\FoodPlan.cs" />
+    <Compile Include="Models\Validation\ProductBuying.cs" />
     <Compile Include="Models\Validation\ProductPlan.cs" />
     <Compile Include="Models\Validation\Schedule.cs" />
     <Compile Include="Models\Validation\ScheduleTime.cs" />
@@ -469,7 +470,9 @@
     <Content Include="Views\Account\TodaysBill.cshtml" />
     <Content Include="Views\Account\BillCreate.cshtml" />
     <Content Include="Views\Account\NewBill.cshtml" />
-    <Content Include="Views\Home\at.cshtml" />
+    <Content Include="Views\Product\ProductStorage.cshtml" />
+    <Content Include="Views\Product\ProductAdd.cshtml" />
+    <Content Include="Views\Product\ProoductBuyingView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
