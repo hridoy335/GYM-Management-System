@@ -22,11 +22,13 @@ namespace GYM_Management_System.Models
 
         [Required]
         [Display(Name ="Buying Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public System.DateTime ProdyctBuyingDate { get; set; }
 
         [Required]
         [Display(Name ="Expire Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public System.DateTime ProductExpireDate { get; set; }
 

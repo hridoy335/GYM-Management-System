@@ -103,11 +103,11 @@ namespace GYM_Management_System.Controllers
         {
             ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
             ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
-            return View();
+            return View(); 
         }
-
+         
         [HttpPost]
-        public ActionResult productadd([Bind(Include  = "productplanid,productquantity,prodyctbuyingdate,productexpiredate,productbuyparprice,productsellparprice,totalamount,employeeid")] ProductBuying productbuying, int? ProductPlanId, int? EmployeeId)
+        public ActionResult ProductAdd([Bind(Include  = "productplanid,productquantity,prodyctbuyingdate,productexpiredate,productbuyparprice,productsellparprice,totalamount,employeeid")] ProductBuying productbuying, int? ProductPlanId, int? EmployeeId)
         {
             int er = 0;
             if (ProductPlanId == null)
@@ -133,6 +133,7 @@ namespace GYM_Management_System.Controllers
                 {
                     storage.ProductQuantity = productbuying.ProductQuantity;
                     db.Storages.Add(storage);
+                   // db.Entry(storage).State = EntityState.Modified;
                     db.ProductBuyings.Add(productbuying);
                     db.SaveChanges();
                     return RedirectToAction("ProoductBuyingView");
@@ -145,8 +146,15 @@ namespace GYM_Management_System.Controllers
                     int buyquantity = productbuying.ProductQuantity;
                     int presentQuantity = quantity + buyquantity;
                     storage.ProductQuantity = presentQuantity;
-                    db.Storages.Add(storage);
+                    storage.StorageId = productsearch.StorageId;
+                   // db.Storages.Add(storage);
+                    
+                    
                     db.ProductBuyings.Add(productbuying);
+
+                    db.Entry(productsearch).State = EntityState.Detached;
+
+                    db.Entry(storage).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("ProoductBuyingView", "Product");
                 }
@@ -159,9 +167,89 @@ namespace GYM_Management_System.Controllers
             return View();
         }
 
-        public ActionResult ProoductBuyingView()
+
+        public ActionResult ProductAddInfo()
         {
             return View(db.ProductBuyings.ToList());
         }
+
+        public ActionResult ProductAddUpdate(int? id)
+        {
+            //ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //Client ServiceAdd = db.Clients.Find(id);
+            ProductBuying productBuying = db.ProductBuyings.Find(id);
+            if (productBuying == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.quantity = productBuying.ProductQuantity;
+            ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
+            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+            return View(productBuying);
+        }
+
+        [HttpPost]
+        public ActionResult ProductAddUpdate([Bind(Include = "ProductButingId,ProductPlanId,ProductQuantity,ProdyctBuyingDate,ProductExpireDate,ProductBuyParPrice,productSellParPrice,TotalAmount,EmployeeId")] ProductBuying productBuying, int? quantity)
+        {
+            int present_quantity=0;
+            int calculatequantity = 0;
+            int productplanid = productBuying.ProductPlanId;
+            var storagequantity = db.Storages.Where(x => x.ProductPlanId == productplanid).FirstOrDefault();
+            Storage storage = new Storage();
+            if (quantity > productBuying.ProductQuantity)
+            {
+                int a = productBuying.ProductQuantity;
+                int b =Convert.ToInt32( quantity);
+                calculatequantity = b-a;
+                present_quantity = storagequantity.ProductQuantity - calculatequantity;
+                storage.ProductQuantity = present_quantity;  //present quantity
+                storage.ProductExpireDate = productBuying.ProductExpireDate;
+                storage.ProductPlanId = productplanid;
+                storage.StorageId = storagequantity.StorageId;
+                
+            }
+            else
+            {
+                int c = productBuying.ProductQuantity;
+                int d = Convert.ToInt32(quantity);
+                calculatequantity = c - d;
+                present_quantity = storagequantity.ProductQuantity + calculatequantity;
+                storage.ProductQuantity = present_quantity;
+                storage.ProductExpireDate = productBuying.ProductExpireDate;
+                storage.ProductPlanId = productplanid;
+                storage.StorageId = storagequantity.StorageId;
+            }
+
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(storagequantity).State = EntityState.Detached;
+                db.Entry(storage).State = EntityState.Modified;
+
+                db.Entry(productBuying).State = EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Message = "Data Update Successfully";
+                return RedirectToAction("ProductAddInfo");
+            }
+            return View(productBuying);
+        }
+
+        public ActionResult ProductSell()
+        {
+            ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
+            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+            ViewBag.clientid = new SelectList(db.Clients, "clientid", "ClietName");
+            return View();
+        }
+
+        //[HttpPost]
+        //public ActionResult ProductSell()
+        //{
+            
+        //}
     }
 }
