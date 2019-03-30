@@ -476,6 +476,7 @@
     <Content Include="Views\Product\ProductAddInfo.cshtml" />
     <Content Include="Views\Product\ProductAddUpdate.cshtml" />
     <Content Include="Views\Product\ProductSell.cshtml" />
+    <Content Include="Views\Product\ProductSellInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<GYM_Management_System.Models.Sell>
+
+@{
+    ViewBag.Title = "ProductSellInfo";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+
+<h2>ProductSellInfo</h2>
+
+<p>
+    @Html.ActionLink("Product Sell", "ProductSell")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductPlan.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.ClietName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductPlan.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.ClietName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.SellId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.SellId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.SellId })
+        </td>
+    </tr>
+}
+
+</table>

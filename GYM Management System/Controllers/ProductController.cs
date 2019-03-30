@@ -246,10 +246,84 @@ namespace GYM_Management_System.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult ProductSell()
-        //{
-            
-        //}
+
+
+        [HttpPost]
+        public ActionResult ProductSell([Bind(Include = "ProductPlanId,ProductQuantity,TotalAmount,EmployeeId,clientid")] Sell sell, int? ProductPlanId, int? EmployeeId,int? clientid,int? ProductQuantity)
+        {
+            int er = 0;
+            if (ProductPlanId == null)
+            {
+                er++; ;
+                ViewBag.EmployeeIdMessage = "ProductPlan Namre Required";
+            }
+            if (clientid == null)
+            {
+                er++; ;
+                ViewBag.clientidMessage = "Client Namre Required";
+            }
+
+            if (EmployeeId == null)
+            {
+                er++; ;
+                ViewBag.EmployeeIdMessage = "Employee Namre Required"; 
+            }
+
+            if (ProductQuantity==null)
+            {
+                er++;
+                ViewBag.ProductQuantity = "Quantity Required";
+            }
+            int id = Convert.ToInt32(sell.ProductPlanId);
+            var product_storage = db.Storages.Where(x => x.ProductPlanId == id).FirstOrDefault();
+            int quantity = sell.ProductQuantity;
+           
+            if (er > 0)
+            {
+
+                ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                ViewBag.clientid = new SelectList(db.Clients, "clientid", "ClietName");
+                return View(sell);
+            }
+        
+
+
+            if (ModelState.IsValid)
+            {
+                if (product_storage.ProductQuantity < quantity)
+                {
+                    er++;
+                    ViewBag.Product_Storage = "Sorry.This product is not available";
+                    ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
+                    ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                    ViewBag.clientid = new SelectList(db.Clients, "clientid", "ClietName");
+                    return View(sell);
+                }
+                int present_quantiy = product_storage.ProductQuantity - quantity;
+
+                Storage storage = new Storage();
+                storage.StorageId = product_storage.StorageId;
+                storage.ProductPlanId = product_storage.ProductPlanId;
+                storage.ProductQuantity = present_quantiy;
+                storage.ProductExpireDate = product_storage.ProductExpireDate;
+
+                db.Entry(product_storage).State = EntityState.Detached;
+                db.Entry(storage).State = EntityState.Modified;
+                db.Sells.Add(sell);
+                db.SaveChanges();
+                return RedirectToAction("ProductSellInfo");
+            }
+
+
+            return View();
+        }
+
+        public ActionResult ProductSellInfo()
+        {
+            return View(db.Sells.ToList());
+        }
+
+
     }
 }

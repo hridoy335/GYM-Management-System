@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace GYM_Management_System.Models.Validation
+namespace GYM_Management_System.Models
 {
     [MetadataType(typeof(MetadataSell))]
     public partial class Sell
@@ -13,7 +13,7 @@ namespace GYM_Management_System.Models.Validation
 
     public class MetadataSell
     {
-        [Required]
+     //   [Required]
         [Display(Name = "Product Name")]
         public int ProductPlanId { get; set; }
         [Required]
@@ -23,10 +23,10 @@ namespace GYM_Management_System.Models.Validation
         [Display(Name ="Total Name")]
         public int TotalAmount { get; set; }
         [Required]
-        [Display(Name ="Employee Name")]
+  //      [Display(Name ="Employee Name")]
         public int EmployeeId { get; set; }
         [Required]
-        [Display(Name ="Client Name")]
+     //   [Display(Name ="Client Name")]
         public int clientid { get; set; }
     }
 }
