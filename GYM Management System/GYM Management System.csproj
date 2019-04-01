@@ -420,7 +420,6 @@
     <Content Include="Views\Service\ServiceAdd.cshtml" />
     <Content Include="Views\Service\ServiceInformation.cshtml" />
     <Content Include="Views\Service\ServiceUpdate.cshtml" />
-    <Content Include="Views\Account\BillPament.cshtml" />
     <Content Include="Views\Client\ClientServicecAdd.cshtml" />
     <Content Include="Views\Schedule\ScheduleTime.cshtml" />
     <Content Include="Views\Schedule\AddScheduleTime.cshtml" />
@@ -470,13 +469,15 @@
     <Content Include="Views\Account\CreateBill.cshtml" />
     <Content Include="Views\Account\TodaysBill.cshtml" />
     <Content Include="Views\Account\BillCreate.cshtml" />
-    <Content Include="Views\Account\NewBill.cshtml" />
     <Content Include="Views\Product\ProductStorage.cshtml" />
     <Content Include="Views\Product\ProductAdd.cshtml" />
     <Content Include="Views\Product\ProductAddInfo.cshtml" />
     <Content Include="Views\Product\ProductAddUpdate.cshtml" />
     <Content Include="Views\Product\ProductSell.cshtml" />
     <Content Include="Views\Product\ProductSellInfo.cshtml" />
+    <Content Include="Views\Account\BillPament.cshtml" />
+    <Content Include="Views\Account\BillTransection.cshtml" />
+    <Content Include="Views\Account\PrintTransectionInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

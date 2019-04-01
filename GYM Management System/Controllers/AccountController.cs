@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -25,6 +26,7 @@ namespace GYM_Management_System.Controllers
         [HttpGet]
         public ActionResult BillPament(int?id)
         {
+           
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -34,14 +36,57 @@ namespace GYM_Management_System.Controllers
             {
                 return HttpNotFound();
             }
+           // ViewBag.ClientId = new SelectList(db.ClientBills, "ClientId", "ClietName");
             return View(clientbill);
         }
 
         [HttpPost]
-        public ActionResult BillPament(ClientBill clientBill)
+        public ActionResult BillPament([Bind(Include = "ClientBillId,ClientId,BillMonth,BillAmount,BillStatus, DueStatus")] ClientBill clientBill)
         {
+            int bill = Convert.ToInt32(clientBill.BillAmount);
+            int due = Convert.ToInt32(clientBill.DueStatus);
+            int presentstatus = bill - due;
+            clientBill.DueStatus = presentstatus;
 
-            return View();
+            ClientBillTransection transection = new ClientBillTransection();
+            transection.ClientBillId = clientBill.ClientBillId;
+            transection.TransectionDate = DateTime.Now;
+            transection.BillMonth = clientBill.BillMonth;
+            transection.Amount = due;
+            
+            var id = db.ClientBillTransections.Where(x=>x.ClientBillId==clientBill.ClientBillId && x.BillMonth==clientBill.BillMonth && x.BillStatus==false);
+            if (id == null)
+            {
+
+                ViewBag.Message = "This bill is already payment";
+                return View(clientBill);
+            }
+            else
+            {
+                
+                db.ClientBillTransections.Add(transection);
+                db.Entry(clientBill).State = EntityState.Modified;
+                db.SaveChanges();
+
+                //ViewBag.transectionid = transection.TransectionId;
+                return RedirectToAction(actionName: "PrintTransectionInfo", routeValues: new { id = transection.TransectionId });
+
+            }
+        }
+        [HttpGet]
+        public ActionResult PrintTransectionInfo(int?id) 
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //Servicess ServiceUpdate = db.Servicesses.Find(id);
+            ClientBillTransection clientBillTransection = db.ClientBillTransections.Find(id);
+            if (clientBillTransection == null)
+            {
+                return HttpNotFound();
+            }
+            return View(clientBillTransection);
         }
 
         [HttpGet]
@@ -133,9 +178,9 @@ namespace GYM_Management_System.Controllers
             return View();
         }
 
-        public ActionResult NewBill()
+        public ActionResult BillTransection() 
         {
-            return View();
+            return View(db.ClientBillTransections.ToList());
         }
 
     }

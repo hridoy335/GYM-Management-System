@@ -43,7 +43,11 @@
     </Key>
     <Property Name="TransectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ClientBillId" Type="int" Nullable="false" />
-    <Property Name="TransectionDate" Type="datetime" Nullable="false" />
+    <Property Name="TransectionDate" Type="date" Nullable="false" />
+    <Property Name="BillMonth" Type="date" Nullable="false" />
+    <Property Name="Amount" Type="int" Nullable="false" />
+    <Property Name="BillStatus" Type="bit" />
+    <Property Name="InvoiceNumber" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="ClientServiceList">
     <Key>

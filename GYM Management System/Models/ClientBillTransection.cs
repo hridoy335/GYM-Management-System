@@ -17,6 +17,10 @@ namespace GYM_Management_System.Models
         public int TransectionId { get; set; }
         public int ClientBillId { get; set; }
         public System.DateTime TransectionDate { get; set; }
+        public System.DateTime BillMonth { get; set; }
+        public int Amount { get; set; }
+        public Nullable<bool> BillStatus { get; set; }
+        public string InvoiceNumber { get; set; }
     
         public virtual ClientBill ClientBill { get; set; }
     }

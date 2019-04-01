@@ -44,6 +44,10 @@
     <EntitySetMapping Name="ClientBillTransections">
       <EntityTypeMapping TypeName="gym_managementModel.ClientBillTransection">
         <MappingFragment StoreEntitySet="ClientBillTransection">
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="BillStatus" ColumnName="BillStatus" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="BillMonth" ColumnName="BillMonth" />
           <ScalarProperty Name="TransectionId" ColumnName="TransectionId" />
           <ScalarProperty Name="ClientBillId" ColumnName="ClientBillId" />
           <ScalarProperty Name="TransectionDate" ColumnName="TransectionDate" />

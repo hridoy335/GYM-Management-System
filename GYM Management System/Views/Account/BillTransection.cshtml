@@ -1,0 +1,52 @@
+﻿@model IEnumerable<GYM_Management_System.Models.ClientBillTransection>
+
+@{
+    ViewBag.Title = "BillTransection";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+
+<h2>BillTransection</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TransectionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BillMonth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientBill.ClientBillId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransectionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillMonth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClientBill.ClientBillId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TransectionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TransectionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TransectionId })
+        </td>
+    </tr>
+}
+
+</table>

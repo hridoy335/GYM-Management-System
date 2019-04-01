@@ -53,8 +53,12 @@
     </Key>
     <Property Name="TransectionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ClientBillId" Type="Int32" Nullable="false" />
-    <Property Name="TransectionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TransectionDate" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="ClientBill" Relationship="Self.FK__ClientBil__Clien__267ABA7A" FromRole="ClientBillTransection" ToRole="ClientBill" />
+    <Property Name="BillMonth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="BillStatus" Type="Boolean" />
+    <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="ClientServiceList">
     <Key>

@@ -21,6 +21,7 @@ namespace GYM_Management_System.Models
         [Required]
         [Display(Name ="Bill Month")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime BillMonth { get; set; }
 
         [Required]
