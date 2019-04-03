@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GYM_Management_System.Models;
+using Rotativa;
 
 namespace GYM_Management_System.Controllers
 {
@@ -36,26 +37,103 @@ namespace GYM_Management_System.Controllers
             {
                 return HttpNotFound();
             }
-           // ViewBag.ClientId = new SelectList(db.ClientBills, "ClientId", "ClietName");
+            // ViewBag.ClientId = new SelectList(db.ClientBills, "ClientId", "ClietName");
+            ViewBag.payment = 00;
             return View(clientbill);
         }
 
         [HttpPost]
-        public ActionResult BillPament([Bind(Include = "ClientBillId,ClientId,BillMonth,BillAmount,BillStatus, DueStatus")] ClientBill clientBill)
+        public ActionResult BillPament([Bind(Include = "ClientBillId,ClientId,BillMonth,BillAmount,BillStatus, DueStatus")] ClientBill clientBill, int? payment)
         {
+           
             int bill = Convert.ToInt32(clientBill.BillAmount);
             int due = Convert.ToInt32(clientBill.DueStatus);
-            int presentstatus = bill - due;
-            clientBill.DueStatus = presentstatus;
+            int paymentBill = Convert.ToInt32(payment);
+            int er = 0;
+            if (paymentBill == 0)
+            {
+                er++;
+                ViewBag.paymentmessage = "Insert Payment Amount";
+            }
+            if (er > 0)
+            {
+                return View(clientBill);
+            }
+                // int presentstatus = bill - paymentBill;
+                // clientBill.DueStatus = presentstatus;
+            int id = Convert.ToInt32(clientBill.ClientBillId);
+            int i;
+            var status = db.ClientBills.Where(y=>y.ClientBillId==id).FirstOrDefault();
+            if (status.BillStatus == false)
+            {
+
+                if (due == 0)
+                {
+                    if (bill >= paymentBill)
+                    {
+                         i = bill - paymentBill;
+                        if (i == 0)
+                        {
+                            due = 0;
+                            clientBill.DueStatus = due;
+                            clientBill.BillStatus = true;
+                        }
+                        else
+                        {
+                            due = i;
+                            clientBill.DueStatus = due;
+                            clientBill.BillStatus = false;
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.error1 = "Payment bill must less than Current bill";
+                        return View(clientBill);
+                    }
+                }
+                else
+                {
+                    if (due >= paymentBill)
+                    {
+                         i  = due - paymentBill;
+                        if (i  == 0)
+                        {
+                            due = 0;
+                            clientBill.DueStatus = due;
+                            clientBill.BillStatus = true;
+                        }
+                        else
+                        {
+                            due = i;
+                            clientBill.DueStatus = due;
+                            clientBill.BillStatus = false;
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.error2 = "Payment bill must less than Due Status bill";
+                        return View(clientBill);
+                    }
+                }
+            }
+            else
+            {
+                ViewBag.Message = "This bill is already payment";
+                return View(clientBill);
+            }
 
             ClientBillTransection transection = new ClientBillTransection();
             transection.ClientBillId = clientBill.ClientBillId;
             transection.TransectionDate = DateTime.Now;
             transection.BillMonth = clientBill.BillMonth;
-            transection.Amount = due;
-            
-            var id = db.ClientBillTransections.Where(x=>x.ClientBillId==clientBill.ClientBillId && x.BillMonth==clientBill.BillMonth && x.BillStatus==false);
-            if (id == null)
+            transection.Amount = paymentBill;
+            transection.BillStatus = clientBill.BillStatus;
+            var a= Convert.ToInt32( db.ClientBillTransections.ToList().Max(e => Convert.ToInt64(e.InvoiceNumber)));
+            int h = a+1;
+            transection.InvoiceNumber = Convert.ToString(h);
+
+            var id2 = db.ClientBillTransections.Where(x => x.ClientBillId == clientBill.ClientBillId && x.BillMonth == clientBill.BillMonth && x.BillStatus == false);
+            if (id2 == null) 
             {
 
                 ViewBag.Message = "This bill is already payment";
@@ -63,12 +141,13 @@ namespace GYM_Management_System.Controllers
             }
             else
             {
-                
+
                 db.ClientBillTransections.Add(transection);
+                db.Entry(status).State = EntityState.Detached;
                 db.Entry(clientBill).State = EntityState.Modified;
                 db.SaveChanges();
 
-                //ViewBag.transectionid = transection.TransectionId;
+                ViewBag.transectionid = transection.TransectionId;
                 return RedirectToAction(actionName: "PrintTransectionInfo", routeValues: new { id = transection.TransectionId });
 
             }
@@ -183,5 +262,10 @@ namespace GYM_Management_System.Controllers
             return View(db.ClientBillTransections.ToList());
         }
 
+        public ActionResult Print()
+        {
+            var q = new ActionAsPdf("ClientBill");
+            return q;
+        }
     }
 }

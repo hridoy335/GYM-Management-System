@@ -13,6 +13,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.ClientBill.Client.ClietName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.TransectionDate)
         </th>
         <th>
@@ -22,13 +25,20 @@
             @Html.DisplayNameFor(model => model.Amount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ClientBill.ClientBillId)
+            @Html.DisplayNameFor(model => model.BillStatus)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceNumber)
+        </th>
+
+        @*<th></th>*@
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClientBill.Client.ClietName)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.TransectionDate)
         </td>
@@ -38,14 +48,27 @@
         <td>
             @Html.DisplayFor(modelItem => item.Amount)
         </td>
+        @if (item.BillStatus == true)
+        {
+            <td>
+                @Html.DisplayName("Bill Paid")
+            </td>
+        }
+        else
+        {
+            <td>
+                @Html.DisplayName("Bill not Paid")
+            </td>
+        }
+
         <td>
-            @Html.DisplayFor(modelItem => item.ClientBill.ClientBillId)
+            @Html.DisplayFor(modelItem => item.InvoiceNumber)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TransectionId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TransectionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TransectionId })
-        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.TransectionId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.TransectionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.TransectionId })
+        </td>*@
     </tr>
 }
 

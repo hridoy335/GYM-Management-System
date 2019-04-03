@@ -82,3 +82,4 @@ G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM
 G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\EntityFramework.xml
 G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\EntityFramework.SqlServer.xml
 G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\obj\Debug\GYM Management System.csprojAssemblyReference.cache
+G:\Education\All semester\Intern\GYM_Management_System\GYM Management System\GYM Management System\bin\Rotativa.dll
