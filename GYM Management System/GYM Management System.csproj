@@ -52,6 +52,7 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
     </Reference>
@@ -253,6 +254,35 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DataTables-1.10.18\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables-1.10.18\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\DataTables-1.10.18\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\DataTables-1.10.18\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\DataTables-1.10.18\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables-1.10.18\css\dataTables.foundation.min.css" />
+    <Content Include="Content\DataTables-1.10.18\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables-1.10.18\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\DataTables-1.10.18\css\dataTables.semanticui.css" />
+    <Content Include="Content\DataTables-1.10.18\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\DataTables-1.10.18\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables-1.10.18\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables-1.10.18\images\sort_asc.png" />
+    <Content Include="Content\DataTables-1.10.18\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables-1.10.18\images\sort_both.png" />
+    <Content Include="Content\DataTables-1.10.18\images\sort_desc.png" />
+    <Content Include="Content\DataTables-1.10.18\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables-1.10.18\js\dataTables.bootstrap.js" />
+    <Content Include="Content\DataTables-1.10.18\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\DataTables-1.10.18\js\dataTables.bootstrap4.js" />
+    <Content Include="Content\DataTables-1.10.18\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\DataTables-1.10.18\js\dataTables.foundation.js" />
+    <Content Include="Content\DataTables-1.10.18\js\dataTables.foundation.min.js" />
+    <Content Include="Content\DataTables-1.10.18\js\dataTables.jqueryui.js" />
+    <Content Include="Content\DataTables-1.10.18\js\dataTables.jqueryui.min.js" />
+    <Content Include="Content\DataTables-1.10.18\js\dataTables.semanticui.js" />
+    <Content Include="Content\DataTables-1.10.18\js\dataTables.semanticui.min.js" />
+    <Content Include="Content\DataTables-1.10.18\js\jquery.dataTables.js" />
+    <Content Include="Content\DataTables-1.10.18\js\jquery.dataTables.min.js" />
     <Content Include="Content\dist\css\site.min.css" />
     <Content Include="Content\dist\fonts\angularicons.svg" />
     <Content Include="Content\dist\fonts\fontawesome-webfont.svg" />
@@ -487,9 +517,11 @@
     <Content Include="Views\Account\BillPament.cshtml" />
     <Content Include="Views\Account\BillTransection.cshtml" />
     <Content Include="Views\Account\PrintTransectionInfo.cshtml" />
+    <Content Include="Views\Client\ClientRegistrationprint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

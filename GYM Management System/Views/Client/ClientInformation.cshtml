@@ -5,17 +5,30 @@
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
 
-<h6>ClientInformation</h6>
+<h6>Client Information</h6>
 <!--
 <ul>
     <li class="list-group-item col-lg-6"><input type="text" class="form-control search-query" placeholder="Search Something"></li>
 
 </ul>
     -->
-<h2  class="alert-success">@ViewBag.Message</> </h2>
-<input style="width:40%" type="text" class="form-control search-query " placeholder="Search Client">
+@*<h2 class="alert-success">@ViewBag.Message</> </h2>
+    @if (TempData["Success"] != null)
+    {
+        <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+    }*@
+
+@*<input style="width:40%" type="text" class="form-control search-query " placeholder="Search Client">*@
+
 <h5>  </h5>
 <h5> Client Information table </h5>
+
+@using (Html.BeginForm("ClientInformation", "Client", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="submit" />
+
+}
 <table class="table">
     <tr>
         <th>

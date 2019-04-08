@@ -28,15 +28,52 @@ namespace GYM_Management_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult ScheduleRegistration(Schedule schedule)
+        public ActionResult ScheduleRegistration(Schedule schedule, int? ScheduleTimeid,int? ClientId, int? EmployeeId)
         {
+            int er = 0;
+            if (ScheduleTimeid==null)
+            {
+                er++;
+            }
+            if (ClientId == null)
+            {
+                er++;
+            }
+            if (EmployeeId == null)
+            {
+                er++;
+            }
+            if (er > 0)
+            {
+                ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+                ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClietName");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                return View();
+            }
+
             if (ModelState.IsValid)
             {
-                db.Schedules.Add(schedule);
-                db.SaveChanges();
-                return RedirectToAction("SchedulInformation");
+                int clientid = schedule.ClientId;
+                var id = db.Schedules.Where(x=>schedule.ClientId==clientid).FirstOrDefault();
+                if (id == null)
+                {
+                    db.Schedules.Add(schedule);
+                    db.SaveChanges();
+                    return RedirectToAction("SchedulInformation");
+                }
+                else
+                {
+                    ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+                    ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClietName");
+                    ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                    ViewBag.error = "Already have a schedule";
+                    return View(schedule);
+                }
+
+               
             }
             return View("ScheduleRegistration");
+
         }
 
         public ActionResult SchedulInformation()

@@ -9,9 +9,12 @@
 
 <p>
     @Html.ActionLink("Create Bill", "CreateBill")|
-    @Html.ActionLink("Print", "Print")
+    @*@Html.ActionLink("PDF", "Report", "Account", new { ReportType = "PDF" })|
+        @Html.ActionLink("Excel", "Report", "Account", new { ReportType = "Excel" })*@
+    @*@Html.ActionLink("Print", "Print")*@
 </p>
-<table class="table">
+
+<table class="table" id="datatable"> 
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Client.ClietName)
@@ -61,3 +64,27 @@
     }
 
 </table>
+@*<link href="~/Content/DataTables-1.10.18/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+section Scripts {
+<script src="~/Content/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>*@
+        @*Scripts.Render("~/bundles/jqueryval")*@
+@*<script>
+    $(document).ready(function () {
+
+        $("#datatable").DataTable({
+            "ajax": {
+                "url": "/Account/ClientBill/",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "ClietName" },
+                { "data": "BillMonth" },
+                { "data": "BillAmount" },
+                { "data": "BillStatus" },
+                { "data": "DueStatus" },
+            ]
+        });
+    });
+</script>*@

@@ -1,0 +1,102 @@
+﻿@model GYM_Management_System.Models.Client
+
+@{
+    ViewBag.Title = "ClientRegistrationprint";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+
+@if (TempData["Success"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+}
+<h2>ClientRegistrationprint</h2>
+
+<h3>Are you sure you want to Print this?</h3>
+<div>
+  
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClietName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClietName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientIdNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientIdNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientContact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientGymStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientGymStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientAdmitionfee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientAdmitionfee)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Print" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Client Registration", "ClientRegistration")
+        </div>
+    }
+</div>

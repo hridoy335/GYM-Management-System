@@ -26,24 +26,36 @@ namespace GYM_Management_System.Controllers
             //List<Servicess> serviceList = db.Servicesses.ToList();
             //serviceList.Add(new Servicess() { ServiceId = 0, ServiceName = "Select One" });
             ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
+            ViewBag.ScheduleTimeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
             return View();
             
 
         }
 
         [HttpPost]
-        public ActionResult ClientRegistration(Client client, int? ServiceId, int? ClientIdNumber,string ClientPassword)
+        public ActionResult ClientRegistration(Client client, int? ServiceId, int? ClientIdNumber,string ClientPassword, int? EmployeeId, int? ScheduleTimeId)
         {
             int er = 0;
             if (ServiceId==null)
             {
-                ViewBag.ename = "Select One Item";
+                ViewBag.ename = "Select Service Name";
                 er++;
             }
             if (ClientPassword == "")
             {
                 er++;
                 ViewBag.password = "Password Required";
+            }
+            if (EmployeeId == null)
+            {
+                er++;
+                ViewBag.Employee = "Select Employee Name ";
+            }
+            if (ScheduleTimeId == null)
+            {
+                er++;
+                ViewBag.ScheduleTime = "Select Schedule Name ";
             }
             bool isThisIdExist = db.Clients.ToList().Exists(a=>a.ClientIdNumber==client.ClientIdNumber);
             //int a = Convert.ToInt32(ClientIdNumber);
@@ -64,12 +76,16 @@ namespace GYM_Management_System.Controllers
             {
                 //idnumber = 0;
                 ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
+                ViewBag.ScheduleTimeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
                 return View();
             }
             else
             {
                 if (ModelState.IsValid)
                 {
+                    var id = db.Clients.Max(p=>p.ClientIdNumber);
+                    client.ClientIdNumber = id + 1;
                     db.Clients.Add(client);
 
                     ClientServiceList list = new ClientServiceList();
@@ -86,10 +102,18 @@ namespace GYM_Management_System.Controllers
                     bill.BillAmount = Convert.ToInt16(serviceprice);
                     bill.DueStatus = 0;
                     db.ClientBills.Add(bill);
-                    db.SaveChanges();
-                    ViewBag.Message = "Registration Sucessful";
 
-                    return RedirectToAction("ClientInformation");
+                    Schedule schedule = new Schedule();
+                    schedule.EmployeeId = Convert.ToInt32(EmployeeId);
+                    schedule.ScheduleTimeId = Convert.ToInt32(ScheduleTimeId);
+                    schedule.ClientId = client.ClientId;
+                    db.Schedules.Add(schedule);
+                    db.SaveChanges();
+                    //ViewBag.Message = "Registration Sucessful";
+                    TempData["Success"] = "Registration Successfully!";
+                   // ViewBag.clientid = client.ClientId;
+                    return RedirectToAction(actionName: "ClientRegistrationprint", routeValues: new { id = client.ClientId });
+                  //  return RedirectToAction("ClientInformation");
                     
 
                 }
@@ -100,11 +124,44 @@ namespace GYM_Management_System.Controllers
 
         // Client Registration End .....
 
+        public ActionResult ClientRegistrationprint(int?id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //Servicess ServiceUpdate = db.Servicesses.Find(id);
+            Client client = db.Clients.Find(id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            return View(client);
+        }
 
         // Client Information Start ....
-        public ActionResult ClientInformation()
+        public ActionResult ClientInformation(string search)
         {
-            return View(db.Clients.ToList());
+            int i = 0;
+            var client = from c in db.Clients select c;
+            if (!String.IsNullOrEmpty(search))
+            {
+                if (int.TryParse(search, out i))
+                {
+                  
+                   // int a = Convert.ToInt32(search);
+                    client = db.Clients.Where(x =>x.ClientIdNumber == i);
+                }
+                else
+                {
+                    client = db.Clients.Where(x => x.ClietName == search);
+                }
+            }
+           
+
+
+
+            return View(client.ToList());
         }
 
         // Client Information End ......
@@ -151,10 +208,35 @@ namespace GYM_Management_System.Controllers
         // Client Service Add End .....
 
         //Client Service List Start 
-        public ActionResult ClientServiceList()
+        public ActionResult ClientServiceList(String search)
         {
 
-            return View(db.ClientServiceLists.ToList());
+            // return View(db.ClientServiceLists.ToList());
+
+            int i = 0;
+            var client = from c in db.ClientServiceLists select c;
+            if (!String.IsNullOrEmpty(search))
+            {
+               
+                if (int.TryParse(search, out i))
+                {
+                    var id  = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
+                    // int a = Convert.ToInt32(search);
+                    // var  a = db.Clients.Find(i).ClientId;
+                    //if (id.ClientIdNumber != 0)
+                    //{
+                    //    int ab =Convert.ToInt32( id.ClientIdNumber);
+                        client  = db.ClientServiceLists.Where(a =>a.ClientId==id.ClientId);
+                        //client = client1;
+                    //}
+                 
+                }
+                else
+                {
+                 //   client = db.Clients.Where(x => x.ClietName == search);
+                }
+            }
+            return View(client.ToList());
         }
 
         // Client Service List End .....

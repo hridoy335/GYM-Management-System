@@ -21,7 +21,9 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ClientBill()
         {
-            return View(db.ClientBills.ToList());
+             return View(db.ClientBills.ToList());
+            //var i = db.ClientBills.ToList();
+            //return Json(new { data=i},JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -267,5 +269,12 @@ namespace GYM_Management_System.Controllers
             var q = new ActionAsPdf("ClientBill");
             return q;
         }
+
+       public ActionResult Report(String ReportType)
+        {
+            return View();
+        }
+
+
     }
 }

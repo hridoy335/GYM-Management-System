@@ -72,9 +72,27 @@ namespace GYM_Management_System.Controllers
             return View();
         }
 
-        public ActionResult EmployeeInformation()
+        public ActionResult EmployeeInformation(String search)
         {
-            return View(db.Employees.ToList());
+            // return View(db.Employees.ToList());
+
+
+            int i = 0;
+            var client = from c in db.Employees select c;
+            if (!String.IsNullOrEmpty(search))
+            {
+                if (int.TryParse(search, out i))
+                {
+
+                    // int a = Convert.ToInt32(search);
+                    client = db.Employees.Where(x => x.Employee_ID == i);
+                }
+                else
+                {
+                    client = db.Employees.Where(x => x.EmployeeName == search);
+                }
+            }
+            return View(client.ToList());
         }
 
         public ActionResult EmployeeUpdate(int?id)

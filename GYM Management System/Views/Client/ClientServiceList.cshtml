@@ -5,11 +5,18 @@
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
 
-<h2>ClientServiceList</h2>
+<h2>Client Service List</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("ClientServiceList", "Client", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="submit" />
+
+}
+
 <table class="table">
     <tr>
         <th>
@@ -24,22 +31,23 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Client.ClietName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Servicess.ServiceName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Service_Status)
-        </td>
-        <td>
-            @Html.ActionLink("Service Update", "ClientServiceListUpdate", new { id = item.ClientServiceListId }) |
-            @Html.ActionLink("Service Status Update", "ServiceStatusUpdate", new { id = item.ClientServiceListId }) 
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.ClietName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Servicess.ServiceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service_Status)
+            </td>
+            <td>
+                @Html.ActionLink("Service Update", "ClientServiceListUpdate", new { id = item.ClientServiceListId }) |
+                @Html.ActionLink("Service Status Update", "ServiceStatusUpdate", new { id = item.ClientServiceListId })
+            </td>
+        </tr>
+    }
 
 </table>
