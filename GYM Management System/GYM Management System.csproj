@@ -218,9 +218,6 @@
     <Compile Include="Models\Storage.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Validation\Attendence.cs" />
     <Compile Include="Models\Validation\Client.cs" />
     <Compile Include="Models\Validation\ClientBill.cs" />

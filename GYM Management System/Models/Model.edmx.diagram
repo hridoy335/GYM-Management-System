@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="29134d12de1748debce23c1330dd026d" Name="Diagram1" ZoomLevel="83">
+      <Diagram DiagramId="29134d12de1748debce23c1330dd026d" Name="Diagram1" ZoomLevel="62">
         <EntityTypeShape EntityType="gym_managementModel.Attendence" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="gym_managementModel.Client" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gym_managementModel.Client" Width="1.5" PointX="3.125" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="gym_managementModel.ClientBill" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="gym_managementModel.ClientBillTransection" Width="1.5" PointX="10.5" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="gym_managementModel.ClientServiceList" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gym_managementModel.ClientServiceList" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="gym_managementModel.Designation" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="gym_managementModel.Employee" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="gym_managementModel.Expense" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="gym_managementModel.FoodPlan" Width="1.5" PointX="8.25" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="gym_managementModel.ProductBuying" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="gym_managementModel.ProductPlan" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="gym_managementModel.Schedule" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="gym_managementModel.ScheduleTime" Width="1.5" PointX="6" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gym_managementModel.Schedule" Width="1.5" PointX="9" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="gym_managementModel.ScheduleTime" Width="1.5" PointX="8.75" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="gym_managementModel.Sell" Width="1.5" PointX="8.25" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="gym_managementModel.Servicess" Width="1.5" PointX="6" PointY="22.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="gym_managementModel.Storage" Width="1.5" PointX="5.25" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="gym_managementModel.Servicess" Width="1.5" PointX="0.625" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gym_managementModel.Storage" Width="1.5" PointX="0.5" PointY="8.75" IsExpanded="true" />
         <AssociationConnector Association="gym_managementModel.FK__Attendenc__Clien__29572725" ManuallyRouted="false" />
         <AssociationConnector Association="gym_managementModel.FK__Attendenc__Emplo__2A4B4B5E" ManuallyRouted="false" />
         <AssociationConnector Association="gym_managementModel.FK__ClientBil__Clien__239E4DCF" ManuallyRouted="false" />
@@ -40,7 +40,6 @@
         <AssociationConnector Association="gym_managementModel.FK__Sell__ProductPla__403A8C7D" ManuallyRouted="false" />
         <AssociationConnector Association="gym_managementModel.FK__Storage__Product__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="gym_managementModel.FK__Schedule__Schedu__32E0915F" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="gym_managementModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
