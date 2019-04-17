@@ -36,12 +36,16 @@
     </style>
 </head>
 <body>
+    @if (TempData["Success"] != null)
+    {
+        <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+    }
 
     @*<h2>@ViewBag.a</h2>*@
-    <h3 class="form-signin-heading">Please sign in for your attendance</h3>
+    <h3 class="form-signin-heading container">Please sign in for your attendance</h3>
     @*<h4 class="alert-success">@ViewBag.employeewelcome</h4>
-    <h4 class="alert-success">@ViewBag.clientwelcome</h4>*@
-    
+        <h4 class="alert-success">@ViewBag.clientwelcome</h4>*@
+
 
     <div class="container">
 
@@ -137,7 +141,7 @@
 
             </div>
             @*<h2>@ViewBag.date</h2>
-        <h2>@ViewBag.time</h2>*@
+                <h2>@ViewBag.time</h2>*@
 
             <div class="form-group">
                 <div class="input-group">

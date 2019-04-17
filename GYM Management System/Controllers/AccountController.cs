@@ -19,12 +19,40 @@ namespace GYM_Management_System.Controllers
             return View();
         }
 
-        public ActionResult ClientBill()
+        public ActionResult ClientBill(string search)
         {
-             return View(db.ClientBills.ToList());
-            //var i = db.ClientBills.ToList();
-            //return Json(new { data=i},JsonRequestBehavior.AllowGet);
-        }
+            int i = 0;
+            var client = from c in db.ClientBills select c;
+            if (!String.IsNullOrEmpty(search))
+            {
+                if (int.TryParse(search, out i))
+                {
+
+                    // int a = Convert.ToInt32(search);
+                   var a= db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
+                    if (a == null)
+                    {
+                        ViewBag.message = "Please Insert Valid Client ID Number ...";
+                    }
+                    else
+                    {
+                        int id = Convert.ToInt32(a.ClientId);
+                        client = db.ClientBills.Where(h => h.ClientId == a.ClientId);
+                    }
+              
+                        
+                }
+                else
+                {
+                    // client = db.Clients.Where(x => x.ClietName == search);
+                    ViewBag.message = "Please Insert Valid Client ID Number ...";
+                }
+            }
+
+             return View(client.ToList());
+                //var i = db.ClientBills.ToList();
+                //return Json(new { data=i},JsonRequestBehavior.AllowGet);
+            }
 
         [HttpGet]
         public ActionResult BillPament(int?id)
@@ -259,9 +287,51 @@ namespace GYM_Management_System.Controllers
             return View();
         }
 
-        public ActionResult BillTransection() 
+        public ActionResult BillTransection(String search) 
         {
-            return View(db.ClientBillTransections.ToList());
+            int i = 0;
+            var client = from c in db.ClientBillTransections select c;
+            if (!String.IsNullOrEmpty(search))
+            {
+                if (int.TryParse(search, out i))
+                {
+
+                    // int a = Convert.ToInt32(search);
+                    var a = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
+                   // int id = Convert.ToInt32(a.ClientId);
+                   // var billid = db.ClientBills.Where(h => h.ClientId == a.ClientId);
+                    if (a == null)
+                    {
+                        ViewBag.message = "Please Insert Valid Client ID Number ...";
+                    }
+                    else
+                    {
+                        var billid = db.ClientBills.Where(k => k.ClientId == a.ClientId).FirstOrDefault();
+
+                        if (billid==null)
+                        {
+                            ViewBag.message2 = "There is no transection ...";
+                        }
+                        else
+                        {
+                            int id2 = Convert.ToInt32(billid.ClientBillId);
+                            client = db.ClientBillTransections.Where(h => h.ClientBillId == id2);
+                        }
+                        
+                        
+                    }
+
+
+                }
+                else
+                {
+                    // client = db.Clients.Where(x => x.ClietName == search);
+                    ViewBag.message = "Please Insert Valid Client ID Number ...";
+                }
+            }
+
+            return View(client.ToList());
+            //return View(db.ClientBillTransections.ToList());
         }
 
         public ActionResult Print()

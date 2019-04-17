@@ -226,7 +226,16 @@ namespace GYM_Management_System.Controllers
                     //if (id.ClientIdNumber != 0)
                     //{
                     //    int ab =Convert.ToInt32( id.ClientIdNumber);
-                        client  = db.ClientServiceLists.Where(a =>a.ClientId==id.ClientId);
+                    if (id == null)
+                    {
+                        ViewBag.message = "Please insert valid client id number ..";
+                    }
+                    else
+                    {
+                      int  b = Convert.ToInt32(id.ClientId);
+                        client = db.ClientServiceLists.Where(a => a.ClientId == b);
+                    }
+                       
                         //client = client1;
                     //}
                  
@@ -255,7 +264,7 @@ namespace GYM_Management_System.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
+            ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName", ServiceUpdate.ServiceId);
             return View(ServiceUpdate);
         }
 

@@ -108,7 +108,7 @@ namespace GYM_Management_System.Controllers
 
                 return HttpNotFound();
             }
-            ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName");
+            ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName", EmployeeUpdate.DesignationId);
             return View(EmployeeUpdate); 
         }
 

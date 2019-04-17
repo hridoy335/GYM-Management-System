@@ -5,11 +5,12 @@
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
 
-<h2>Print Transection Information</h2>
+@*<h2>Print Transection Information</h2>*@
 
-<h3>Are you sure you want to Print this?</h3>
+@*<h3>Are you sure you want to Print this?</h3>*@
 <div>
-    <h4>ClientBillTransection</h4>
+    <h4>Client Bill Transection</h4>
+   
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -49,9 +50,23 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Print" class="btn btn-default" /> |
-            @Html.ActionLink("Back to Client Bill", "ClientBill")
-        </div>
+    <div class="form-actions no-color">
+        @*<input type="submit" value="Print" class="btn btn-default" /> |*@
+        @*<button onclick="myfunction()">Print</button>*@
+        <input type='button' id='btn' value='Print' onclick='printDiv();'>
+
+        <script>
+            function printDiv() {
+                //    window.print();
+                //}
+                $("#btn").click(function () {
+                    //Hide all other elements other than printarea.
+                    $("#printarea").show();
+                    window.print();
+                });
+            }
+        </script>
+        @Html.ActionLink("Back to Client Bill", "ClientBill")
+    </div>
     }
 </div>

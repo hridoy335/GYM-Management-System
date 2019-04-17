@@ -116,18 +116,23 @@ namespace GYM_Management_System.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+            ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName", schedule1.ScheduleTimeId);
             //ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClientId");
-            //ViewBag.EmployeeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName", schedule1.EmployeeId);
 
             return View(schedule1);
         }
 
         [HttpPost]
-        public ActionResult UpdateSchedule([Bind(Include = "ScheduleId,ScheduleTimeId,ClientId,EmployeeId")] Schedule schedule, int? ScheduleTimeid)
+        public ActionResult UpdateSchedule([Bind(Include = "ScheduleId,ScheduleTimeId,ClientId,EmployeeId")] Schedule schedule, int? ScheduleTimeid,int? EmployeeId)
         {
             int er = 0;
-            if(ScheduleTimeid==null) 
+            if (ScheduleTimeid == null)
+            {
+                er++;
+                ViewBag.ScheduleTime = "Select One Item";
+            }
+            if (EmployeeId == null)
             {
                 er++;
                 ViewBag.ScheduleTime = "Select One Item";
@@ -137,6 +142,7 @@ namespace GYM_Management_System.Controllers
                 //ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClientId");
                 //ViewBag.EmployeeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
                 ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeid", "ScheduleName");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
                 return View(schedule); 
             }
             else

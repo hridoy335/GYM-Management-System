@@ -70,7 +70,7 @@ namespace GYM_Management_System.Controllers
                 //ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
                 return HttpNotFound();
             }
-            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName",expense.EmployeeId);
             return View(expense);
         }
 

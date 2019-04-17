@@ -80,12 +80,14 @@ namespace GYM_Management_System.Controllers
                     ViewBag.employeemessage = "Attendance Successfull";
                     string a = employee.EmployeeName.ToString();
                     ViewBag.employeewelcome = "Welcome " + a;
-                    return RedirectToAction("Attendance", "Attendance");
+                        TempData["Success"] = "Attendance Successfully!";
+                        return RedirectToAction("Attendance", "Attendance");
 
                     }
 
                     else
                     {
+                        TempData["Success"] = "Attendance already Successfully!";
                         ViewBag.emessage = "Attendance already done";
                         return View();
                     }

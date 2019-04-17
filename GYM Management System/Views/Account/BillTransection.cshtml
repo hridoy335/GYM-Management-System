@@ -6,10 +6,17 @@
 }
 
 <h2>BillTransection</h2>
+@using (Html.BeginForm("BillTransection", "Account", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="submit" />
 
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<h4 class="alert-danger glyphicon-text-color">@ViewBag.message</h4>
+<h4 class="alert-danger glyphicon-text-color">@ViewBag.message2</h4>
 <table class="table">
     <tr>
         <th>
@@ -34,42 +41,43 @@
         @*<th></th>*@
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ClientBill.Client.ClietName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TransectionDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BillMonth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        @if (item.BillStatus == true)
-        {
+    @foreach (var item in Model)
+    {
+        <tr>
             <td>
-                @Html.DisplayName("Bill Paid")
+                @Html.DisplayFor(modelItem => item.ClientBill.Client.ClietName)
             </td>
-        }
-        else
-        {
             <td>
-                @Html.DisplayName("Bill not Paid")
+                @Html.DisplayFor(modelItem => item.TransectionDate)
             </td>
-        }
+            <td>
+                @Html.DisplayFor(modelItem => item.BillMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            @if (item.BillStatus == true)
+            {
+                <td>
+                    @Html.DisplayName("Bill Paid")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayName("Bill not Paid")
+                </td>
+            }
 
-        <td>
-            @Html.DisplayFor(modelItem => item.InvoiceNumber)
-        </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.TransectionId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.TransectionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.TransectionId })
-        </td>*@
-    </tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceNumber)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TransectionId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.TransectionId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TransectionId })
+                </td>*@
+        </tr>
+    }
 
 </table>
