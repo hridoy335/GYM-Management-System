@@ -1,0 +1,81 @@
+﻿@model IEnumerable<GYM_Management_System.Models.ProductBuying>
+
+@{
+    ViewBag.Title = "ProductAddInfo";
+    Layout = "~/Views/Shared/_Manager_Layout.cshtml";
+}
+
+<h4>Product Buying Information</h4>
+
+<p>
+    @Html.ActionLink("Create New", "ProductAdd")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductPlan.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdyctBuyingDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductExpireDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductBuyParPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productSellParPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPlan.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdyctBuyingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductExpireDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductBuyParPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productSellParPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Update", "ProductAddUpdate", new { id = item.ProductButingId }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.ProductButingId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductButingId })*@
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,72 @@
+﻿@model GYM_Management_System.Models.ClientBillTransection
+
+@{
+    ViewBag.Title = "PrintTransectionInfo";
+    Layout = "~/Views/Shared/_Manager_Layout.cshtml";
+}
+
+<h2>PrintTransectionInfo</h2>
+
+<div>
+    <h4>Client Bill Transection</h4>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TransectionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransectionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BillMonth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillMonth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientBill.ClientBillId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientBill.ClientBillId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @*<input type="submit" value="Print" class="btn btn-default" /> |*@
+            @*<button onclick="myfunction()">Print</button>*@
+            <input type='button' id='btn' value='Print' onclick='printDiv();'>
+
+            <script>
+            function printDiv() {
+                //    window.print();
+                //}
+                $("#btn").click(function () {
+                    //Hide all other elements other than printarea.
+                    $("#printarea").show();
+                    window.print();
+                });
+            }
+            </script>
+            @Html.ActionLink("Back to Client Bill", "ClientBill")
+        </div>
+    }
+</div>

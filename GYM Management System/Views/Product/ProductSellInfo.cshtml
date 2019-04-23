@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
 
-<h2>ProductSellInfo</h2>
+<h2>Product Sell Information</h2>
 
 <p>
     @Html.ActionLink("Product Sell", "ProductSell")
@@ -28,7 +28,7 @@
             @Html.DisplayNameFor(model => model.Employee.EmployeeName)
         </th>
 
-        <th></th>
+        @*<th></th>*@
     </tr>
 
 @foreach (var item in Model) {
@@ -49,11 +49,11 @@
             @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
         </td>
 
-        <td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id = item.SellId }) |
             @Html.ActionLink("Details", "Details", new { id = item.SellId }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.SellId })
-        </td>
+        </td>*@
     </tr>
 }
 

@@ -334,16 +334,16 @@ namespace GYM_Management_System.Controllers
             //return View(db.ClientBillTransections.ToList());
         }
 
-        public ActionResult Print()
-        {
-            var q = new ActionAsPdf("ClientBill");
-            return q;
-        }
+       // public ActionResult Print()
+       // {
+       //     var q = new ActionAsPdf("ClientBill");
+       //     return q;
+       // }
 
-       public ActionResult Report(String ReportType)
-        {
-            return View();
-        }
+       //public ActionResult Report(String ReportType)
+       // {
+       //     return View();
+       // }
 
 
     }

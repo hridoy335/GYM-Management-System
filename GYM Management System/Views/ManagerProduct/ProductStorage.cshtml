@@ -1,0 +1,49 @@
+﻿@model IEnumerable<GYM_Management_System.Models.Storage>
+
+@{
+    ViewBag.Title = "ProductStorage";
+    Layout = "~/Views/Shared/_Manager_Layout.cshtml";
+}
+
+<h2>Product Storage</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductPlan.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductExpireDate)
+        </th>
+
+        @*<th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPlan.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductExpireDate)
+            </td>
+
+            @*<td>
+                    @Html.ActionLink("Update", "Edit", new { id = item.StorageId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.StorageId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.StorageId })
+                </td>*@
+        </tr>
+    }
+
+</table>

@@ -149,12 +149,16 @@
     <Compile Include="Controllers\FoodPlanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ManagerAccountController.cs" />
+    <Compile Include="Controllers\ManagerAttendanceController.cs" />
     <Compile Include="Controllers\ManagerClientController.cs" />
     <Compile Include="Controllers\ManagerEmployeeController.cs" />
     <Compile Include="Controllers\ManagerExpenseController.cs" />
     <Compile Include="Controllers\ManagerFoodPlanController.cs" />
     <Compile Include="Controllers\ManagerHomeController.cs" />
+    <Compile Include="Controllers\ManagerProductController.cs" />
     <Compile Include="Controllers\ManagerScheduleController.cs" />
+    <Compile Include="Controllers\ManagerServiceController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
@@ -544,6 +548,25 @@
     <Content Include="Views\ManagerFoodPlan\FoodPlanAdd.cshtml" />
     <Content Include="Views\ManagerFoodPlan\FoodPlanList.cshtml" />
     <Content Include="Views\ManagerFoodPlan\FoodPlanUpdate.cshtml" />
+    <Content Include="Views\ManagerService\ServiceAdd.cshtml" />
+    <Content Include="Views\ManagerService\ServiceInformation.cshtml" />
+    <Content Include="Views\ManagerService\ServiceUpdate.cshtml" />
+    <Content Include="Views\ManagerAttendance\AttendenceView.cshtml" />
+    <Content Include="Views\ManagerProduct\ProductPlan.cshtml" />
+    <Content Include="Views\ManagerProduct\ProductPlanInfo.cshtml" />
+    <Content Include="Views\ManagerProduct\UpdateProductPlan.cshtml" />
+    <Content Include="Views\ManagerProduct\DeleteProductPlan.cshtml" />
+    <Content Include="Views\ManagerProduct\ProductStorage.cshtml" />
+    <Content Include="Views\ManagerProduct\ProductAdd.cshtml" />
+    <Content Include="Views\ManagerProduct\ProductAddInfo.cshtml" />
+    <Content Include="Views\ManagerProduct\ProductAddUpdate.cshtml" />
+    <Content Include="Views\ManagerProduct\ProductSell.cshtml" />
+    <Content Include="Views\ManagerProduct\ProductSellInfo.cshtml" />
+    <Content Include="Views\ManagerAccount\ClientBill.cshtml" />
+    <Content Include="Views\ManagerAccount\BillPament.cshtml" />
+    <Content Include="Views\ManagerAccount\PrintTransectionInfo.cshtml" />
+    <Content Include="Views\ManagerAccount\CreateBill.cshtml" />
+    <Content Include="Views\ManagerAccount\BillTransection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

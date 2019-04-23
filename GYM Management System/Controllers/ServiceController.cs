@@ -30,7 +30,7 @@ namespace GYM_Management_System.Controllers
             {
                 db.Servicesses.Add(servicess);
                 db.SaveChanges();
-                return RedirectToAction("ServiceAdd");
+                return RedirectToAction("ServiceInformation");
             }
             return View();
         }

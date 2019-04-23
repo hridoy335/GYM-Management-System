@@ -1,0 +1,16 @@
+﻿@model GYM_Management_System.Models.ClientBill
+
+@{
+    ViewBag.Title = "CreateBill";
+    Layout = "~/Views/Shared/_Manager_Layout.cshtml";
+}
+
+<h2>Create Bill</h2>
+
+
+@using (Html.BeginForm("BillCreate", "Account"))
+{
+
+    <input type="submit" value="Create bill" />
+
+}

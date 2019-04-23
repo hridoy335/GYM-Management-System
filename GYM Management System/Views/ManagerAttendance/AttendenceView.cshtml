@@ -1,0 +1,57 @@
+﻿@model IEnumerable<GYM_Management_System.Models.Attendence>
+
+@{
+    ViewBag.Title = "AttendenceView";
+    Layout = "~/Views/Shared/_Manager_Layout.cshtml";
+}
+
+<h2>Attendence View</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.ClietName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendenceStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendenceDate)
+        </th>
+
+        @*<th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.ClietName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttendenceStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttendenceDate)
+            </td>
+
+            @*<td>
+                    @Html.ActionLink("Edit", "AttendenceEdit", new { id = item.AttendenceId }) |
+                </td>*@
+        </tr>
+    }
+
+</table>
