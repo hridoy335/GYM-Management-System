@@ -1,0 +1,59 @@
+﻿@model GYM_Management_System.Models.Schedule
+
+@{
+    ViewBag.Title = "UpdateSchedule";
+    Layout = "~/Views/Shared/_Manager_Layout.cshtml";
+}
+
+<h2>UpdateSchedule</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Schedule</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="hidden" id="ScheduleId" name="ScheduleId" value="@Model.ScheduleId" />
+        <input type="hidden" id="ClientId" name="ClientId" value="@Model.ClientId" />
+        @*<input type="hidden" id="EmployeeId" name="EmployeeId" value="@Model.EmployeeId" />*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ScheduleTimeId, "ScheduleTimeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownList("ScheduleTimeId", null, "Select One Item", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ScheduleTimeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClientId, "ClientId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.Client.ClietName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeeId, "EmployeeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @*@Html.EditorFor(model => model.Employee.EmployeeName, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownList("EmployeeId", null, "Select One Item", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "SchedulInformation")
+</div>
+
+

@@ -30,7 +30,7 @@ namespace GYM_Management_System.Models
 
         [Required]
         [MinLength(6, ErrorMessage = "User Contact can't be less than 6 characters")]
-        [MaxLength(20, ErrorMessage = "User Contact can't be more than 20 characters")]
+        [MaxLength(11, ErrorMessage = "User Contact can't be more than 11 characters")]
         [Display(Name = "Contact")]
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"\d+", ErrorMessage = "Name is not correct format")]

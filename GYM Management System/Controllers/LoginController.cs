@@ -63,8 +63,14 @@ namespace GYM_Management_System.Controllers
                         FormsAuthentication.SetAuthCookie(tea.EmployeeId.ToString(), false);
                         return RedirectToAction("Index", "Home");
                     }
+                    else if(deid==2)
+                    {
+                        FormsAuthentication.SetAuthCookie(tea.EmployeeId.ToString(), false);
+                        return RedirectToAction("Index", "ManagerHome");
+                    }
                     else
                     {
+                        
                         FormsAuthentication.SetAuthCookie(tea.EmployeeId.ToString(), false);
                         return RedirectToAction("Index", "ClientSiteEmployee");
                     }

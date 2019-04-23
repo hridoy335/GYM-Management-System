@@ -1,0 +1,42 @@
+﻿@model IEnumerable<GYM_Management_System.Models.ScheduleTime>
+
+@{
+    ViewBag.Title = "ScheduleTime";
+    Layout = "~/Views/Shared/_Manager_Layout.cshtml";
+}
+
+<h4>Schedule Time</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "UpdateScheduleTime", new { id = item.ScheduleTimeId }) |
+
+            </td>
+        </tr>
+    }
+
+</table>

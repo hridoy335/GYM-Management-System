@@ -29,8 +29,6 @@ namespace GYM_Management_System.Controllers
             ViewBag.ScheduleTimeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
             ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
             return View();
-            
-
         }
 
         [HttpPost]

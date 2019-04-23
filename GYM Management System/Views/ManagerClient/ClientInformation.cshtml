@@ -1,0 +1,88 @@
+﻿@model IEnumerable<GYM_Management_System.Models.Client>
+
+@{
+    ViewBag.Title = "ClientInformation";
+    Layout = "~/Views/Shared/_Manager_Layout.cshtml";
+}
+
+<h2>ClientInformation</h2>
+
+@using (Html.BeginForm("ClientInformation", "ManagerClient", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="submit" />
+}
+<h5> Client Information table </h5>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClietName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientIdNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientContact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientGymStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientUserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientAdmitionfee)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClietName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientIdNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientContact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientMail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientGymStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientAdmitionfee)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "ClientUpdate", new { id = item.ClientId })  |
+                @Html.ActionLink("New Service Add", "NewServiceAdd", new { id = item.ClientId }) |
+            </td>
+        </tr>
+    }
+
+</table>
+

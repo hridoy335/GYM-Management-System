@@ -21,12 +21,12 @@ namespace GYM_Management_System.Models
         public string ScheduleName { get; set; }
         [Required]
         [DataType(DataType.Time)]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         [Display(Name ="Start Time")]
         public System.DateTime StartTime { get; set; }
         [Required]
         [DataType(DataType.Time)]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         [Display(Name ="End Time")]
         public System.DateTime EndTime { get; set; }
     }

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<GYM_Management_System.Models.FoodPlan>
+
+@{
+    ViewBag.Title = "FoodPlanList";
+    Layout = "~/Views/Shared/_Manager_Layout.cshtml";
+}
+
+<h2>Foodplan List</h2>
+<h6> @ViewBag.Message</h6>
+<p>
+    @Html.ActionLink("Create New", "FoodPlanAdd")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodPlan1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.ClietName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodPlan1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.ClietName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "FoodPlanUpdate", new { id = item.FoodId }) |
+                @*@Html.ActionLink("Details", "Details", new { id=item.FoodId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.FoodId })*@
+            </td>
+        </tr>
+    }
+
+</table>

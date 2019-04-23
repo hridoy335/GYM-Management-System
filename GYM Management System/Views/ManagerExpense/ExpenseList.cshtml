@@ -1,0 +1,57 @@
+﻿@model IEnumerable<GYM_Management_System.Models.Expense>
+
+@{
+    ViewBag.Title = "ExpenseList";
+    Layout = "~/Views/Shared/_Manager_Layout.cshtml";
+}
+
+<h2>Expense List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "ExpenseAdd")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpenseProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpenseProductQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpenseProductAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpenseBuyDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseProductQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseProductAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseBuyDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "ExpenseUpdate", new { id = item.ExpenseId }) |
+            </td>
+        </tr>
+    }
+
+</table>

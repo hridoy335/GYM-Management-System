@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Manager_Layout.cshtml";
+}
+
+<h4 class="center-block">Today's Attendance Table </h4>
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Client.ClietName)
+            </th>*@
+        <th>
+            @Html.DisplayName("Name")
+        </th>
+        <th>
+            @Html.DisplayName("FromTime")
+        </th>
+        <th>
+            @Html.DisplayName("AttendenceStatus")
+        </th>
+        <th>
+            @Html.DisplayName("AttendenceDate")
+        </th>
+
+    </tr>
+
+    @foreach (var item in ViewBag.list)
+    {
+        <tr>
+            @*<td>
+                    @item.ClientId
+                </td>*@
+            <td>
+                @if (item.Client == null)
+                {
+                    @item.Employee.EmployeeName
+                }
+                else
+                {
+                    @item.Client.ClietName
+                }
+            </td>
+            <td>
+                @item.FromTime
+            </td>
+            <td>
+                @item.AttendenceStatus
+            </td>
+            <td>
+                @item.AttendenceDate
+            </td>
+
+        </tr>
+    }
+
+</table>
+<meta http-equiv="refresh" content="60" />
+

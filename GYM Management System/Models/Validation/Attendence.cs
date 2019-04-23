@@ -26,7 +26,8 @@ namespace GYM_Management_System.Models
         //[Required]
         //[Display(Name = "From Time")]
         //[DataType(DataType.DateTime)]
-        //public Nullable<System.DateTime> FromTime { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        public Nullable<System.DateTime> FromTime { get; set; }
 
         ////[Required]
         ////[Display(Name = "To Time")]
@@ -38,9 +39,9 @@ namespace GYM_Management_System.Models
         //public Nullable<bool> AttendenceStatus { get; set; }
 
         //[Required]
-        ////[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         //[DataType(DataType.Date)]
-        //[Display(Name ="Attendance Date")]
-        //public Nullable<System.DateTime> AttendenceDate { get; set; }
+        [Display(Name ="Attendance Date")]
+        public Nullable<System.DateTime> AttendenceDate { get; set; }
     }
 }

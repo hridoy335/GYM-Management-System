@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GYM_Management_System.Models.ClientServiceList>
+
+@{
+    ViewBag.Title = "ClientServiceList";
+    Layout = "~/Views/Shared/_Manager_Layout.cshtml";
+}
+
+
+<h2>Client Service List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("ClientServiceList", "ManagerClient", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="submit" />
+
+}
+<h4 class="alert-danger">@ViewBag.message</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Service_Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.ClietName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Servicess.ServiceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service_Status)
+            </td>
+            <td>
+                @Html.ActionLink("Service Update", "ClientServiceListUpdate", new { id = item.ClientServiceListId }) |
+                @Html.ActionLink("Service Status Update", "ServiceStatusUpdate", new { id = item.ClientServiceListId })
+            </td>
+        </tr>
+    }
+
+</table>
+

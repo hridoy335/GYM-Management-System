@@ -88,7 +88,7 @@ namespace GYM_Management_System.Controllers
                     else
                     {
                         TempData["Success"] = "Attendance already Successfully!";
-                        ViewBag.emessage = "Attendance already done";
+                       // ViewBag.emessage = "Attendance already done";
                         return View();
                     }
 

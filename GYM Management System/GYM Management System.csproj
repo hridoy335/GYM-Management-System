@@ -149,6 +149,12 @@
     <Compile Include="Controllers\FoodPlanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ManagerClientController.cs" />
+    <Compile Include="Controllers\ManagerEmployeeController.cs" />
+    <Compile Include="Controllers\ManagerExpenseController.cs" />
+    <Compile Include="Controllers\ManagerFoodPlanController.cs" />
+    <Compile Include="Controllers\ManagerHomeController.cs" />
+    <Compile Include="Controllers\ManagerScheduleController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
@@ -515,6 +521,29 @@
     <Content Include="Views\Account\BillTransection.cshtml" />
     <Content Include="Views\Account\PrintTransectionInfo.cshtml" />
     <Content Include="Views\Client\ClientRegistrationprint.cshtml" />
+    <Content Include="Views\Shared\_Manager_Layout.cshtml" />
+    <Content Include="Views\ManagerHome\Index.cshtml" />
+    <Content Include="Views\ManagerEmployee\DesignationInformation.cshtml" />
+    <Content Include="Views\ManagerEmployee\EmployeeInformation.cshtml" />
+    <Content Include="Views\ManagerClient\ClientRegistration.cshtml" />
+    <Content Include="Views\ManagerClient\ClientRegistrationprint.cshtml" />
+    <Content Include="Views\ManagerClient\ClientInformation.cshtml" />
+    <Content Include="Views\ManagerClient\ClientUpdate.cshtml" />
+    <Content Include="Views\ManagerClient\ClientServiceList.cshtml" />
+    <Content Include="Views\ManagerClient\ClientServiceListUpdate.cshtml" />
+    <Content Include="Views\ManagerClient\ServiceStatusUpdate.cshtml" />
+    <Content Include="Views\ManagerClient\NewServiceAdd.cshtml" />
+    <Content Include="Views\ManagerSchedule\ScheduleRegistration.cshtml" />
+    <Content Include="Views\ManagerSchedule\SchedulInformation.cshtml" />
+    <Content Include="Views\ManagerSchedule\ScheduleTime.cshtml" />
+    <Content Include="Views\ManagerSchedule\UpdateSchedule.cshtml" />
+    <Content Include="Views\ManagerSchedule\UpdateScheduleTime.cshtml" />
+    <Content Include="Views\ManagerExpense\ExpenseAdd.cshtml" />
+    <Content Include="Views\ManagerExpense\ExpenseList.cshtml" />
+    <Content Include="Views\ManagerExpense\ExpenseUpdate.cshtml" />
+    <Content Include="Views\ManagerFoodPlan\FoodPlanAdd.cshtml" />
+    <Content Include="Views\ManagerFoodPlan\FoodPlanList.cshtml" />
+    <Content Include="Views\ManagerFoodPlan\FoodPlanUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
