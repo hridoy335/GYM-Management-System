@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using GYM_Management_System.Models;
 
 namespace GYM_Management_System.Controllers
@@ -20,7 +21,17 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ServiceAdd()
         {
-            return View();
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
+            {
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpPost]
@@ -37,21 +48,41 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ServiceInformation()
         {
-            return View(db.Servicesses.ToList());
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
+            {
+                return View(db.Servicesses.ToList());
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
         [HttpGet]
         public ActionResult ServiceUpdate(int? id)
         {
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Servicess ServiceUpdate = db.Servicesses.Find(id);
+                if (ServiceUpdate == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(ServiceUpdate);
             }
-            Servicess ServiceUpdate = db.Servicesses.Find(id);
-            if (ServiceUpdate == null)
+            else
             {
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            return View(ServiceUpdate);
 
         }
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using GYM_Management_System.Models;
 
 namespace GYM_Management_System.Controllers
@@ -18,7 +19,17 @@ namespace GYM_Management_System.Controllers
         [HttpGet]
         public ActionResult ProductPlan()
         {
-            return View();
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
+            {
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpPost]
@@ -38,23 +49,43 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ProductPlanInfo()
         {
-            return View(db.ProductPlans.ToList());
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
+            {
+                return View(db.ProductPlans.ToList());
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpGet]
         public ActionResult UpdateProductPlan(int? id)
         {
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                //Servicess ServiceUpdate = db.Servicesses.Find(id);
+                ProductPlan productPlan = db.ProductPlans.Find(id);
+                if (productPlan == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(productPlan);
             }
-            //Servicess ServiceUpdate = db.Servicesses.Find(id);
-            ProductPlan productPlan = db.ProductPlans.Find(id);
-            if (productPlan == null)
+            else
             {
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            return View(productPlan); 
         }
 
         [HttpPost]
@@ -72,17 +103,27 @@ namespace GYM_Management_System.Controllers
         [HttpGet]
         public ActionResult DeleteProductPlan(int? id) 
         {
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                //Servicess ServiceUpdate = db.Servicesses.Find(id);
+                ProductPlan productPlan = db.ProductPlans.Find(id);
+                if (productPlan == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(productPlan);
             }
-            //Servicess ServiceUpdate = db.Servicesses.Find(id);
-            ProductPlan productPlan = db.ProductPlans.Find(id);
-            if (productPlan == null)
+            else
             {
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            return View(productPlan);
         }
 
         [HttpPost]
@@ -96,14 +137,34 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ProductStorage()
         {
-            return View(db.Storages.ToList());
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
+            {
+                return View(db.Storages.ToList());
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         public ActionResult ProductAdd()
         {
-            ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
-            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
-            return View(); 
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
+            {
+                ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
          
         [HttpPost]
@@ -170,26 +231,46 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ProductAddInfo()
         {
-            return View(db.ProductBuyings.ToList());
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
+            {
+                return View(db.ProductBuyings.ToList());
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         public ActionResult ProductAddUpdate(int? id)
         {
-            //ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                //Client ServiceAdd = db.Clients.Find(id);
+                ProductBuying productBuying = db.ProductBuyings.Find(id);
+                if (productBuying == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.quantity = productBuying.ProductQuantity;
+                ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                return View(productBuying);
             }
-            //Client ServiceAdd = db.Clients.Find(id);
-            ProductBuying productBuying = db.ProductBuyings.Find(id);
-            if (productBuying == null)
+            else
             {
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            ViewBag.quantity = productBuying.ProductQuantity;
-            ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
-            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
-            return View(productBuying);
         }
 
         [HttpPost]
@@ -240,10 +321,20 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ProductSell()
         {
-            ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
-            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
-            ViewBag.clientid = new SelectList(db.Clients, "clientid", "ClietName");
-            return View();
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
+            {
+                ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                ViewBag.clientid = new SelectList(db.Clients, "clientid", "ClietName");
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
 
@@ -321,7 +412,17 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ProductSellInfo()
         {
-            return View(db.Sells.ToList());
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
+            {
+                return View(db.Sells.ToList());
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
 

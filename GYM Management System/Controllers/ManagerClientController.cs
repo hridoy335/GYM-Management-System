@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using GYM_Management_System.Models;
 
 namespace GYM_Management_System.Controllers
@@ -20,13 +21,22 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ClientRegistration()
         {
-            //List<Servicess> serviceList = db.Servicesses.ToList();
-            //serviceList.Add(new Servicess() { ServiceId = 0, ServiceName = "Select One" });
-            ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
-            ViewBag.ScheduleTimeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
-            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
-            return View();
-
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
+            {
+                //List<Servicess> serviceList = db.Servicesses.ToList();
+                //serviceList.Add(new Servicess() { ServiceId = 0, ServiceName = "Select One" });
+                ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
+                ViewBag.ScheduleTimeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
 
@@ -121,6 +131,7 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ClientRegistrationprint(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -136,37 +147,57 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ClientInformation(string search)
         {
-            int i = 0;
-            var client = from c in db.Clients select c;
-            if (!String.IsNullOrEmpty(search))
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
-                if (int.TryParse(search, out i))
+                int i = 0;
+                var client = from c in db.Clients select c;
+                if (!String.IsNullOrEmpty(search))
                 {
+                    if (int.TryParse(search, out i))
+                    {
 
-                    // int a = Convert.ToInt32(search);
-                    client = db.Clients.Where(x => x.ClientIdNumber == i);
+                        // int a = Convert.ToInt32(search);
+                        client = db.Clients.Where(x => x.ClientIdNumber == i);
+                    }
+                    else
+                    {
+                        client = db.Clients.Where(x => x.ClietName == search);
+                    }
                 }
-                else
-                {
-                    client = db.Clients.Where(x => x.ClietName == search);
-                }
+                return View(client.ToList());
             }
-            return View(client.ToList());
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpGet]
         public ActionResult ClientUpdate(int? id)
         {
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Client ClientUpdate = db.Clients.Find(id);
+                if (ClientUpdate == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(ClientUpdate);
             }
-            Client ClientUpdate = db.Clients.Find(id);
-            if (ClientUpdate == null)
+            else
             {
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            return View(ClientUpdate);
         }
 
         [HttpPost]
@@ -183,58 +214,78 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ClientServiceList(String search)
         {
-
-            // return View(db.ClientServiceLists.ToList());
-
-            int i = 0;
-            var client = from c in db.ClientServiceLists select c;
-            if (!String.IsNullOrEmpty(search))
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
+                // return View(db.ClientServiceLists.ToList());
 
-                if (int.TryParse(search, out i))
+                int i = 0;
+                var client = from c in db.ClientServiceLists select c;
+                if (!String.IsNullOrEmpty(search))
                 {
-                    var id = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
-                    // int a = Convert.ToInt32(search);
-                    // var  a = db.Clients.Find(i).ClientId;
-                    //if (id.ClientIdNumber != 0)
-                    //{
-                    //    int ab =Convert.ToInt32( id.ClientIdNumber);
-                    if (id == null)
+
+                    if (int.TryParse(search, out i))
                     {
-                        ViewBag.message = "Please insert valid client id number ..";
+                        var id = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
+                        // int a = Convert.ToInt32(search);
+                        // var  a = db.Clients.Find(i).ClientId;
+                        //if (id.ClientIdNumber != 0)
+                        //{
+                        //    int ab =Convert.ToInt32( id.ClientIdNumber);
+                        if (id == null)
+                        {
+                            ViewBag.message = "Please insert valid client id number ..";
+                        }
+                        else
+                        {
+                            int b = Convert.ToInt32(id.ClientId);
+                            client = db.ClientServiceLists.Where(a => a.ClientId == b);
+                        }
+
+                        //client = client1;
+                        //}
+
                     }
                     else
                     {
-                        int b = Convert.ToInt32(id.ClientId);
-                        client = db.ClientServiceLists.Where(a => a.ClientId == b);
+                        //   client = db.Clients.Where(x => x.ClietName == search);
                     }
-
-                    //client = client1;
-                    //}
-
                 }
-                else
-                {
-                    //   client = db.Clients.Where(x => x.ClietName == search);
-                }
+                return View(client.ToList());
             }
-            return View(client.ToList());
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         public ActionResult ClientServiceListUpdate(int? id)
         {
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                //Client ClientUpdate = db.Clients.Find(id);
+                ClientServiceList ServiceUpdate = db.ClientServiceLists.Find(id);
+                if (ServiceUpdate == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName", ServiceUpdate.ServiceId);
+                return View(ServiceUpdate);
             }
-            //Client ClientUpdate = db.Clients.Find(id);
-            ClientServiceList ServiceUpdate = db.ClientServiceLists.Find(id);
-            if (ServiceUpdate == null)
+            else
             {
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName", ServiceUpdate.ServiceId);
-            return View(ServiceUpdate);
+
         }
 
         [HttpPost]
@@ -277,17 +328,27 @@ namespace GYM_Management_System.Controllers
         [HttpGet]
         public ActionResult ServiceStatusUpdate(int? id)
         {
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ClientServiceList ServiceStatusUpdate = db.ClientServiceLists.Find(id);
-            if (ServiceStatusUpdate == null)
-            {
-                return HttpNotFound();
-            }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ClientServiceList ServiceStatusUpdate = db.ClientServiceLists.Find(id);
+                if (ServiceStatusUpdate == null)
+                {
+                    return HttpNotFound();
+                }
 
-            return View(ServiceStatusUpdate);
+                return View(ServiceStatusUpdate);
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpPost]
@@ -306,19 +367,29 @@ namespace GYM_Management_System.Controllers
         [HttpGet]
         public ActionResult NewServiceAdd(int? id)
         {
-            ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
-            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
-            ViewBag.ScheduleTimeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ViewBag.ServiceId = new SelectList(db.Servicesses, "ServiceId", "ServiceName");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                ViewBag.ScheduleTimeId = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Client ServiceAdd = db.Clients.Find(id);
+                if (ServiceAdd == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(ServiceAdd);
             }
-            Client ServiceAdd = db.Clients.Find(id);
-            if (ServiceAdd == null)
+            else
             {
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            return View(ServiceAdd);
         }
 
         [HttpPost]

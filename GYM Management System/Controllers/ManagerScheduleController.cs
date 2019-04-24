@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using GYM_Management_System.Models;
 
 namespace GYM_Management_System.Controllers
@@ -20,10 +21,20 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ScheduleRegistration()
         {
-            ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClietName");
-            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
-            return View();
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
+            {
+                ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+                ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClietName");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpPost]
@@ -77,31 +88,61 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult SchedulInformation()
         {
-            return View(db.Schedules.ToList());
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
+            {
+                return View(db.Schedules.ToList());
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         public ActionResult ScheduleTime()
         {
-            return View(db.ScheduleTimes.ToList());
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
+            {
+                return View(db.ScheduleTimes.ToList());
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         public ActionResult UpdateSchedule(int? id)
         {
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
 
-            Schedule schedule1 = db.Schedules.Find(id);
-            if (schedule1 == null)
+                Schedule schedule1 = db.Schedules.Find(id);
+                if (schedule1 == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName", schedule1.ScheduleTimeId);
+                //ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClientId");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName", schedule1.EmployeeId);
+
+                return View(schedule1);
+            }
+            else
             {
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName", schedule1.ScheduleTimeId);
-            //ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClientId");
-            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName", schedule1.EmployeeId);
-
-            return View(schedule1);
         }
 
         [HttpPost]
@@ -141,19 +182,29 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult UpdateScheduleTime(int? id)
         {
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ScheduleTime scheduleTime = db.ScheduleTimes.Find(id);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ScheduleTime scheduleTime = db.ScheduleTimes.Find(id);
 
-            if (scheduleTime == null)
+                if (scheduleTime == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
+
+                return View(scheduleTime);
+            }
+            else
             {
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            ViewBag.ScheduleTimeid = new SelectList(db.ScheduleTimes, "ScheduleTimeId", "ScheduleName");
-
-            return View(scheduleTime);
         }
 
         [HttpPost]

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using GYM_Management_System.Models;
 
 namespace GYM_Management_System.Controllers
@@ -151,7 +152,18 @@ namespace GYM_Management_System.Controllers
 
             //}
             //return View(model);
-            return View(db.Attendences.ToList());
+            int a = Convert.ToInt32(Session["Designation"]);
+            if (a == 1)
+            {
+                return View(db.Attendences.ToList());
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
+              
+
         }
 
         public ActionResult TodayAttendance()

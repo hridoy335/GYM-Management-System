@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using GYM_Management_System.Models;
 
 namespace GYM_Management_System.Controllers
@@ -20,8 +21,19 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ExpenseAdd()
         {
-            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
-            return View();
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
+            {
+
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpPost]
@@ -58,20 +70,30 @@ namespace GYM_Management_System.Controllers
         [HttpGet]
         public ActionResult ExpenseUpdate(int? id)
         {
-            
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
             {
-               
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                if (id == null)
+                {
+
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Expense expense = db.Expenses.Find(id);
+                if (expense == null)
+                {
+                    //ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                    return HttpNotFound();
+                }
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName", expense.EmployeeId);
+                return View(expense);
             }
-            Expense expense = db.Expenses.Find(id);
-            if (expense == null)
+            else
             {
-                //ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName",expense.EmployeeId);
-            return View(expense);
         }
 
         [HttpPost]
@@ -91,7 +113,17 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ExpenseList()
         {
-            return View(db.Expenses.ToList());
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 1)
+            {
+                return View(db.Expenses.ToList());
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using GYM_Management_System.Models;
 
 namespace GYM_Management_System.Controllers
@@ -21,8 +22,19 @@ namespace GYM_Management_System.Controllers
         //Employee Part start...
         public ActionResult EmployeeRegistration()
         {
-            ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName");
-            return View();
+            int a = Convert.ToInt32(Session["id"]);
+            int b = Convert.ToInt32(Session["Designation"]);
+            if(a!=0 && b == 1)
+            {
+                ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName");
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
+         
         }
         [HttpPost]
         public ActionResult EmployeeRegistration(Employee employee,int? DesignationId, string Employee_Password)
@@ -76,29 +88,42 @@ namespace GYM_Management_System.Controllers
         {
             // return View(db.Employees.ToList());
 
-
-            int i = 0;
-            var client = from c in db.Employees select c;
-            if (!String.IsNullOrEmpty(search))
+            int a = Convert.ToInt32(Session["id"]);
+            int b = Convert.ToInt32(Session["Designation"]);
+            if (a != 0 && b == 1)
             {
-                if (int.TryParse(search, out i))
+                int i = 0;
+                var client = from c in db.Employees select c;
+                if (!String.IsNullOrEmpty(search))
                 {
+                    if (int.TryParse(search, out i))
+                    {
 
-                    // int a = Convert.ToInt32(search);
-                    client = db.Employees.Where(x => x.Employee_ID == i);
+                        // int a = Convert.ToInt32(search);
+                        client = db.Employees.Where(x => x.Employee_ID == i);
+                    }
+                    else
+                    {
+                        client = db.Employees.Where(x => x.EmployeeName == search);
+                    }
                 }
-                else
-                {
-                    client = db.Employees.Where(x => x.EmployeeName == search);
-                }
+                return View(client.ToList());
             }
-            return View(client.ToList());
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
-        public ActionResult EmployeeUpdate(int?id)
+        public ActionResult EmployeeUpdate(int? id)
         {
-           
-            if (id==null)
+            int a = Convert.ToInt32(Session["id"]);
+            int b = Convert.ToInt32(Session["Designation"]);
+            if (a != 0 && b == 1)
+            {
+
+                if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -109,7 +134,14 @@ namespace GYM_Management_System.Controllers
                 return HttpNotFound();
             }
             ViewBag.DesignationId = new SelectList(db.Designations, "DesignationId", "DesignationName", EmployeeUpdate.DesignationId);
-            return View(EmployeeUpdate); 
+            return View(EmployeeUpdate);
+        }
+
+             else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpPost]
@@ -153,38 +185,80 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult DesignationAdd() 
         {
-            return View();
+            int a = Convert.ToInt32(Session["id"]);
+            int b = Convert.ToInt32(Session["Designation"]);
+            if (a != 0 && b == 1)
+            {
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
         [HttpPost]
         public ActionResult DesignationAdd(Designation designation)
         {
-            if(ModelState.IsValid)
+            int a = Convert.ToInt32(Session["id"]);
+            int b = Convert.ToInt32(Session["Designation"]);
+            if (a != 0 && b == 1)
             {
-                db.Designations.Add(designation);
-                db.SaveChanges();
-                return RedirectToAction("DesignationAdd");
+                if (ModelState.IsValid)
+                {
+                    db.Designations.Add(designation);
+                    db.SaveChanges();
+                    return RedirectToAction("DesignationAdd");
+                }
+                return View();
             }
-            return View();
+
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
+
         }
 
         public ActionResult DesignationInformation()
         {
-            return View(db.Designations.ToList());
+            int a = Convert.ToInt32(Session["id"]);
+            int b = Convert.ToInt32(Session["Designation"]);
+            if (a != 0 && b == 1)
+            {
+                return View(db.Designations.ToList());
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpGet]
         public ActionResult UpdateDesignation(int? id)
         {
-            if (id == null)
+            int a = Convert.ToInt32(Session["id"]);
+            int b = Convert.ToInt32(Session["Designation"]);
+            if (a != 0 && b == 1)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Designation UpdateDesignation = db.Designations.Find(id);
+                if (UpdateDesignation == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(UpdateDesignation);
             }
-            Designation UpdateDesignation = db.Designations.Find(id);
-            if (UpdateDesignation == null)
+            else
             {
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            return View(UpdateDesignation);
         }
 
         [HttpPost]

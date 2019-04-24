@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using GYM_Management_System.Models;
 
 namespace GYM_Management_System.Controllers
@@ -20,55 +21,76 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult ClientBill(string search)
         {
-            int i = 0;
-            var client = from c in db.ClientBills select c;
-            if (!String.IsNullOrEmpty(search))
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
-                if (int.TryParse(search, out i))
+                int i = 0;
+                var client = from c in db.ClientBills select c;
+                if (!String.IsNullOrEmpty(search))
                 {
-
-                    // int a = Convert.ToInt32(search);
-                    var a = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
-                    if (a == null)
+                    if (int.TryParse(search, out i))
                     {
-                        ViewBag.message = "Please Insert Valid Client ID Number ...";
+
+                        // int a = Convert.ToInt32(search);
+                        var a = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
+                        if (a == null)
+                        {
+                            ViewBag.message = "Please Insert Valid Client ID Number ...";
+                        }
+                        else
+                        {
+                            int id = Convert.ToInt32(a.ClientId);
+                            client = db.ClientBills.Where(h => h.ClientId == a.ClientId);
+                        }
+
+
                     }
                     else
                     {
-                        int id = Convert.ToInt32(a.ClientId);
-                        client = db.ClientBills.Where(h => h.ClientId == a.ClientId);
+                        // client = db.Clients.Where(x => x.ClietName == search);
+                        ViewBag.message = "Please Insert Valid Client ID Number ...";
                     }
 
+                }
 
-                }
-                else
-                {
-                    // client = db.Clients.Where(x => x.ClietName == search);
-                    ViewBag.message = "Please Insert Valid Client ID Number ...";
-                }
+                return View(client.ToList());
+                //var i = db.ClientBills.ToList();
+                //return Json(new { data=i},JsonRequestBehavior.AllowGet);
             }
-
-            return View(client.ToList());
-            //var i = db.ClientBills.ToList();
-            //return Json(new { data=i},JsonRequestBehavior.AllowGet);
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpGet]
         public ActionResult BillPament(int? id)
         {
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
+            {
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ClientBill clientbill = db.ClientBills.Find(id);
+                if (clientbill == null)
+                {
+                    return HttpNotFound();
+                }
+                // ViewBag.ClientId = new SelectList(db.ClientBills, "ClientId", "ClietName");
+                ViewBag.payment = 00;
+                return View(clientbill);
             }
-            ClientBill clientbill = db.ClientBills.Find(id);
-            if (clientbill == null)
+            else
             {
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            // ViewBag.ClientId = new SelectList(db.ClientBills, "ClientId", "ClietName");
-            ViewBag.payment = 00;
-            return View(clientbill);
         }
 
         [HttpPost]
@@ -185,152 +207,192 @@ namespace GYM_Management_System.Controllers
         [HttpGet]
         public ActionResult PrintTransectionInfo(int? id)
         {
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                //Servicess ServiceUpdate = db.Servicesses.Find(id);
+                ClientBillTransection clientBillTransection = db.ClientBillTransections.Find(id);
+                if (clientBillTransection == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(clientBillTransection);
             }
-            //Servicess ServiceUpdate = db.Servicesses.Find(id);
-            ClientBillTransection clientBillTransection = db.ClientBillTransections.Find(id);
-            if (clientBillTransection == null)
+            else
             {
-                return HttpNotFound();
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
             }
-            return View(clientBillTransection);
         }
 
         [HttpGet]
         public ActionResult CreateBill()
         {
-            return View();
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
+            {
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         // [HttpPost]
         public ActionResult BillCreate(string button)
         {
-            System.DateTime todaydate = new System.DateTime(System.DateTime.Today.Ticks);
-            DateTime Current_date = Convert.ToDateTime(todaydate.ToString("dd/MM/yyyy"));
-
-            //var billdate = db.Clients.Where(y => y.ClientGymStart == date).FirstOrDefault();
-            var clientinfo = db.Clients.ToList();
-
-            List<ClientBill> list = new List<ClientBill>();
-            ViewBag.list = list;
-            //client = new Client();
-            // TimeSpan ts = new TimeSpan();
-            foreach (var gymstart in clientinfo)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
-                //DateTime currentdays = 
-                //TimeSpan ts = new TimeSpan();
-                // ts = date.Subtract(client.ClientGymStart);
+                System.DateTime todaydate = new System.DateTime(System.DateTime.Today.Ticks);
+                DateTime Current_date = Convert.ToDateTime(todaydate.ToString("dd/MM/yyyy"));
 
-                var gymstartdat = gymstart.ClientGymStart.ToShortDateString();
-                int clientid = gymstart.ClientId;
-                string clientname = gymstart.ClietName;
-                var search_active_service = db.ClientServiceLists.Where(a => a.ClientId == clientid).FirstOrDefault();
-                if (search_active_service == null)
+                //var billdate = db.Clients.Where(y => y.ClientGymStart == date).FirstOrDefault();
+                var clientinfo = db.Clients.ToList();
+
+                List<ClientBill> list = new List<ClientBill>();
+                ViewBag.list = list;
+                //client = new Client();
+                // TimeSpan ts = new TimeSpan();
+                foreach (var gymstart in clientinfo)
                 {
-                    continue;
-                }
-                else
-                {
-                    DateTime day = Convert.ToDateTime(gymstartdat);
-                    int i = Convert.ToInt32((Current_date - day).TotalDays);
-                    int service_id = search_active_service.ServiceId;
-                    var service = db.Servicesses.Where(b => b.ServiceId == service_id).FirstOrDefault();
-                    int service_price = service.ServieAmount;
-                    int service_day = service.ServiceDay;
-                    var Last_client_bill = db.ClientBills.Where(c => c.ClientId == clientid).OrderByDescending(d => d.BillMonth).FirstOrDefault();
+                    //DateTime currentdays = 
+                    //TimeSpan ts = new TimeSpan();
+                    // ts = date.Subtract(client.ClientGymStart);
 
-
-
-                    ClientBill clientBill = new ClientBill();
-                    if (Last_client_bill == null)
+                    var gymstartdat = gymstart.ClientGymStart.ToShortDateString();
+                    int clientid = gymstart.ClientId;
+                    string clientname = gymstart.ClietName;
+                    var search_active_service = db.ClientServiceLists.Where(a => a.ClientId == clientid).FirstOrDefault();
+                    if (search_active_service == null)
                     {
-                        int totaldays = i / service_day;
-                        if (totaldays == 1)
-                        {
-                            clientBill.ClientId = clientid;
-                            clientBill.BillAmount = service_price;
-                            clientBill.BillStatus = false;
-                            clientBill.DueStatus = 0;
-                            clientBill.BillMonth = Current_date;
-                            db.ClientBills.Add(clientBill);
-                            db.SaveChanges();
-                            list.Add(clientBill);
-                        }
+                        continue;
                     }
                     else
                     {
-                        DateTime last_timeBill_date = Convert.ToDateTime(Last_client_bill.BillMonth);
-                        int totaldays2 = Convert.ToInt32((Current_date - last_timeBill_date).TotalDays);
-                        int j = totaldays2 / service_day;
-                        if (j == 1)
+                        DateTime day = Convert.ToDateTime(gymstartdat);
+                        int i = Convert.ToInt32((Current_date - day).TotalDays);
+                        int service_id = search_active_service.ServiceId;
+                        var service = db.Servicesses.Where(b => b.ServiceId == service_id).FirstOrDefault();
+                        int service_price = service.ServieAmount;
+                        int service_day = service.ServiceDay;
+                        var Last_client_bill = db.ClientBills.Where(c => c.ClientId == clientid).OrderByDescending(d => d.BillMonth).FirstOrDefault();
+
+
+
+                        ClientBill clientBill = new ClientBill();
+                        if (Last_client_bill == null)
                         {
-                            clientBill.ClientId = clientid;
-                            clientBill.BillAmount = service_price;
-                            clientBill.BillStatus = false;
-                            clientBill.DueStatus = 0;
-                            clientBill.BillMonth = Current_date;
-                            db.ClientBills.Add(clientBill);
-                            db.SaveChanges();
-                            list.Add(clientBill);
-                        }
-
-
-                    }
-
-                }
-
-            }
-
-            //return RedirectToAction("NewBill","Account");
-            return View();
-        }
-        public ActionResult BillTransection(String search)
-        {
-            int i = 0;
-            var client = from c in db.ClientBillTransections select c;
-            if (!String.IsNullOrEmpty(search))
-            {
-                if (int.TryParse(search, out i))
-                {
-
-                    // int a = Convert.ToInt32(search);
-                    var a = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
-                    // int id = Convert.ToInt32(a.ClientId);
-                    // var billid = db.ClientBills.Where(h => h.ClientId == a.ClientId);
-                    if (a == null)
-                    {
-                        ViewBag.message = "Please Insert Valid Client ID Number ...";
-                    }
-                    else
-                    {
-                        var billid = db.ClientBills.Where(k => k.ClientId == a.ClientId).FirstOrDefault();
-
-                        if (billid == null)
-                        {
-                            ViewBag.message2 = "There is no transection ...";
+                            int totaldays = i / service_day;
+                            if (totaldays == 1)
+                            {
+                                clientBill.ClientId = clientid;
+                                clientBill.BillAmount = service_price;
+                                clientBill.BillStatus = false;
+                                clientBill.DueStatus = 0;
+                                clientBill.BillMonth = Current_date;
+                                db.ClientBills.Add(clientBill);
+                                db.SaveChanges();
+                                list.Add(clientBill);
+                            }
                         }
                         else
                         {
-                            int id2 = Convert.ToInt32(billid.ClientBillId);
-                            client = db.ClientBillTransections.Where(h => h.ClientBillId == id2);
+                            DateTime last_timeBill_date = Convert.ToDateTime(Last_client_bill.BillMonth);
+                            int totaldays2 = Convert.ToInt32((Current_date - last_timeBill_date).TotalDays);
+                            int j = totaldays2 / service_day;
+                            if (j == 1)
+                            {
+                                clientBill.ClientId = clientid;
+                                clientBill.BillAmount = service_price;
+                                clientBill.BillStatus = false;
+                                clientBill.DueStatus = 0;
+                                clientBill.BillMonth = Current_date;
+                                db.ClientBills.Add(clientBill);
+                                db.SaveChanges();
+                                list.Add(clientBill);
+                            }
+
+
+                        }
+
+                    }
+
+                }
+
+                //return RedirectToAction("NewBill","Account");
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
+        }
+        public ActionResult BillTransection(String search)
+        {
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
+            {
+                int i = 0;
+                var client = from c in db.ClientBillTransections select c;
+                if (!String.IsNullOrEmpty(search))
+                {
+                    if (int.TryParse(search, out i))
+                    {
+
+                        // int a = Convert.ToInt32(search);
+                        var a = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
+                        // int id = Convert.ToInt32(a.ClientId);
+                        // var billid = db.ClientBills.Where(h => h.ClientId == a.ClientId);
+                        if (a == null)
+                        {
+                            ViewBag.message = "Please Insert Valid Client ID Number ...";
+                        }
+                        else
+                        {
+                            var billid = db.ClientBills.Where(k => k.ClientId == a.ClientId).FirstOrDefault();
+
+                            if (billid == null)
+                            {
+                                ViewBag.message2 = "There is no transection ...";
+                            }
+                            else
+                            {
+                                int id2 = Convert.ToInt32(billid.ClientBillId);
+                                client = db.ClientBillTransections.Where(h => h.ClientBillId == id2);
+                            }
+
+
                         }
 
 
                     }
-
-
+                    else
+                    {
+                        // client = db.Clients.Where(x => x.ClietName == search);
+                        ViewBag.message = "Please Insert Valid Client ID Number ...";
+                    }
                 }
-                else
-                {
-                    // client = db.Clients.Where(x => x.ClietName == search);
-                    ViewBag.message = "Please Insert Valid Client ID Number ...";
-                }
+
+                return View(client.ToList());
+                //return View(db.ClientBillTransections.ToList());
             }
-
-            return View(client.ToList());
-            //return View(db.ClientBillTransections.ToList());
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
     }
 }

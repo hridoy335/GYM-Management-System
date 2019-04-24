@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using GYM_Management_System.Models;
 
 namespace GYM_Management_System.Controllers
@@ -18,27 +19,47 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult EmployeeInformation(String search)
         {
-            int i = 0;
-            var employee = from c in db.Employees select c;
-            if (!String.IsNullOrEmpty(search))
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
-                if (int.TryParse(search, out i))
+                int i = 0;
+                var employee = from c in db.Employees select c;
+                if (!String.IsNullOrEmpty(search))
                 {
+                    if (int.TryParse(search, out i))
+                    {
 
-                    // int a = Convert.ToInt32(search);
-                    employee = db.Employees.Where(x => x.Employee_ID == i);
+                        // int a = Convert.ToInt32(search);
+                        employee = db.Employees.Where(x => x.Employee_ID == i);
+                    }
+                    else
+                    {
+                        employee = db.Employees.Where(x => x.EmployeeName == search);
+                    }
                 }
-                else
-                {
-                    employee = db.Employees.Where(x => x.EmployeeName == search);
-                }
+                return View(employee.ToList());
             }
-            return View(employee.ToList());
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         public ActionResult DesignationInformation()
         {
-            return View(db.Designations.ToList());
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
+            {
+                return View(db.Designations.ToList());
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
     }
 }

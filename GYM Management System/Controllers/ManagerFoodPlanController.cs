@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using GYM_Management_System.Models;
 
 namespace GYM_Management_System.Controllers
@@ -21,9 +22,19 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult FoodPlanAdd()
         {
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClietName");
-            ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
-            return View();
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
+            {
+                ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClietName");
+                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpPost]
@@ -63,25 +74,45 @@ namespace GYM_Management_System.Controllers
 
         public ActionResult FoodPlanList()
         {
-            return View(db.FoodPlans.ToList());
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
+            {
+                return View(db.FoodPlans.ToList());
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
         }
         [HttpGet]
         public ActionResult FoodPlanUpdate(int? id)
         {
-            if (id == null)
+            int ab = Convert.ToInt32(Session["id"]);
+            int bc = Convert.ToInt32(Session["Designation"]);
+            if (ab != 0 && bc == 2)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            // Client ClientUpdate = db.Clients.Find(id);
-            //ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClietName");
-            //ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
-            FoodPlan foodPlan = db.FoodPlans.Find(id);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                // Client ClientUpdate = db.Clients.Find(id);
+                //ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ClietName");
+                //ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+                FoodPlan foodPlan = db.FoodPlans.Find(id);
 
-            if (foodPlan == null)
-            {
-                return HttpNotFound();
+                if (foodPlan == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(foodPlan);
             }
-            return View(foodPlan);
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Login");
+            }
 
         }
 
