@@ -4,10 +4,20 @@
     ViewBag.Title = "AttendenceView";
     Layout = "~/Views/Shared/_Manager_Layout.cshtml";
 }
-
+<h6 class="alert-danger">@ViewBag.message</h6>
 <h2>Attendence View</h2>
 
+@using (Html.BeginForm("AttendenceView", "ManagerAttendance", FormMethod.Get))
+{
+    @Html.Label("ID/Name")
+    @Html.TextBox("search")
+    @Html.Label("  From Date")
+    @Html.Editor("FromDate")
+    @Html.Label("To Date")
+    @Html.TextBox("ToDate")
+    <input type="submit" value="submit" />
 
+}
 <table class="table">
     <tr>
         <th>

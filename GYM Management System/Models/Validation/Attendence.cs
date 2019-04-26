@@ -16,16 +16,16 @@ namespace GYM_Management_System.Models
     public class MetadataAttendence
     {
         //[Required]
-        //[Display(Name = "Client Name")]
-        //public Nullable<int> ClientId { get; set; }
+        [Display(Name = "Client Name")]
+        public Nullable<int> ClientId { get; set; }
 
         //[Required]
-        //[Display(Name = " Employee Name")]
-        //public Nullable<int> EmployeeId { get; set; }
+        [Display(Name = " Employee Name")]
+        public Nullable<int> EmployeeId { get; set; }
 
         //[Required]
-        //[Display(Name = "From Time")]
-        //[DataType(DataType.DateTime)]
+        [Display(Name = "From Time")]
+        [DataType(DataType.Time)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         public Nullable<System.DateTime> FromTime { get; set; }
 
@@ -35,12 +35,12 @@ namespace GYM_Management_System.Models
         ////public Nullable<System.DateTime> ToTime { get; set; }
 
         //[Required]
-        //[Display(Name = "Attendance Status")]
-        //public Nullable<bool> AttendenceStatus { get; set; }
+        [Display(Name = "Attendance Status")]
+        public Nullable<bool> AttendenceStatus { get; set; }
 
         //[Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        //[DataType(DataType.Date)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] 
         [Display(Name ="Attendance Date")]
         public Nullable<System.DateTime> AttendenceDate { get; set; }
     }

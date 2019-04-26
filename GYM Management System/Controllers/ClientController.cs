@@ -155,20 +155,20 @@ namespace GYM_Management_System.Controllers
             int b = Convert.ToInt32(Session["Designation"]);
             if (a != 0 && b == 1)
             {
-                int i = 0;
-            var client = from c in db.Clients select c;
-            if (!String.IsNullOrEmpty(search))
-            {
-                if (int.TryParse(search, out i))
+                    int i = 0;
+                var client = from c in db.Clients select c;
+                if (!String.IsNullOrEmpty(search))
                 {
+                    if (int.TryParse(search, out i))
+                    {
 
-                    // int a = Convert.ToInt32(search);
-                    client = db.Clients.Where(x => x.ClientIdNumber == i);
-                }
-                else
-                {
-                    client = db.Clients.Where(x => x.ClietName == search);
-                }
+                        // int a = Convert.ToInt32(search);
+                        client = db.Clients.Where(x => x.ClientIdNumber == i);
+                    }
+                    else
+                    {
+                        client = db.Clients.Where(x => x.ClietName == search);
+                    }
             }
 
             return View(client.ToList());
