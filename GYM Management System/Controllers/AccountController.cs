@@ -50,13 +50,19 @@ namespace GYM_Management_System.Controllers
                     else
                     {
                         // client = db.Clients.Where(x => x.ClietName == search);
-                        ViewBag.message = "Please Insert Valid Client ID Number ...";
+                        // ViewBag.message = "Please Insert Valid Client ID Number ...";
+                        var a = db.Clients.Where(x => x.ClietName == search).FirstOrDefault();
+                        if (a == null)
+                        {
+                            ViewBag.message = "Please Insert Valid Client Name...";
+                        }
+                        else
+                        {
+                            client = db.ClientBills.Where(x => x.ClientId == a.ClientId);
+                        }
                     }
                 }
-
-                return View(client.ToList());
-                //var i = db.ClientBills.ToList();
-                //return Json(new { data=i},JsonRequestBehavior.AllowGet);
+                    return View(client.ToList());         
             }
             else
             {
@@ -143,6 +149,7 @@ namespace GYM_Management_System.Controllers
                 }
                 else
                 {
+                    //Due payment 
                     if (due >= paymentBill)
                     {
                          i  = due - paymentBill;
@@ -351,11 +358,7 @@ namespace GYM_Management_System.Controllers
                 {
                     if (int.TryParse(search, out i))
                     {
-
-                        // int a = Convert.ToInt32(search);
                         var a = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
-                        // int id = Convert.ToInt32(a.ClientId);
-                        // var billid = db.ClientBills.Where(h => h.ClientId == a.ClientId);
                         if (a == null)
                         {
                             ViewBag.message = "Please Insert Valid Client ID Number ...";
@@ -381,8 +384,29 @@ namespace GYM_Management_System.Controllers
                     }
                     else
                     {
+                        var a = db.Clients.Where(x => x.ClietName == search).FirstOrDefault();
+                        if (a == null)
+                        {
+                            ViewBag.message = "Please Insert Valid Client Name ...";
+                        }
+                        else
+                        {
+                            var billid = db.ClientBills.Where(k => k.ClientId == a.ClientId).FirstOrDefault();
+
+                            if (billid == null)
+                            {
+                                ViewBag.message2 = "There is no transection ...";
+                            }
+                            else
+                            {
+                                int id2 = Convert.ToInt32(billid.ClientBillId);
+                                client = db.ClientBillTransections.Where(h => h.ClientBillId == id2);
+                            }
+
+
+                        }
                         // client = db.Clients.Where(x => x.ClietName == search);
-                        ViewBag.message = "Please Insert Valid Client ID Number ...";
+                       // ViewBag.message = "Please Insert Valid Client ID Number ...";
                     }
                 }
 

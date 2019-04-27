@@ -5,11 +5,23 @@
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
 
-<h2>Expense List</h2>
-
+<h6>Expense List</h6>
+@if (TempData["Success"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+}
+<h6 class="alert-danger">@ViewBag.message</h6>
 <p>
     @Html.ActionLink("Create New", "ExpenseAdd")
 </p>
+@using (Html.BeginForm("ExpenseList", "Expense", FormMethod.Get))
+{ 
+    @Html.Label("  From Date")
+    @Html.Editor("FromDate")
+    @Html.Label("To Date")
+    @Html.TextBox("ToDate")
+    <input type="submit" value="submit" />
+}
 <table class="table">
     <tr>
         <th>
@@ -29,28 +41,27 @@
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpenseProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpenseProductQuantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpenseProductAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpenseBuyDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-        </td>
-        <td>
-            @Html.ActionLink("Update", "ExpenseUpdate", new { id=item.ExpenseId }) |
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseProductQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseProductAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseBuyDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "ExpenseUpdate", new { id = item.ExpenseId }) |
+            </td>
+        </tr>
+    }
 </table>

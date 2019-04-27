@@ -103,6 +103,7 @@ namespace GYM_Management_System.Controllers
             {
                 db.Entry(expense).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Success"] = "Data Update Successfully";
                 return RedirectToAction("ExpenseList");
             }
             ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
@@ -111,13 +112,29 @@ namespace GYM_Management_System.Controllers
         }
 
 
-        public ActionResult ExpenseList()
+        public ActionResult ExpenseList(String FromDate, String ToDate)
         {
             int ab = Convert.ToInt32(Session["id"]);
             int bc = Convert.ToInt32(Session["Designation"]);
             if (ab != 0 && bc == 1)
             {
-                return View(db.Expenses.ToList());
+                //return View(db.Expenses.ToList());
+                var expense = from c in db.Expenses select c;
+                var ft = Convert.ToDateTime(FromDate).Date;
+                DateTime tt = Convert.ToDateTime(ToDate).Date;
+                if (ft > tt)
+                {
+                    ViewBag.message = "Insert valid date";
+                }
+
+                else if (!String.IsNullOrEmpty(FromDate) && !String.IsNullOrEmpty(ToDate))
+                {
+                    
+                 
+                        expense = db.Expenses.Where(x => x.ExpenseBuyDate >= ft && x.ExpenseBuyDate <= tt);
+               
+                }
+                return View(expense.ToList());
             }
             else
             {

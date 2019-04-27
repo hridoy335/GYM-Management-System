@@ -72,19 +72,52 @@ namespace GYM_Management_System.Controllers
             return View();
         }
 
-        public ActionResult FoodPlanList()
+        public ActionResult FoodPlanList(String search)
         {
             int ab = Convert.ToInt32(Session["id"]);
             int bc = Convert.ToInt32(Session["Designation"]);
             if (ab != 0 && bc == 1)
             {
-                return View(db.FoodPlans.ToList());
+                int i = 0;
+                var foodlist = from c in db.FoodPlans select c;
+                if (!String.IsNullOrEmpty(search))
+                {
+                    if (int.TryParse(search, out i))
+                    {
+
+                        // int a = Convert.ToInt32(search);
+                        var client = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
+                        if (client == null)
+                        {
+                            ViewBag.message = "No data Found ...";
+                        }
+                        else
+                        {
+                            foodlist = db.FoodPlans.Where(x => x.ClientId == client.ClientId);
+                        }
+                        
+                    }
+                    else
+                    {
+                        var client = db.Clients.Where(x => x.ClietName == search).FirstOrDefault();
+                        if (client == null)
+                        {
+                            ViewBag.message = "No data Found ...";
+                        }
+                        else
+                        {
+                            foodlist = db.FoodPlans.Where(x => x.ClientId == client.ClientId);
+                        }
+                    }
+                }
+                    return View(foodlist.ToList());
             }
-            else
-            {
-                FormsAuthentication.SignOut();
-                return RedirectToAction("Login", "Login");
-            }
+                else
+                {
+                    FormsAuthentication.SignOut();
+                    return RedirectToAction("Login", "Login");
+                }
+            
         }
         [HttpGet]
         public ActionResult FoodPlanUpdate(int? id)
@@ -123,7 +156,8 @@ namespace GYM_Management_System.Controllers
             {
                 db.Entry(foodPlan).State = EntityState.Modified;
                 db.SaveChanges();
-                ViewBag.Message = "Data Update Successfully";
+                TempData["Success"] = "Data Update Successfully";
+               // ViewBag.Message = "Data Update Successfully";
                 return RedirectToAction("FoodPlanList");
             }
             return View(foodPlan);

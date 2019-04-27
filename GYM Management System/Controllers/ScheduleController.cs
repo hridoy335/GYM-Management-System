@@ -87,13 +87,64 @@ namespace GYM_Management_System.Controllers
 
         }
 
-        public ActionResult SchedulInformation()
+        public ActionResult SchedulInformation( String search)
         {
             int ab = Convert.ToInt32(Session["id"]);
             int bc = Convert.ToInt32(Session["Designation"]);
             if (ab != 0 && bc == 1)
             {
-                return View(db.Schedules.ToList());
+                int i = 0;
+
+                var schedulle = from c in db.Schedules select c;
+                if (!String.IsNullOrEmpty(search))
+                {
+                    if (int.TryParse(search, out i))
+                    {
+
+                        int a = Convert.ToInt32(search);
+                        var client = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
+                        if (client == null)
+                        {
+                            var employee = db.Employees.Where(x => x.Employee_ID == i).FirstOrDefault();
+                            if (employee == null)
+                            {
+                                ViewBag.message = "No data found";
+                            }
+                            else
+                            {
+                                schedulle = db.Schedules.Where(x => x.EmployeeId == employee.EmployeeId);
+                            }
+                        }
+                        else
+                        {
+                            schedulle = db.Schedules.Where(x => x.ClientId == client.ClientId);
+                        }
+                    }
+                    else
+                    {
+                        var client = db.Clients.Where(x => x.ClietName == search).FirstOrDefault();
+                        if (client == null)
+                        { 
+                            var employee = db.Employees.Where(x => x.EmployeeName == search).FirstOrDefault();
+                            if (employee == null)
+                            {
+                                ViewBag.message = "No data found";
+                            }
+                            else
+                            {
+                                schedulle = db.Schedules.Where(x => x.EmployeeId == employee.EmployeeId);
+                            }
+                        }
+                        else
+                        {
+                            schedulle = db.Schedules.Where(x => x.ClientId == client.ClientId);
+                        }
+
+                    }
+
+
+                }
+                return View(schedulle.ToList());
             }
             else
             {

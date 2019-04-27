@@ -200,7 +200,14 @@ namespace GYM_Management_System.Controllers
                     if (client == null)
                     {
                         var employee = db.Employees.Where(x => x.EmployeeName == search).FirstOrDefault();
-                        attendance = db.Attendences.Where(x => x.EmployeeId == employee.EmployeeId);
+                        if (employee == null)
+                        {
+                            ViewBag.message = "No data found";
+                        }
+                        else
+                        {
+                            attendance = db.Attendences.Where(x => x.EmployeeId == employee.EmployeeId);
+                        }
                     }
                     else
                     {

@@ -7,9 +7,21 @@
 
 <h2>Foodplan List</h2>
 <h6> @ViewBag.Message</h6>
+<h6 class="alert-danger"> @ViewBag.message</h6>
+@if (TempData["Success"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+}
 <p>
     @Html.ActionLink("Create New", "FoodPlanAdd")
 </p>
+@using (Html.BeginForm("FoodPlanList", "FoodPlan", FormMethod.Get))
+{
+    @Html.Label("ID/Name: ")
+    @Html.TextBox("search")
+    <input type="submit" value="submit" />
+
+}
 <table class="table">
     <tr>
         <th>
@@ -27,26 +39,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FoodPlan1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Client.ClietName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-        </td>
-        <td>
-            @Html.ActionLink("Update", "FoodPlanUpdate", new { id=item.FoodId }) |
-            @*@Html.ActionLink("Details", "Details", new { id=item.FoodId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FoodId })*@
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodPlan1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.ClietName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "FoodPlanUpdate", new { id = item.FoodId }) |
+                @*@Html.ActionLink("Details", "Details", new { id=item.FoodId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.FoodId })*@
+            </td>
+        </tr>
+    }
 
 </table>

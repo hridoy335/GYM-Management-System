@@ -4,13 +4,19 @@
     ViewBag.Title = "SchedulInformation";
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
-
+<h6 class="alert-danger">@ViewBag.message</h6>
 <h4>Schedul Information</h4>
+@using (Html.BeginForm("SchedulInformation", "Schedule", FormMethod.Get))
+{
+    @Html.Label("ID/Name")
+    @Html.TextBox("search")
+    <input type="submit" value="submit" />
 
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ScheduleTimeId)
+            @Html.DisplayName("Schedule Time")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ClientId)
@@ -21,20 +27,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ScheduleTime.ScheduleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Client.ClietName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-        </td>
-        <td>
-            @Html.ActionLink("Update", "UpdateSchedule", new { id=item.ScheduleId }) |
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduleTime.ScheduleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.ClietName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "UpdateSchedule", new { id = item.ScheduleId }) |
+        </tr>
+    }
 
 </table>

@@ -262,11 +262,6 @@ namespace GYM_Management_System.Controllers
                     if (int.TryParse(search, out i))
                     {
                         var id = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
-                        // int a = Convert.ToInt32(search);
-                        // var  a = db.Clients.Find(i).ClientId;
-                        //if (id.ClientIdNumber != 0)
-                        //{
-                        //    int ab =Convert.ToInt32( id.ClientIdNumber);
                         if (id == null)
                         {
                             ViewBag.message = "Please insert valid client id number ..";
@@ -276,14 +271,18 @@ namespace GYM_Management_System.Controllers
                             int b = Convert.ToInt32(id.ClientId);
                             client = db.ClientServiceLists.Where(a => a.ClientId == b);
                         }
-
-                        //client = client1;
-                        //}
-
                     }
                     else
                     {
-                        //   client = db.Clients.Where(x => x.ClietName == search);
+                        var j = db.Clients.Where(x => x.ClietName == search).FirstOrDefault();
+                        if (j == null)
+                        {
+                            ViewBag.message = "Please insert valid client name ..";
+                        }
+                        else
+                        {
+                            client = db.ClientServiceLists.Where(x => x.ClientId == j.ClientId);
+                        }
                     }
                 }
                 return View(client.ToList());
