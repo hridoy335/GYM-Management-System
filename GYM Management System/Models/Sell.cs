@@ -20,6 +20,7 @@ namespace GYM_Management_System.Models
         public int TotalAmount { get; set; }
         public int EmployeeId { get; set; }
         public int clientid { get; set; }
+        public Nullable<System.DateTime> SellDate { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Employee Employee { get; set; }

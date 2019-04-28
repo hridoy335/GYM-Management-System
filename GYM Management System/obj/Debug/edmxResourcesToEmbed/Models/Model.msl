@@ -156,6 +156,7 @@
     <EntitySetMapping Name="Sells">
       <EntityTypeMapping TypeName="gym_managementModel.Sell">
         <MappingFragment StoreEntitySet="Sell">
+          <ScalarProperty Name="SellDate" ColumnName="SellDate" />
           <ScalarProperty Name="SellId" ColumnName="SellId" />
           <ScalarProperty Name="ProductPlanId" ColumnName="ProductPlanId" />
           <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />

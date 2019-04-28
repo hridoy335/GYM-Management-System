@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Profit";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+
+<h4>Profit</h4>
+@*@using (Html.BeginForm("Profit", "Report", FormMethod.Get))
+{
+    @Html.Label("  From Date")
+    @Html.Editor("FromDate")
+    @Html.Label("To Date")
+    @Html.TextBox("ToDate")
+    <input type="submit" value="submit" />
+}*@
+<h4 class="alert-danger glyphicon-text-color">@ViewBag.message</h4>
+<h4 class="alert-danger glyphicon-text-color">@ViewBag.message2</h4>
+<h5>Total Transection Profit : @ViewBag.m</h5>
+<h5>Total Expense Profit : @ViewBag.m2</h5>
+<h5>Total Profit : @ViewBag.m3</h5>
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Total Profit" )
+        </th>
+
+
+        <th></th>
+    </tr>*@
+
+    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.Display("")
+                </td>
+             </tr>
+        }
+
+</table>*@

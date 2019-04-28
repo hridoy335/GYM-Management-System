@@ -154,6 +154,7 @@
           <Property Name="TotalAmount" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" Nullable="false" />
           <Property Name="clientid" Type="int" Nullable="false" />
+          <Property Name="SellDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Servicess">
           <Key>
@@ -684,6 +685,7 @@
           <NavigationProperty Name="Client" Relationship="Self.FK__Sell__clientid__4222D4EF" FromRole="Sell" ToRole="Client" />
           <NavigationProperty Name="Employee" Relationship="Self.FK__Sell__EmployeeId__412EB0B6" FromRole="Sell" ToRole="Employee" />
           <NavigationProperty Name="ProductPlan" Relationship="Self.FK__Sell__ProductPla__403A8C7D" FromRole="Sell" ToRole="ProductPlan" />
+          <Property Name="SellDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Servicess">
           <Key>
@@ -1188,6 +1190,7 @@
           <EntitySetMapping Name="Sells">
             <EntityTypeMapping TypeName="gym_managementModel.Sell">
               <MappingFragment StoreEntitySet="Sell">
+                <ScalarProperty Name="SellDate" ColumnName="SellDate" />
                 <ScalarProperty Name="SellId" ColumnName="SellId" />
                 <ScalarProperty Name="ProductPlanId" ColumnName="ProductPlanId" />
                 <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />

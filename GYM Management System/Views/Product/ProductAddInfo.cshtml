@@ -4,12 +4,20 @@
     ViewBag.Title = "ProductAddInfo";
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
-
+<h6 class="alert-danger">@ViewBag.meaasge </h6>
 <h4>Product Buying Information</h4>
 
 <p>
     @Html.ActionLink("Create New", "ProductAdd")
 </p>
+@using (Html.BeginForm("ProductAddInfo", "Product", FormMethod.Get))
+    {
+        @Html.Label("  From Date")
+        @Html.Editor("FromDate")
+        @Html.Label("To Date")
+        @Html.TextBox("ToDate")
+        <input type="submit" value="submit" />
+    }
 <table class="table">
     <tr>
         <th>
@@ -41,40 +49,41 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductPlan.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductQuantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProdyctBuyingDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductExpireDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductBuyParPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.productSellParPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalAmount)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPlan.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdyctBuyingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductExpireDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductBuyParPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productSellParPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
 
 
-        <td>
-            @Html.ActionLink("Update", "ProductAddUpdate", new { id = item.ProductButingId }) |
-            @*@Html.ActionLink("Details", "Details", new { id = item.ProductButingId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ProductButingId })*@
-        </td>
-    </tr>
-}
+            <td>
+                @Html.ActionLink("Update", "ProductAddUpdate", new { id = item.ProductButingId }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.ProductButingId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductButingId })*@
+            </td>
+        </tr>
+    }
 
 </table>

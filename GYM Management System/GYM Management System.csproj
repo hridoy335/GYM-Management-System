@@ -160,6 +160,7 @@
     <Compile Include="Controllers\ManagerScheduleController.cs" />
     <Compile Include="Controllers\ManagerServiceController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Global.asax.cs">
@@ -243,6 +244,7 @@
     <Compile Include="Models\Validation\ScheduleTime.cs" />
     <Compile Include="Models\Validation\Sell.cs" />
     <Compile Include="Models\Validation\Servicess.cs" />
+    <Compile Include="Models\Validation\Storage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -567,6 +569,7 @@
     <Content Include="Views\ManagerAccount\PrintTransectionInfo.cshtml" />
     <Content Include="Views\ManagerAccount\CreateBill.cshtml" />
     <Content Include="Views\ManagerAccount\BillTransection.cshtml" />
+    <Content Include="Views\Report\Profit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

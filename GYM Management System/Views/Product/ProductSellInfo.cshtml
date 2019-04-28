@@ -4,12 +4,21 @@
     ViewBag.Title = "ProductSellInfo";
     Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
 }
-
+<h6 class="alert-danger">@ViewBag.meaasge</h6>
 <h2>Product Sell Information</h2>
 
 <p>
     @Html.ActionLink("Product Sell", "ProductSell")
 </p>
+
+@using (Html.BeginForm("ProductSellInfo", "Product", FormMethod.Get))
+{
+    @Html.Label("  From Date")
+    @Html.Editor("FromDate")
+    @Html.Label("To Date")
+    @Html.TextBox("ToDate")
+    <input type="submit" value="submit" />
+}
 <table class="table">
     <tr>
         <th>
@@ -27,34 +36,41 @@
         <th>
             @Html.DisplayNameFor(model => model.Employee.EmployeeName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SellDate)
+        </th>
 
         @*<th></th>*@
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductPlan.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductQuantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Client.ClietName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPlan.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.ClietName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SellDate)
+            </td>
 
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.SellId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.SellId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.SellId })
-        </td>*@
-    </tr>
-}
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SellId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SellId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SellId })
+                </td>*@
+        </tr>
+    }
 
 </table>

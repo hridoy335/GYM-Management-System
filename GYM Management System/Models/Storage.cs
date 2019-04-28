@@ -11,7 +11,8 @@ namespace GYM_Management_System.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
+
     public partial class Storage
     {
         public int StorageId { get; set; }

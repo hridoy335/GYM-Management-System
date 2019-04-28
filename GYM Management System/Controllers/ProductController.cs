@@ -157,7 +157,7 @@ namespace GYM_Management_System.Controllers
             if (ab != 0 && bc == 1)
             {
                 ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
-                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+               // ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
                 return View();
             }
             else
@@ -176,15 +176,17 @@ namespace GYM_Management_System.Controllers
                 er++;
                 ViewBag.ProductPlanMessage = "ProductPlan Required";
             }
-            if (EmployeeId == null)
-            {
-                er++;
-                ViewBag.EmployeeMessage = "Employee Required";
-            }
+            //if (EmployeeId == null)
+            //{
+            //    er++;
+            //    ViewBag.EmployeeMessage = "Employee Required";
+            //}
             if (ModelState.IsValid)
             {
-                
-              //  db.SaveChanges();
+                int ab = Convert.ToInt32(Session["id"]);
+                productbuying.EmployeeId = ab;
+
+                //  db.SaveChanges();
                 Storage storage = new Storage();
                 storage.ProductPlanId = productbuying.ProductPlanId;
                 //storage.ProductQuantity = productbuying.ProductQuantity;
@@ -197,7 +199,7 @@ namespace GYM_Management_System.Controllers
                    // db.Entry(storage).State = EntityState.Modified;
                     db.ProductBuyings.Add(productbuying);
                     db.SaveChanges();
-                    return RedirectToAction("ProoductBuyingView");
+                    return RedirectToAction("ProductAddInfo");
 
                     //return View(productbuying);
                 }
@@ -217,7 +219,7 @@ namespace GYM_Management_System.Controllers
 
                     db.Entry(storage).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("ProoductBuyingView", "Product");
+                    return RedirectToAction("ProductAddInfo");
                 }
 
 
@@ -225,17 +227,33 @@ namespace GYM_Management_System.Controllers
             }
             ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
             ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
-            return View();
+            return View(productbuying);
         }
 
 
-        public ActionResult ProductAddInfo()
+        public ActionResult ProductAddInfo(String FromDate, String ToDate)
         {
             int ab = Convert.ToInt32(Session["id"]);
             int bc = Convert.ToInt32(Session["Designation"]);
             if (ab != 0 && bc == 1)
             {
-                return View(db.ProductBuyings.ToList());
+                var buyinfo = from c in db.ProductBuyings select c;
+                if (!String.IsNullOrEmpty(FromDate) && !String.IsNullOrEmpty(ToDate))
+                {
+                    var ft = Convert.ToDateTime(FromDate).Date;
+                    DateTime tt = Convert.ToDateTime(ToDate).Date;
+                    if (ft > tt)
+                    {
+                        ViewBag.meaasge = "Date is not right format ...";
+                    }
+
+                    else
+                    {
+                        buyinfo = db.ProductBuyings.Where(x => x.ProdyctBuyingDate >= ft && x.ProdyctBuyingDate <= tt);
+                    }
+                    
+                }
+               return View(buyinfo.ToList());
             }
             else
             {
@@ -319,6 +337,7 @@ namespace GYM_Management_System.Controllers
             return View(productBuying);
         }
 
+        [HttpGet]
         public ActionResult ProductSell()
         {
             int ab = Convert.ToInt32(Session["id"]);
@@ -326,7 +345,7 @@ namespace GYM_Management_System.Controllers
             if (ab != 0 && bc == 1)
             {
                 ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
-                ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+               // ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
                 ViewBag.clientid = new SelectList(db.Clients, "clientid", "ClietName");
                 return View();
             }
@@ -340,7 +359,7 @@ namespace GYM_Management_System.Controllers
 
 
         [HttpPost]
-        public ActionResult ProductSell([Bind(Include = "ProductPlanId,ProductQuantity,TotalAmount,EmployeeId,clientid")] Sell sell, int? ProductPlanId, int? EmployeeId,int? clientid,int? ProductQuantity)
+        public ActionResult ProductSell([Bind(Include = "ProductPlanId,ProductQuantity,TotalAmount,EmployeeId,clientid,SellDate")] Sell sell, int? ProductPlanId, int? EmployeeId,int? clientid,int? ProductQuantity)
         {
             int er = 0;
             if (ProductPlanId == null)
@@ -354,11 +373,11 @@ namespace GYM_Management_System.Controllers
                 ViewBag.clientidMessage = "Client Namre Required";
             }
 
-            if (EmployeeId == null)
-            {
-                er++; ;
-                ViewBag.EmployeeIdMessage = "Employee Namre Required"; 
-            }
+            //if (EmployeeId == null)
+            //{
+            //    er++; ;
+            //    ViewBag.EmployeeIdMessage = "Employee Namre Required"; 
+            //}
 
             if (ProductQuantity==null)
             {
@@ -392,6 +411,9 @@ namespace GYM_Management_System.Controllers
                     return View(sell);
                 }
                 int present_quantiy = product_storage.ProductQuantity - quantity;
+                int ab = Convert.ToInt32(Session["id"]);
+                sell.EmployeeId = ab;
+              //  sell.SellDate = DateTime.Now.Date;
 
                 Storage storage = new Storage();
                 storage.StorageId = product_storage.StorageId;
@@ -406,17 +428,36 @@ namespace GYM_Management_System.Controllers
                 return RedirectToAction("ProductSellInfo");
             }
 
-
-            return View();
+            ViewBag.ProductPlanId = new SelectList(db.ProductPlans, "ProductPlanId", "ProductName");
+           // ViewBag.EmployeeId = new SelectList(db.Employees, "EmployeeId", "EmployeeName");
+            ViewBag.clientid = new SelectList(db.Clients, "clientid", "ClietName");
+            return View(sell);
+            //return View();
         }
 
-        public ActionResult ProductSellInfo()
+        public ActionResult ProductSellInfo(String FromDate, String ToDate)
         {
             int ab = Convert.ToInt32(Session["id"]);
             int bc = Convert.ToInt32(Session["Designation"]);
             if (ab != 0 && bc == 1)
             {
-                return View(db.Sells.ToList());
+                var sellinfo = from c in db.Sells select c;
+                if (!String.IsNullOrEmpty(FromDate) && !String.IsNullOrEmpty(ToDate))
+                {
+                    var ft = Convert.ToDateTime(FromDate).Date;
+                    DateTime tt = Convert.ToDateTime(ToDate).Date;
+                    if (ft > tt)
+                    {
+                        ViewBag.meaasge = "Date is not right format ...";
+                    }
+
+                    else
+                    {
+                        sellinfo = db.Sells.Where(x => x.SellDate >= ft && x.SellDate <= tt);
+                    }
+
+                }
+                return View(sellinfo.ToList());
             }
             else
             {

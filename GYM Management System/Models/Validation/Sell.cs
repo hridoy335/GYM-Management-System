@@ -20,13 +20,18 @@ namespace GYM_Management_System.Models
         [Display(Name ="Quantity")]
         public int ProductQuantity { get; set; }
         [Required]
-        [Display(Name ="Total Name")]
+        [Display(Name ="Total Amount")]
         public int TotalAmount { get; set; }
-        [Required]
-  //      [Display(Name ="Employee Name")]
+        //[Required]
+        [Display(Name ="Employee Name")]
         public int EmployeeId { get; set; }
-        [Required]
-     //   [Display(Name ="Client Name")]
+        //[Required]
+        [Display(Name ="Client Name")]
         public int clientid { get; set; }
+        [Required]
+        [Display(Name ="Sell Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        public Nullable<System.DateTime> SellDate { get; set; }
     }
 }

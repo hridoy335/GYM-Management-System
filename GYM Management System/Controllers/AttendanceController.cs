@@ -202,7 +202,7 @@ namespace GYM_Management_System.Controllers
                         var employee = db.Employees.Where(x => x.EmployeeName == search).FirstOrDefault();
                         if (employee == null)
                         {
-                            ViewBag.message = "No data found";
+                            ViewBag.message = "No data found...";
                         }
                         else
                         {
@@ -222,8 +222,15 @@ namespace GYM_Management_System.Controllers
             {
                 var ft = Convert.ToDateTime(FromDate).Date;
                 DateTime tt = Convert.ToDateTime(ToDate).Date;
-                
-                attendance = db.Attendences.Where(x => x.AttendenceDate >= ft && x.AttendenceDate <= tt);
+                if (ft > tt)
+                {
+                    ViewBag.message = "Date is not right format...";
+                }
+                else
+                {
+                    attendance = db.Attendences.Where(x => x.AttendenceDate >= ft && x.AttendenceDate <= tt);
+                }
+               
             }
 
             //name,date
@@ -231,7 +238,13 @@ namespace GYM_Management_System.Controllers
             {
                 var ft = Convert.ToDateTime(FromDate).Date;
                 DateTime tt = Convert.ToDateTime(ToDate).Date;
-                
+                if (ft > tt)
+                {
+                    ViewBag.message = "Date is not right format...";
+                }
+                else
+                {
+
                 if (int.TryParse(search, out i))
                 {
                     var client = db.Clients.Where(x => x.ClientIdNumber == i).FirstOrDefault();
@@ -240,8 +253,8 @@ namespace GYM_Management_System.Controllers
                         var employee = db.Employees.Where(x => x.Employee_ID == i).FirstOrDefault();
                         if (employee == null)
                         {
-
-                        }
+                                ViewBag.message = "No data found ...";
+                            }
                         else
                         {
                             attendance = db.Attendences.Where(x => x.EmployeeId == employee.EmployeeId && x.AttendenceDate >= ft && x.AttendenceDate <= tt);
@@ -260,7 +273,7 @@ namespace GYM_Management_System.Controllers
                         var employee = db.Employees.Where(x => x.EmployeeName == search).FirstOrDefault();
                         if(employee==null)
                         {
-                            ViewBag.message = "No data found";
+                            ViewBag.message = "No data found ...";
                         }
                         else
                         {
@@ -273,7 +286,10 @@ namespace GYM_Management_System.Controllers
                     }
 
                 }
-               // attendance = db.Attendences.Where(x =>x.AttendenceDate >= ft && x.AttendenceDate < tt);
+
+                }
+
+                // attendance = db.Attendences.Where(x =>x.AttendenceDate >= ft && x.AttendenceDate < tt);
             }
             return View(attendance.ToList()); 
         }
